@@ -1,0 +1,11 @@
+test_day_boundary_and_gaps_are_measured (test_diagnostics.DiagnosticsTests) ... ok
+test_cp_improves_complete_seed_instead_of_only_verifying (test_worker.WorkerTests) ... ok
+test_frozen_sources (test_worker.WorkerTests) ... ok
+test_invalid_holding_hint_repaired_by_solver (test_worker.WorkerTests) ... ok
+test_real_solver_from_scratch_and_audit (test_worker.WorkerTests) ... ok
+test_target_seed_fast_path_still_calls_solver_and_audits (test_worker.WorkerTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.048s
+
+OK

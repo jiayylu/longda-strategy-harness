@@ -1,0 +1,56 @@
+
+> longda-strategy-harness@1.0.0 test
+> npm run build && node --test dist/tests/*.test.js
+
+
+> longda-strategy-harness@1.0.0 build
+> tsc -p tsconfig.json
+
+TAP version 13
+# Subtest: SSE handles fragmented transport; stores final answer and usage only
+ok 1 - SSE handles fragmented transport; stores final answer and usage only
+  ---
+  duration_ms: 18.405681
+  type: 'test'
+  ...
+# Subtest: truncated model answer cannot become an executable plan; errors redact credentials
+ok 2 - truncated model answer cannot become an executable plan; errors redact credentials
+  ---
+  duration_ms: 1.909298
+  type: 'test'
+  ...
+# (node:1864179) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: strategy conserves every order; rejects process edits and unknown fields
+ok 3 - strategy conserves every order; rejects process edits and unknown fields
+  ---
+  duration_ms: 2.571149
+  type: 'test'
+  ...
+# Subtest: memory requires CP solve and audit; exact context preferred; cars/rules incompatible
+ok 4 - memory requires CP solve and audit; exact context preferred; cars/rules incompatible
+  ---
+  duration_ms: 26.463863
+  type: 'test'
+  ...
+# Subtest: events persist before publication with stable run identity
+ok 5 - events persist before publication with stable run identity
+  ---
+  duration_ms: 1.228018
+  type: 'test'
+  ...
+# Subtest: Memory rejects saved answers and strips operation times from diagnostics
+ok 6 - Memory rejects saved answers and strips operation times from diagnostics
+  ---
+  duration_ms: 0.638623
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 82.346836

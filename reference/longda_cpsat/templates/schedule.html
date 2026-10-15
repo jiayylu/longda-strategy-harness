@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>隆达排程 · __TITLE__</title>
+<style>
+:root{--ink:#183043;--muted:#627585;--line:#dce5eb;--accent:#116b65;--surface:#fff;--bg:#f3f6f8;--label:176px;--plot:1100px;--grid:100px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}main{max-width:1600px;margin:28px auto;padding:0 26px}h1{font-size:28px;margin:3px 0 8px;letter-spacing:-.6px}h2{font-size:18px;margin:0 0 14px}p{margin:6px 0}.eyebrow{font-size:12px;color:var(--accent);letter-spacing:1.4px}.muted{color:var(--muted)}.top{display:flex;justify-content:space-between;gap:20px;align-items:center}.badge{white-space:nowrap;border:1px solid #bbd4ca;background:#e7f3ee;color:#206b54;border-radius:20px;padding:5px 12px;font-size:12px}a{color:var(--accent)}.metrics{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:12px;margin:22px 0 16px}.metric{padding:16px 20px;background:white;border:1px solid var(--line);border-radius:12px}.metric small{color:var(--muted);display:block}.metric strong{font-size:25px;font-weight:600;display:block;margin:4px 0}.metric span{font-size:12px;color:var(--muted)}.daily{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.day{flex:1;min-width:160px;background:white;border:1px solid var(--line);border-radius:8px;padding:10px 14px}.day span{float:right;font-weight:600}.day small{color:var(--muted)}.day meter{display:block;width:100%;height:6px;margin-top:6px}section{background:white;border:1px solid var(--line);border-radius:12px;margin:16px 0;padding:18px}.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.nav a,button,select,input{font:inherit}button,select,.nav a{color:var(--ink);border:1px solid #cad6df;border-radius:6px;padding:7px 11px;background:white;text-decoration:none;cursor:pointer}button:hover,.nav a:hover{background:#edf3f5}button.active,.nav a.active{background:var(--ink);color:white;border-color:var(--ink)}.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:16px 0}label{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:13px}input[type=range]{width:120px;accent-color:var(--accent)}.legend{display:flex;flex-wrap:wrap;gap:7px 15px;font-size:12px;margin:10px 0}.key{display:inline-flex;gap:6px;align-items:center}.swatch{display:inline-block;width:17px;height:11px;border-radius:2px}.legend .swatch.frame{height:14px;background:white;border:3px solid}.help{font-size:12px;color:var(--muted)}.scroller{position:relative;overflow:auto;max-height:740px;border:1px solid var(--line);border-radius:8px;margin:14px 0;background:white;scrollbar-gutter:stable}.chart{width:calc(var(--label) + var(--plot))}.row{display:flex;width:100%;min-height:34px;border-bottom:1px solid #edf1f4}.row-label{position:sticky;left:0;z-index:3;flex:0 0 var(--label);width:var(--label);padding:6px 12px;background:white;border-right:1px solid var(--line);font-size:12px;line-height:1.45;display:flex;flex-direction:column;justify-content:center}.row-label small{color:var(--muted);font-size:11px}.lane{position:relative;flex:0 0 var(--plot);width:var(--plot);background:repeating-linear-gradient(to right,transparent 0,transparent calc(var(--grid) - 1px),#e9eef2 calc(var(--grid) - 1px),#e9eef2 var(--grid))}.axis{position:sticky;top:0;z-index:8;background:#f5f8fa;height:46px;border-bottom:1px solid #cbd9e1}.axis .row-label{background:#f5f8fa;font-weight:600}.tick{position:absolute;top:7px;font-size:11px;color:#657784;white-space:nowrap}.orderrow{height:56px}.group{height:37px;background:#edf3f5}.group .row-label{background:#edf3f5;font-weight:600}.group .lane{background:#edf3f5;color:#5e7481;padding:8px 8px;font-size:12px}.mark{position:absolute;top:6px;height:21px;min-width:1px;border:0;border-radius:3px;padding:0;overflow:hidden;white-space:nowrap;cursor:pointer;transition:opacity .1s}.orderrow .mark{top:15px;height:26px}.mark:hover,.mark:focus-visible{filter:brightness(.92);z-index:4;outline:2px solid #122e43;outline-offset:1px}.mark span{display:block;font-size:11px;line-height:20px;color:white;white-space:nowrap;text-overflow:clip;padding:0 4px}.mark.light span{color:var(--ink)}.mark.selected{outline:2px solid #111;z-index:4;outline-offset:2px}.finish{position:absolute;width:8px;height:8px;top:7px;background:#1c8b70;transform:translateX(-4px) rotate(45deg);pointer-events:none}.dim{opacity:.12}.detail{min-height:86px;background:#f5f8fa;border-radius:8px;padding:13px 16px;margin-top:12px}.detail strong{display:block;margin-bottom:4px}.detail-grid{display:flex;flex-wrap:wrap;gap:7px 22px;font-size:13px}.detail small{display:block;color:var(--muted);margin-top:6px}.tooltip{display:none;position:fixed;z-index:50;pointer-events:none;max-width:340px;background:#fff;box-shadow:0 6px 28px #203c4e30;border:1px solid var(--line);border-radius:8px;padding:10px 14px;white-space:pre-line;font-size:12px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line)}th{background:#f2f6f8;position:sticky;top:0}details>summary{cursor:pointer;font-weight:600}.footer{color:var(--muted);font-size:12px;margin:22px 0}#periodStatus{font-size:12px;color:var(--muted)}.empty-mark{background:repeating-linear-gradient(135deg,#d3dae3,#d3dae3 4px,#f3f5f8 4px,#f3f5f8 8px)!important}.ramp-mark{background:repeating-linear-gradient(135deg,#f6cb76,#f6cb76 4px,#ffe8b4 4px,#ffe8b4 8px)!important}
+@media(max-width:760px){main{margin:16px auto;padding:0 12px}h1{font-size:22px}.metrics{grid-template-columns:1fr 1fr}.top{align-items:start;flex-direction:column;gap:8px}section{padding:12px}.metric{padding:12px}.metric strong{font-size:20px}:root{--label:134px}.row-label{font-size:11px;padding-left:7px}.day{min-width:120px}label{flex-wrap:wrap}}
+@media print{.controls,.nav,.tooltip{display:none}.scroller{max-height:none;overflow:visible}.chart{width:100%}.row-label{position:static}body{background:white}main{max-width:none}.metric,section{break-inside:avoid}}
+</style></head><body><main>
+<div class="top"><div><div class="eyebrow">LONGDA / FORGING SCHEDULE</div><h1 id="pageTitle">隆达排程 · __TITLE__</h1><p class="muted">同一份完整排程，按订单看流转，按设备看占用。</p></div><div class="badge" id="solutionBadge">独立校验通过</div></div>
+<div class="metrics" id="metrics"></div><div class="daily" id="daily"></div>
+<section>
+<div class="nav"><a id="ordersLink" href="orders.html">订单视角</a><a id="equipmentLink" href="equipment.html">设备视角</a><span class="help" id="equipmentSummary"></span></div>
+<div class="controls"><label>时间范围<select id="daySelect"></select></label><label>订单<select id="orderSelect"><option value="all">全部订单</option></select></label><label>放大 <input id="zoom" type="range" min="1" max="16" step="0.5" value="1"><output id="zoomValue">1×</output></label><button id="fit">恢复全图</button><button id="export">导出步骤 CSV</button></div>
+<p id="explain"></p><div id="legend" class="legend"></div><div id="furnaceLegend" class="legend"></div><div id="periodStatus"></div>
+<div class="scroller" id="scroller" aria-label="可缩放的排程时间图"><div id="chart" class="chart"></div></div>
+<p class="help">横轴为计划起点后的小时。先选某一天，再放大，可看清短时间的转运和锻打。点击方块，下方显示完整起止时刻；放大后可横向滚动，左侧名称保持可见。</p>
+<div id="detail" class="detail" aria-live="polite"><strong>点击一个方块，查看订单、火次、设备和时间。</strong><span class="muted">保温上下限与实际时长、转运起终点、炉子换温都会在这里展开。</span></div>
+</section>
+<section><details id="stepDetails"><summary>展开逐条步骤表 · 与图中的时间范围和订单筛选同步</summary><p class="help">跨日动作在图中裁切显示，表中保留动作的完整起止时刻。设备温度状态行不计作材料保温；成品到达后不再画材料步骤。</p><div class="table-wrap" style="max-height:520px"><table><thead><tr><th>设备 / 位置</th><th>订单</th><th>火次</th><th>动作</th><th>开始</th><th>结束</th><th>时长 / 分钟</th><th>补充</th></tr></thead><tbody id="stepTable"></tbody></table></div></details></section>
+<section><details><summary>这份图的口径与来源</summary><p id="scopeSummary"></p><p id="temperatureSummary"></p><p id="laneSummary"></p><p id="sourceHash" class="help"></p></details></section>
+<div class="footer">两个视角使用完全相同的数据；筛选、缩放不会重新搜索或改变原排程。网页自带完整数据，无需外部网络。</div>
+</main><div id="tip" class="tooltip"></div>
+<script id="schedule-data" type="application/json">__DATA__</script>
+<script>
+'use strict';
+const DATA=JSON.parse(document.getElementById('schedule-data').textContent), VIEW='__VIEW__';
+const $=id=>document.getElementById(id), scale=DATA.scale, byOrder=Object.fromEntries(DATA.orders.map(o=>[o.id,o]));
+const baseFurnaceColors=['#2166ac','#ba5424','#8347a3','#1b8557','#b33873','#7e7319'];
+const furnaceColors=Array.from({length:DATA.furnace_count},(_,i)=>baseFurnaceColors[i]||`hsl(${i*137.5%360},55%,40%)`);
+const names={hold:'有效保温',forge:'锻打',loaded:'载料转运',empty:'空车移动',ramp:'空炉换温',temperature:'炉温状态',cold:'冷料待投',unreleased:'尚未到料'};
+const colors={hold:'#a9d9ca',forge:'#d97059',loaded:'#7e99ce',empty:'#d3dae3',ramp:'#f6cb76',temperature:'#eef3f7',cold:'#e9edf1',unreleased:'#f4f6f8'};
+let zoom=1, chosenDay='all', chosenOrder='all', selected=null, drawnIds=[];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=n=>Number(n.toFixed(3)).toString();
+function time(t){const seconds=Math.round(t/scale*60),d=Math.floor(seconds/86400),h=Math.floor(seconds%86400/3600),m=Math.floor(seconds%3600/60),s=seconds%60;return `第${d+1}天 ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}${s?':'+String(s).padStart(2,'0'):''}`;}
+function locationLabel(n){return n===0?'冷料区':n<=DATA.furnace_count?'F'+n:n===DATA.furnace_count+1?'锻压机':'成品区';}
+function device(s){return s.kind==='hold'||s.kind==='ramp'||s.kind==='temperature'?'F'+(s.furnace+1):s.kind==='forge'?'锻压机':['cold','unreleased'].includes(s.kind)?'冷料区':'转运车 V'+(s.vehicle+1);}
+function extra(s){if(s.kind==='hold')return `${s.temp}℃ · 允许 ${num(s.lower/scale)}–${num(s.upper/scale)} 分钟`;if(s.kind==='loaded'||s.kind==='empty')return `${locationLabel(s.source)} → ${locationLabel(s.destination)}`;if(s.kind==='ramp')return `${s.from_temp} → ${s.to_temp}℃ · ${s.to_temp>s.from_temp?'升温':'降温'}`;if(s.kind==='temperature')return `${s.temp}℃`;return '';}
+function caption(s){if(s.kind==='hold')return `第${s.fire}火 · ${s.temp}℃`;if(s.kind==='forge')return `${s.fire}火锻打`;if(s.kind==='loaded')return `${locationLabel(s.source)}→${locationLabel(s.destination)}`;if(s.kind==='ramp')return `${s.from_temp}→${s.to_temp}℃`;if(s.kind==='temperature')return `${s.temp}℃`;return names[s.kind];}
+function description(s){return `${s.order||device(s)}${s.fire?' · 第'+s.fire+'火':''}\n${names[s.kind]} · ${device(s)}\n${time(s.start)} → ${time(s.end)}\n时长 ${num((s.end-s.start)/scale)} 分钟${extra(s)?'\n'+extra(s):''}`;}
+function key(label,color,frame=false){return `<span class="key"><i class="swatch${frame?' frame':''}" style="${frame?'border-color':'background'}:${color}"></i>${esc(label)}</span>`;}
+function initialize(){
+ const s=DATA.summary;
+ const duration=s.completion_duration,completionLabel=DATA.transport_enabled?'最后一支送达成品区':'最后一支锻打结束',transportLabel=DATA.transport_enabled?DATA.vehicle_count+' 辆转运车':'零运输模式';
+ const title=`${s.orders} 单 · ${transportLabel} · ${VIEW==='orders'?'订单视角':'设备视角'}`;
+ $('pageTitle').textContent=title;document.title='隆达 '+title;
+ $('solutionBadge').textContent='独立校验通过 · '+DATA.solution_label;
+ $('metrics').innerHTML=`<div class="metric"><small>全部订单完成用时</small><strong>${duration.days} 天 ${duration.hours} 小时 ${num(duration.minutes)} 分</strong><span>${completionLabel} · 计划起点为 0</span></div><div class="metric"><small>平均每天锻压机使用率</small><strong>${s.average_daily_utilization_percent.toFixed(2)}%</strong><span>完工覆盖 ${s.completion_calendar_days} 天平均 · 每天 24 小时</span></div><div class="metric"><small>总净锻打</small><strong>${num(s.total_forging_minutes)} 分钟</strong><span>${s.orders} 个订单 · ${s.operations} 道锻打工序</span></div><div class="metric"><small>第一天使用率</small><strong>${(s.daily[0]?.utilization_percent||0).toFixed(2)}%</strong><span>${num(s.daily[0]?.busy_minutes||0)} 分钟锻打${DATA.first_only?' · 首个合法解':''}</span></div>`;
+ $('daily').innerHTML=s.daily.map(d=>`<div class="day">第 ${d.day} 天<span>${d.utilization_percent.toFixed(2)}%</span><br><small>净锻打 ${num(d.busy_minutes)} 分钟</small><meter min="0" max="100" value="${d.utilization_percent}" aria-label="第${d.day}天使用率"></meter></div>`).join('');
+ const days=DATA.horizon/scale/1440;
+ $('daySelect').innerHTML=`<option value="all">全部 ${days} 天</option>`+Array.from({length:days},(_,i)=>`<option value="${i}">第 ${i+1} 天 · ${i*24}–${(i+1)*24} h</option>`).join('');
+ $('orderSelect').innerHTML+=DATA.orders.map(o=>`<option value="${esc(o.id)}">${esc(o.id)} · ${o.fires} 火</option>`).join('');
+ $('equipmentSummary').textContent=`${DATA.furnace_count} 台炉 × ${DATA.capacity} 支容量 · 1 台压机 · `+(DATA.transport_enabled?`载料与空驶均为 ${DATA.travel_minutes} 分钟`:'转运耗时为零，不限制车辆');
+ $(VIEW==='orders'?'ordersLink':'equipmentLink').classList.add('active');
+ $('explain').textContent=VIEW==='orders'?`每行一个订单：填色区分步骤，保温方块的边框区分炉子；绿色菱形表示${DATA.transport_enabled?'送达成品区':'锻打全部结束'}。`:`每台炉分为炉温状态行与 ${DATA.capacity} 条材料占用行；压机${DATA.transport_enabled?'和转运车':''}单列。材料方块填色区分订单，斜纹表示${DATA.transport_enabled?'空车移动或':''}炉温转换。`;
+ const stageKeys=['cold','hold',...(DATA.transport_enabled?['loaded']:[]),'forge',...(DATA.steps.some(x=>x.kind==='unreleased')?['unreleased']:[])];
+ $('legend').innerHTML=VIEW==='orders'?stageKeys.map(k=>key(names[k],colors[k])).join(''):DATA.orders.map(o=>key(o.id,o.color)).join('');
+ $('furnaceLegend').innerHTML=VIEW==='orders'?furnaceColors.map((c,i)=>key('F'+(i+1),c,true)).join(''):key('炉温状态',colors.temperature)+key('空炉升 / 降温',colors.ramp)+(DATA.transport_enabled?key('空车移动',colors.empty):'');
+ $('scopeSummary').textContent=`这是 ${DATA.run} 的${DATA.solution_label}。${DATA.first_only?'未优化锻压机使用率。':''}每天均按 24 小时统计，只计净锻打；以${completionLabel}作为整批完成。顶部平均覆盖完工所涉及的全部统计日，最后不足一天也按一天计；时间图可以查看更长的配置窗口，完工后的时间为空白。`;
+ $('temperatureSummary').textContent=`所有炉子初始为空、${DATA.initial_temperature}℃；只有空炉能换温。图中的炉温转换${DATA.transport_enabled?'及空车移动':''}采用独立校验器根据排程重建的一条合法轨迹，按能够开始的最早时刻安排，实际也可在允许的空闲内推迟。`;
+ $('laneSummary').textContent=`炉内“占用行 1–${DATA.capacity}”用于分开显示同时在炉的材料，不是固定的物理炉位。空白表示该行没有活动；尚未到料与冷料投放前的等待单独显示。当前模型不含包棉、分切、开门温降或另计装卸时间。`;
+ $('sourceHash').textContent='结果来源：'+DATA.run+' · 排程 SHA-256：'+DATA.schedule_sha256;
+ render();
+}
+function limits(){return chosenDay==='all'?[0,DATA.horizon]:[Number(chosenDay)*1440*scale,(Number(chosenDay)+1)*1440*scale];}
+function render(){
+ const [lo,hi]=limits(),available=Math.max(700,$('scroller').clientWidth-parseInt(getComputedStyle(document.documentElement).getPropertyValue('--label'))-20),width=available*zoom;
+ const spanHours=(hi-lo)/scale/60,desiredTick=spanHours/(width/105);const tickH=[.25,.5,1,2,3,4,6,12,24].find(x=>x>=desiredTick)||24;
+ const px=t=>(t-lo)/(hi-lo)*width;
+ $('chart').style.setProperty('--plot',width+'px');$('chart').style.setProperty('--grid',(tickH/spanHours*width)+'px');
+ let html=`<div class="row axis"><div class="row-label">${VIEW==='orders'?'订单 / 火次':'设备 / 占用行'}<small>时间：计划起点后小时</small></div><div class="lane">`;
+ for(let h=lo/scale/60;h<hi/scale/60-.0001;h+=tickH){html+=`<span class="tick" style="left:${px(h*60*scale)+3}px">${num(h)} h${h%24===0?' · 第'+(h/24+1)+'天':''}</span>`;}
+ html+='</div></div>';drawnIds=[];
+ function row(label,sub,events,order=null,group=false){
+  html+=`<div class="row ${group?'group':VIEW==='orders'?'orderrow':''}"><div class="row-label">${esc(label)}${sub?'<small>'+esc(sub)+'</small>':''}</div><div class="lane">`;
+  if(group){html+=esc(events);}
+  else for(const s of events){if(s.end<=lo||s.start>=hi)continue;
+   const start=Math.max(lo,s.start),end=Math.min(hi,s.end),w=px(end)-px(start),dim=chosenOrder!=='all'&&s.order&&s.order!==chosenOrder;
+   let color=VIEW==='equipment'&&s.order?byOrder[s.order].color:colors[s.kind];
+   let border=VIEW==='orders'&&s.kind==='hold'?`box-shadow:inset 0 0 0 ${Math.min(3,w/3)}px ${furnaceColors[s.furnace]};`:'';
+   let text=VIEW==='equipment'&&s.order?s.order+' · '+caption(s):caption(s);
+   let klass=`mark ${s.kind==='empty'?'empty-mark ':''}${s.kind==='ramp'?'ramp-mark ':''}${['cold','unreleased','temperature','ramp','empty'].includes(s.kind)||(VIEW==='orders'&&s.kind==='hold')?'light ':''}${dim?'dim ':''}${selected===s.id?'selected':''}`;
+   html+=`<button class="${klass}" data-step="${s.id}" style="left:${px(start)}px;width:${Math.max(1,w)}px;background:${color};${border}" aria-label="${esc(description(s))}">${w>48?'<span>'+esc(text)+'</span>':''}</button>`;
+   drawnIds.push(s.id);
+  }
+  if(order&&order.completion>=lo&&order.completion<=hi)html+=`<span class="finish" style="left:${px(order.completion)}px" title="订单完成"></span>`;
+  html+='</div></div>';
+ }
+ if(VIEW==='orders')for(const o of DATA.orders){if(chosenOrder!=='all'&&chosenOrder!==o.id)continue;row(o.id,`${o.fires} 火 · 完成 ${time(o.completion)}`,DATA.steps.filter(s=>s.order===o.id),o);}
+ else{
+  for(let f=0;f<DATA.furnace_count;f++){
+   row('F'+(f+1)+' 加热炉',`最多 ${DATA.capacity} 支`,'空炉才允许换温；下方每条占用行可同时放一支材料。',null,true);
+   row('炉温',`升温 ${DATA.ramp_up}℃/分 · 降温 ${DATA.ramp_down}℃/分`,DATA.steps.filter(s=>s.furnace===f&&['temperature','ramp'].includes(s.kind)));
+   for(let lane=0;lane<DATA.capacity;lane++)row('占用行 '+(lane+1),'保温 / 在炉',DATA.steps.filter(s=>s.kind==='hold'&&s.furnace===f&&s.lane===lane));
+  }
+  row('锻压机','1 台 · 只画净锻打',DATA.steps.filter(s=>s.kind==='forge'));
+  for(let v=0;v<DATA.vehicle_count;v++)row('转运车 V'+(v+1),'实色载料 · 斜纹空驶',DATA.steps.filter(s=>s.vehicle===v&&['loaded','empty'].includes(s.kind)));
+ }
+ $('chart').innerHTML=html;$('zoomValue').textContent=num(zoom)+'×';
+ const busy=DATA.steps.filter(s=>s.kind==='forge').reduce((sum,s)=>sum+Math.max(0,Math.min(s.end,hi)-Math.max(s.start,lo)),0)/scale;
+ $('periodStatus').textContent=`显示 ${num(lo/scale/60)}–${num(hi/scale/60)} 小时 · 整台压机在此范围内锻打 ${num(busy)} 分钟，使用率 ${(busy/((hi-lo)/scale)*100).toFixed(2)}%${chosenOrder!=='all'?' · 选中 '+chosenOrder+'（使用率仍为全压机统计）':''}`;
+ if($('stepDetails').open)renderTable();hideTip();
+}
+function selectedSteps(){const [lo,hi]=limits();return DATA.steps.filter(s=>s.end>lo&&s.start<hi&&s.kind!=='temperature'&&(chosenOrder==='all'||s.order===chosenOrder)).sort((a,b)=>a.start-b.start||a.end-b.end);}
+function renderTable(){$('stepTable').innerHTML=selectedSteps().map(s=>`<tr><td>${device(s)}</td><td>${esc(s.order||'—')}</td><td>${esc(s.fire||'—')}</td><td>${names[s.kind]}</td><td>${time(s.start)}</td><td>${time(s.end)}</td><td>${num((s.end-s.start)/scale)}</td><td>${esc(extra(s))}</td></tr>`).join('');}
+function detail(s){selected=s.id;document.querySelectorAll('.mark.selected').forEach(e=>e.classList.remove('selected'));document.querySelector(`[data-step="${s.id}"]`)?.classList.add('selected');$('detail').innerHTML=`<strong>${esc(s.order||device(s))}${s.fire?' · 第'+esc(s.fire)+'火':''} · ${names[s.kind]}</strong><div class="detail-grid"><span>设备：${device(s)}</span><span>开始：${time(s.start)}（${num(s.start/scale)} 分钟）</span><span>结束：${time(s.end)}（${num(s.end/scale)} 分钟）</span><span>时长：${num((s.end-s.start)/scale)} 分钟</span><span>${esc(extra(s))}</span></div>${['empty','ramp','temperature'].includes(s.kind)?'<small>根据该排程重建的合法设备轨迹；不代表唯一可选的空驶 / 换温时刻。</small>':''}`;}
+function showTip(event){const node=event.target.closest('[data-step]');if(!node)return hideTip();const s=DATA.steps[Number(node.dataset.step)],tip=$('tip');tip.textContent=description(s);tip.style.display='block';tip.style.left=Math.max(8,Math.min(innerWidth-tip.offsetWidth-12,event.clientX+16))+'px';tip.style.top=Math.max(8,Math.min(innerHeight-tip.offsetHeight-12,event.clientY+16))+'px';}
+function hideTip(){$('tip').style.display='none';}
+$('chart').addEventListener('mousemove',showTip);$('chart').addEventListener('mouseleave',hideTip);$('chart').addEventListener('click',e=>{const node=e.target.closest('[data-step]');if(node)detail(DATA.steps[Number(node.dataset.step)]);});
+$('scroller').addEventListener('scroll',hideTip);$('daySelect').onchange=()=>{chosenDay=$('daySelect').value;render();$('scroller').scrollLeft=0;};$('orderSelect').onchange=()=>{chosenOrder=$('orderSelect').value;render();};$('zoom').oninput=()=>{zoom=Number($('zoom').value);render();};
+$('fit').onclick=()=>{chosenDay='all';chosenOrder='all';zoom=1;$('daySelect').value='all';$('orderSelect').value='all';$('zoom').value=1;render();$('scroller').scrollLeft=0;$('scroller').scrollTop=0;};$('stepDetails').ontoggle=()=>{if($('stepDetails').open)renderTable();};
+$('export').onclick=()=>{const rows=[['设备','订单','火次','动作','开始','结束','开始分钟','结束分钟','时长分钟','补充'],...selectedSteps().map(s=>[device(s),s.order||'',s.fire||'',names[s.kind],time(s.start),time(s.end),num(s.start/scale),num(s.end/scale),num((s.end-s.start)/scale),extra(s)])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='隆达'+DATA.orders.length+'单排程步骤.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+let resizing;window.addEventListener('resize',()=>{clearTimeout(resizing);resizing=setTimeout(render,150);});
+initialize();
+</script></body></html>

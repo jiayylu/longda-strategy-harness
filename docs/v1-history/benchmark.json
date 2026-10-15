@@ -1,0 +1,32 @@
+[
+  {
+    "name": "cold-01",
+    "status": "budget",
+    "minutes": 547,
+    "utilization": 37.98611111111111,
+    "total_s": 1799.017063463,
+    "api_s": 1159.18457026,
+    "cp_s": 568.5330957984552,
+    "calls": 4,
+    "solves": 14,
+    "memory_hits": 0,
+    "construct_trials": 29,
+    "source_hash": null,
+    "path": "../runs/cold-01/best/views"
+  },
+  {
+    "name": "warm-01",
+    "status": "target_reached",
+    "minutes": 720,
+    "utilization": 50.0,
+    "total_s": 500.622445365,
+    "api_s": 352.063598245,
+    "cp_s": 118.60431013349444,
+    "calls": 1,
+    "solves": 3,
+    "memory_hits": 6,
+    "construct_trials": 29,
+    "source_hash": "f0c3f78632482b67cc3c76640a3465c0f0941ea1eb33ee81124bca631a56362a",
+    "path": "../runs/warm-01/best/views"
+  }
+]

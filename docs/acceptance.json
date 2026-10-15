@@ -1,0 +1,341 @@
+{
+  "tests": {
+    "typescript_passed": 11,
+    "python_passed": 12
+  },
+  "runs": [
+    {
+      "run": "paired-cold-1",
+      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
+      "first_valid_s": 5.086678597,
+      "first_minutes": 329,
+      "best_minutes": 519,
+      "elapsed_s": 32.337657742,
+      "memory_hits": 0,
+      "cp_calls": 4,
+      "timing": {
+        "planner_wall_s": 0,
+        "aux_wall_s": 0,
+        "constructor_s": 1.4363450454548001,
+        "cp_s": 21.713797834701836,
+        "audit_s": 22.773004071787
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": []
+    },
+    {
+      "run": "paired-warm-1",
+      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
+      "first_valid_s": 5.0515202829999994,
+      "first_minutes": 504,
+      "best_minutes": 519,
+      "elapsed_s": 30.505702585,
+      "memory_hits": 6,
+      "cp_calls": 4,
+      "timing": {
+        "planner_wall_s": 0,
+        "aux_wall_s": 0,
+        "constructor_s": 1.4772027377039194,
+        "cp_s": 21.550874957814813,
+        "audit_s": 21.057570886798203
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": []
+    },
+    {
+      "run": "paired-cold-2",
+      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
+      "first_valid_s": 4.813630135,
+      "first_minutes": 329,
+      "best_minutes": 519,
+      "elapsed_s": 30.682109389,
+      "memory_hits": 0,
+      "cp_calls": 4,
+      "timing": {
+        "planner_wall_s": 0,
+        "aux_wall_s": 0,
+        "constructor_s": 1.7129677254706621,
+        "cp_s": 21.263639368116856,
+        "audit_s": 21.1371238110587
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": []
+    },
+    {
+      "run": "paired-warm-2",
+      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
+      "first_valid_s": 4.923291338,
+      "first_minutes": 504,
+      "best_minutes": 519,
+      "elapsed_s": 30.615433011,
+      "memory_hits": 6,
+      "cp_calls": 4,
+      "timing": {
+        "planner_wall_s": 0,
+        "aux_wall_s": 0,
+        "constructor_s": 1.5010828906670213,
+        "cp_s": 21.695299269631505,
+        "audit_s": 21.366976789198816
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": []
+    },
+    {
+      "run": "final-car1",
+      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
+      "first_valid_s": 7.9623381239999995,
+      "first_minutes": 284,
+      "best_minutes": 284,
+      "elapsed_s": 33.101905758,
+      "memory_hits": 0,
+      "cp_calls": 6,
+      "timing": {
+        "planner_wall_s": 0,
+        "aux_wall_s": 0,
+        "constructor_s": 0.6317127076908946,
+        "cp_s": 28.37532958574593,
+        "audit_s": 2.883700018748641
+      },
+      "stop_reason": "budget",
+      "invocations": 2,
+      "errors": []
+    },
+    {
+      "run": "live-generated-final",
+      "source_hash": "68e68e4731d41f7441e34d3bdc8e78b74a9323ce8559aee3541e700d1be7ebad",
+      "first_valid_s": 7.170371797,
+      "first_minutes": 504,
+      "best_minutes": 617.3333333333334,
+      "elapsed_s": 360.887793438,
+      "memory_hits": 0,
+      "cp_calls": 44,
+      "timing": {
+        "planner_wall_s": 146.244298191,
+        "aux_wall_s": 46.559214865,
+        "constructor_s": 2.8801796324551105,
+        "cp_s": 540.4430323448032,
+        "audit_s": 34.70212882012129
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": []
+    },
+    {
+      "run": "live-cold-car2",
+      "source_hash": "97ed5f0ae1941aa1e9a250b28213a07d11301790686a9dbc14563704f4836c82",
+      "first_valid_s": 6.985701511,
+      "first_minutes": 504,
+      "best_minutes": 650,
+      "elapsed_s": 242.775742314,
+      "memory_hits": 0,
+      "cp_calls": 36,
+      "timing": {
+        "planner_wall_s": 180.002065401,
+        "aux_wall_s": 140.99947313799996,
+        "constructor_s": 2.5028453143313527,
+        "cp_s": 333.8606092631817,
+        "audit_s": 50.33794671762735
+      },
+      "stop_reason": "budget",
+      "invocations": 1,
+      "errors": [
+        {
+          "model_call": 1,
+          "error": "Error: TimeoutError: The operation was aborted due to timeout"
+        }
+      ]
+    }
+  ],
+  "auxiliary": [
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 3.706522247000001,
+      "input_chars": 5072,
+      "summary_chars": 743,
+      "changes": [
+        {
+          "id": "bootstrap-0-3-rolling-same",
+          "version": 1,
+          "op": "add"
+        }
+      ],
+      "rejected_patches": [
+        {
+          "id": "bootstrap-0-3-split",
+          "op": "retire",
+          "error": "Error: Stale or invalid Memory patch"
+        }
+      ],
+      "error": null
+    },
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 6.169116592000006,
+      "input_chars": 11204,
+      "summary_chars": 797,
+      "changes": [
+        {
+          "id": "bootstrap-2-5-rolling-same",
+          "version": 3,
+          "op": "retire"
+        },
+        {
+          "id": "bootstrap-0-3-rolling-same",
+          "version": 3,
+          "op": "update"
+        }
+      ],
+      "rejected_patches": [],
+      "error": null
+    },
+    {
+      "status": "fallback",
+      "model": null,
+      "wall_s": 6.52886578600001,
+      "input_chars": null,
+      "summary_chars": null,
+      "changes": [],
+      "rejected_patches": null,
+      "error": "SyntaxError: Expected ',' or '}' after property value in JSON at position 3274 (line 50 column 525)"
+    },
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 6.499210186999989,
+      "input_chars": 11846,
+      "summary_chars": 703,
+      "changes": [
+        {
+          "id": "bootstrap-2-5-rolling-same",
+          "version": 2,
+          "op": "update"
+        },
+        {
+          "id": "bootstrap-1-3-rolling-same",
+          "version": 3,
+          "op": "retire"
+        }
+      ],
+      "rejected_patches": [],
+      "error": null
+    },
+    {
+      "status": "fallback",
+      "model": null,
+      "wall_s": 6.721839011000004,
+      "input_chars": null,
+      "summary_chars": null,
+      "changes": [],
+      "rejected_patches": null,
+      "error": "SyntaxError: Expected ',' or '}' after property value in JSON at position 2991 (line 50 column 361)"
+    },
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 5.099079583999992,
+      "input_chars": 10211,
+      "summary_chars": 502,
+      "changes": [],
+      "rejected_patches": [
+        {
+          "id": "bootstrap-0-3-rolling-same",
+          "op": "add",
+          "error": "Error: Stale or invalid Memory patch"
+        },
+        {
+          "id": "bootstrap-1-3-legacy",
+          "op": "retire",
+          "error": "Error: Stale or invalid Memory patch"
+        }
+      ],
+      "error": null
+    },
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 4.656420807999996,
+      "input_chars": 11398,
+      "summary_chars": 631,
+      "changes": [
+        {
+          "id": "bootstrap-2-5-rolling-same",
+          "version": 1,
+          "op": "add"
+        },
+        {
+          "id": "bootstrap-1-3-rolling-same",
+          "version": 2,
+          "op": "update"
+        }
+      ],
+      "rejected_patches": [],
+      "error": null
+    },
+    {
+      "status": "model",
+      "model": "qwen-flash",
+      "wall_s": 7.1781606500000015,
+      "input_chars": 10624,
+      "summary_chars": 898,
+      "changes": [
+        {
+          "id": "bootstrap-0-3-rolling-same",
+          "version": 2,
+          "op": "update"
+        },
+        {
+          "id": "bootstrap-1-3-rolling-same",
+          "version": 1,
+          "op": "add"
+        }
+      ],
+      "rejected_patches": [],
+      "error": null
+    }
+  ],
+  "ablation": {
+    "note": "program-hook-control is a hand-written test program, not an LLM-generated success claim; each case has a 1-second constructive cap plus full audits",
+    "elapsed_s": 51.269393370486796,
+    "by_variant": {
+      "legacy": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.08014201791957021
+      },
+      "extended-batch": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.16068718256428838
+      },
+      "rolling": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.1086164889857173
+      },
+      "split-cars": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.11253300867974758
+      },
+      "backtracking": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.1154014216735959
+      },
+      "program-hook-control": {
+        "trials": 12,
+        "valid": 6,
+        "median_s": 0.15066419774666429
+      }
+    }
+  },
+  "rule_hash": "0a9156ae4416fb72ae5f4277c79f2f2c5e70b35d946085ca6b55466f6e841231",
+  "known_schedule_loaded": false,
+  "remaining_search_processes": 0
+}
