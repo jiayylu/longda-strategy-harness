@@ -1,0 +1,12 @@
+[
+  {
+    "project": "DeepSeek",
+    "revision": "571902028a75c64c1d767f4ae5fd099485f0ddf0",
+    "package_directories": 336
+  },
+  {
+    "project": "Qwen",
+    "revision": "b2d17b8706b226ff7792683ecd8f050f18f9752e",
+    "package_directories": 2
+  }
+]

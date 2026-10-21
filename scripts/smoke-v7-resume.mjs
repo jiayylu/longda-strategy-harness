@@ -1,0 +1,26 @@
+/** Interrupt after partial-tool result; explicitly resume queued CP. No live model/API. */
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {resolve,join} from 'node:path';
+import assert from 'node:assert/strict';
+const root=resolve(import.meta.dirname,'..'),out=join(root,'runs/smoke-v7-resume');mkdirSync(out,{recursive:true});
+const sc=JSON.parse(readFileSync(join(root,'configs/orders20.json'),'utf8'));sc.transport.vehicle_count=1;
+sc.orders=[{id:'A',route:'R',release_minutes:0,due_minutes:5760}];
+sc.routes=[{id:'R',operations:[1,2].map(fire=>({fire,temp:1150,hold_min:60,hold_max:90,forge:10}))}];
+writeFileSync(join(out,'scenario.json'),JSON.stringify(sc));
+const source='def construct():\n state=root()\n for step in range(2):\n  cs=candidates(state)\n  state=advance(state,cs[0]["id"])\n return None\n';
+const mock=join(out,'mock.mjs');
+writeFileSync(mock,`let n=0;globalThis.fetch=async()=>{if(n++===0)return new Response(JSON.stringify({content:[{type:'text',text:JSON.stringify({summary:'partial',candidates:[],tool_calls:[{name:'run_algorithm',arguments:{source:${JSON.stringify(source)},seconds:2}}]})}],stop_reason:'end_turn'}),{headers:{'content-type':'application/json'}});process.kill(process.pid,'SIGINT');throw Error('fixture stop after partial is queued');};`);
+const dir=join(out,'run');
+const common=['--orders',join(out,'scenario.json'),'--vehicles','1','--out',dir,'--bootstrap-limit','0','--aux-model','off','--memory','off','--rounds','1','--cp-workers','1','--threads','2','--construct-workers','1','--completion-seconds','5','--wall-seconds','20','--target','1','--repair-attempts','0'];
+let r=spawnSync(process.execPath,['--import',mock,'dist/src/cli.js',...common,'--model','fixture'],{cwd:root,encoding:'utf8',timeout:30000,env:{...process.env,ANTHROPIC_AUTH_TOKEN:'fixture'}});
+writeFileSync(join(out,'stopped.log'),r.stdout+'\n'+r.stderr);assert.equal(r.status,0,r.stderr);
+const first=JSON.parse(readFileSync(join(dir,'report.json'),'utf8'));
+const cp=JSON.parse(readFileSync(join(dir,'checkpoint.json'),'utf8'));
+assert.equal(first.stop_reason,'user_stop');assert.ok([...cp.queue,...cp.running].some(t=>t.completion),'partial completion must survive stop');
+r=spawnSync(process.execPath,['dist/src/cli.js',...common,'--model','off','--resume'],{cwd:root,encoding:'utf8',timeout:30000});
+writeFileSync(join(out,'resumed.log'),r.stdout+'\n'+r.stderr);assert.equal(r.status,0,r.stdout+r.stderr);
+const second=JSON.parse(readFileSync(join(dir,'report.json'),'utf8'));
+assert.equal(second.best?.audit_valid,true);assert.equal(second.completion_valid,1);assert.equal(second.cp_solver_calls,1);
+const summary={stopped:first.stop_reason,resumed:second.stop_reason,valid:second.best.audit_valid,day_minutes:second.best.day_minutes,cp_solver_calls:second.cp_solver_calls,completion_valid:second.completion_valid};
+writeFileSync(join(out,'summary.json'),JSON.stringify(summary,null,2));console.log(JSON.stringify(summary));

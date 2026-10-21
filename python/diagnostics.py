@@ -1,11 +1,12 @@
 """Observable schedule facts for planning; never infer a failure's root cause."""
 
 from collections import defaultdict
+from scoring import window
 
 
 def summarize(sc, schedule, ops):
     scale = sc["ticks_per_minute"]
-    day = 1440 * scale
+    lower,day = window(sc)
     forging = sorted(
         (
             schedule["forge_start"][q["index"]],
@@ -16,11 +17,11 @@ def summarize(sc, schedule, ops):
         for q in ops
     )
     gaps = []
-    cursor = 0
+    cursor = lower
     previous = None
     route_minutes = defaultdict(float)
     for start, end, order, fire in forging:
-        if start >= day:
+        if start >= day or end <= lower:
             continue
         if start > cursor:
             gaps.append(
@@ -38,7 +39,7 @@ def summarize(sc, schedule, ops):
         gaps.append(
             dict(
                 start_minutes=cursor / scale,
-                end_minutes=1440,
+                end_minutes=day/scale,
                 minutes=(day - cursor) / scale,
                 before_order=previous,
                 after_order=None,
@@ -49,7 +50,7 @@ def summarize(sc, schedule, ops):
         route_minutes[q["route"]] += (
             max(
                 0,
-                min(schedule["forge_end"][i], day) - max(schedule["forge_start"][i], 0),
+                min(schedule["forge_end"][i], day) - max(schedule["forge_start"][i], lower),
             )
             / scale
         )

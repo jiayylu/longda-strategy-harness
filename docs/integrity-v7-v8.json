@@ -1,0 +1,348 @@
+{
+  "all_equal": true,
+  "count": 57,
+  "files": [
+    {
+      "path": "python/production_state.py",
+      "v8": "4d51dfb77e7b50db07d0959eca65f4b80cbb9a1480bcf3c3a2ee614c878ed01f",
+      "v7": "4d51dfb77e7b50db07d0959eca65f4b80cbb9a1480bcf3c3a2ee614c878ed01f",
+      "equal": true
+    },
+    {
+      "path": "python/state_cli.py",
+      "v8": "065d117d9aa78f5aea731fa85c3a817008434176060883191a917a14d145c934",
+      "v7": "065d117d9aa78f5aea731fa85c3a817008434176060883191a917a14d145c934",
+      "equal": true
+    },
+    {
+      "path": "python/benchmark_solver_options.py",
+      "v8": "d4760d89a7509bce39dfd41d4e5fd7ab951acfdb04a67d168d0587cff0654406",
+      "v7": "d4760d89a7509bce39dfd41d4e5fd7ab951acfdb04a67d168d0587cff0654406",
+      "equal": true
+    },
+    {
+      "path": "python/calendar_engine.py",
+      "v8": "3c7a1e38e360cef619e15c06174b89143c26952f879f4dbb390de915e441bef3",
+      "v7": "3c7a1e38e360cef619e15c06174b89143c26952f879f4dbb390de915e441bef3",
+      "equal": true
+    },
+    {
+      "path": "python/algorithm.py",
+      "v8": "c4f5bfba750d7b51695f84752f954310f4d7e1106e133ac733a89ba36ff51522",
+      "v7": "c4f5bfba750d7b51695f84752f954310f4d7e1106e133ac733a89ba36ff51522",
+      "equal": true
+    },
+    {
+      "path": "python/legacy_constructor.py",
+      "v8": "40b135638a185a9f6ee0ba2159cfbed55ddaaaf7962072b996f56d4aa31ec320",
+      "v7": "40b135638a185a9f6ee0ba2159cfbed55ddaaaf7962072b996f56d4aa31ec320",
+      "equal": true
+    },
+    {
+      "path": "python/partial_completion.py",
+      "v8": "f1b17182cc0fbcbff505290d160641836221d0fecbcc2a9d59dc05534fe69041",
+      "v7": "f1b17182cc0fbcbff505290d160641836221d0fecbcc2a9d59dc05534fe69041",
+      "equal": true
+    },
+    {
+      "path": "python/benchmark_extensions.py",
+      "v8": "c6f3db60b8333ec1f2d167ca80387d6d10b6206864e38c89f849560c28c246b2",
+      "v7": "c6f3db60b8333ec1f2d167ca80387d6d10b6206864e38c89f849560c28c246b2",
+      "equal": true
+    },
+    {
+      "path": "python/search_registry.py",
+      "v8": "f040b80f367628e65e9a44c951fcdcb98b268ce9b41cb9b81f8780090df6f897",
+      "v7": "f040b80f367628e65e9a44c951fcdcb98b268ce9b41cb9b81f8780090df6f897",
+      "equal": true
+    },
+    {
+      "path": "python/time_windows.py",
+      "v8": "49825a2d9b4fafe9fdc226f1b8c74c3e297c4d647a26ffebb065230f239f842a",
+      "v7": "49825a2d9b4fafe9fdc226f1b8c74c3e297c4d647a26ffebb065230f239f842a",
+      "equal": true
+    },
+    {
+      "path": "python/test_calendar.py",
+      "v8": "4ebb27e7019f680cb11575591d9dc2c99a0c20bbd9cf06fb48583f46de9cbb40",
+      "v7": "4ebb27e7019f680cb11575591d9dc2c99a0c20bbd9cf06fb48583f46de9cbb40",
+      "equal": true
+    },
+    {
+      "path": "python/verification.py",
+      "v8": "96a21aa39fb24273174c356387159a107cbdb1718abbc775573d89da8b3d99bd",
+      "v7": "96a21aa39fb24273174c356387159a107cbdb1718abbc775573d89da8b3d99bd",
+      "equal": true
+    },
+    {
+      "path": "python/prepare_context_cases.py",
+      "v8": "c35567dd3315d37f9f88029b300080531583ee6fc796848b53ccf11845a195fb",
+      "v7": "c35567dd3315d37f9f88029b300080531583ee6fc796848b53ccf11845a195fb",
+      "equal": true
+    },
+    {
+      "path": "python/test_diagnostics.py",
+      "v8": "3f140e34339de88ce1719e011a8d8c671b27773f4f3f00593763aff5e86558ec",
+      "v7": "3f140e34339de88ce1719e011a8d8c671b27773f4f3f00593763aff5e86558ec",
+      "equal": true
+    },
+    {
+      "path": "python/default_algorithm.py",
+      "v8": "a932341e98fe4c755f56af8f8936e5e03d8d5c01ea20b47506a2dafa2ed52944",
+      "v7": "a932341e98fe4c755f56af8f8936e5e03d8d5c01ea20b47506a2dafa2ed52944",
+      "equal": true
+    },
+    {
+      "path": "python/test_state.py",
+      "v8": "add1b12ffb4da4adac372e6d7d0bf277529e9f697a2cfd7786dcd7cc54bb18ef",
+      "v7": "add1b12ffb4da4adac372e6d7d0bf277529e9f697a2cfd7786dcd7cc54bb18ef",
+      "equal": true
+    },
+    {
+      "path": "python/algorithm_cli.py",
+      "v8": "7c67358f09b2b4636e20c7343f9c7b24c099d1b31a2ed28f72b66b49c80a55bc",
+      "v7": "7c67358f09b2b4636e20c7343f9c7b24c099d1b31a2ed28f72b66b49c80a55bc",
+      "equal": true
+    },
+    {
+      "path": "python/test_v6.py",
+      "v8": "005dc130154abe193ec7d9b8b9b720053921a314fed63517c58fba5af8c6b0c7",
+      "v7": "005dc130154abe193ec7d9b8b9b720053921a314fed63517c58fba5af8c6b0c7",
+      "equal": true
+    },
+    {
+      "path": "python/test_partial_completion.py",
+      "v8": "56f3c09e200b18a6d594333863cfd902499a8510871ce0d2e825aa144ea970ba",
+      "v7": "56f3c09e200b18a6d594333863cfd902499a8510871ce0d2e825aa144ea970ba",
+      "equal": true
+    },
+    {
+      "path": "python/runtime_metrics.py",
+      "v8": "4e4db591f63b6b37e0ce507b385d53d8de17c3a8de9c23c73727cf823a51453c",
+      "v7": "4e4db591f63b6b37e0ce507b385d53d8de17c3a8de9c23c73727cf823a51453c",
+      "equal": true
+    },
+    {
+      "path": "python/smoke20.py",
+      "v8": "26ccd6f6c943512165fa805ef7ea69db5e4ff0e61a2e740311ae28a344e61b1b",
+      "v7": "26ccd6f6c943512165fa805ef7ea69db5e4ff0e61a2e740311ae28a344e61b1b",
+      "equal": true
+    },
+    {
+      "path": "python/physical_model.py",
+      "v8": "1b421f820b1f9b84dbcd35ed8b9dc935a479051dcd3a7581ab6fb636c648aa02",
+      "v7": "1b421f820b1f9b84dbcd35ed8b9dc935a479051dcd3a7581ab6fb636c648aa02",
+      "equal": true
+    },
+    {
+      "path": "python/benchmark_report.py",
+      "v8": "490ad5f9ff3772cae6291f9a406d02584bc4e67861cf2f472dd9e5631ef6fc3a",
+      "v7": "490ad5f9ff3772cae6291f9a406d02584bc4e67861cf2f472dd9e5631ef6fc3a",
+      "equal": true
+    },
+    {
+      "path": "python/state_store.py",
+      "v8": "60f47314089eacf4ceb742fb910c7a2f13ee313ef97f16aa080dc1d07ff7a239",
+      "v7": "60f47314089eacf4ceb742fb910c7a2f13ee313ef97f16aa080dc1d07ff7a239",
+      "equal": true
+    },
+    {
+      "path": "python/test_extensions.py",
+      "v8": "70dcb145fb40c6b6e539b0ccc8e3ac195c6293b5af45198c94b82a2a9ac10915",
+      "v7": "70dcb145fb40c6b6e539b0ccc8e3ac195c6293b5af45198c94b82a2a9ac10915",
+      "equal": true
+    },
+    {
+      "path": "python/program.py",
+      "v8": "88942dc94479c9cad7da22db46ff050ecfc8eeebbe237818f4ccc83b1275472f",
+      "v7": "88942dc94479c9cad7da22db46ff050ecfc8eeebbe237818f4ccc83b1275472f",
+      "equal": true
+    },
+    {
+      "path": "python/worker.py",
+      "v8": "11ad78f1975c8b029cc9b063492cee989f65583476fb722a90802366cbf47195",
+      "v7": "11ad78f1975c8b029cc9b063492cee989f65583476fb722a90802366cbf47195",
+      "equal": true
+    },
+    {
+      "path": "python/diagnostics.py",
+      "v8": "3a81689efcf6e11ea0d95236d965ec1722d4d36b522c81d71c5ab939212812a0",
+      "v7": "3a81689efcf6e11ea0d95236d965ec1722d4d36b522c81d71c5ab939212812a0",
+      "equal": true
+    },
+    {
+      "path": "python/constructor.py",
+      "v8": "29b3972c0d9d79de45b423122151d0dce371dd90927d4251f840f73101a2fc9c",
+      "v7": "29b3972c0d9d79de45b423122151d0dce371dd90927d4251f840f73101a2fc9c",
+      "equal": true
+    },
+    {
+      "path": "python/test_repair.py",
+      "v8": "4a933b684dc159a07b8f4bad2c0d6d9fe92d32e2b1562179511c39bf07cd2506",
+      "v7": "4a933b684dc159a07b8f4bad2c0d6d9fe92d32e2b1562179511c39bf07cd2506",
+      "equal": true
+    },
+    {
+      "path": "python/scoring.py",
+      "v8": "01c9cd098126c6fabaeafb7bf33d098c3ff46f18a5b06e3b3e282a712ac7f6b0",
+      "v7": "01c9cd098126c6fabaeafb7bf33d098c3ff46f18a5b06e3b3e282a712ac7f6b0",
+      "equal": true
+    },
+    {
+      "path": "python/test_worker.py",
+      "v8": "8050bf0540bba84067519a8fb2a91fca555a38c1753793092a2eb028efbfe2e7",
+      "v7": "8050bf0540bba84067519a8fb2a91fca555a38c1753793092a2eb028efbfe2e7",
+      "equal": true
+    },
+    {
+      "path": "reference/construct_example.py",
+      "v8": "67b246ce2c9c5c038a09bc0176cdae222d692356e3eac8c9d26bde904c253218",
+      "v7": "67b246ce2c9c5c038a09bc0176cdae222d692356e3eac8c9d26bde904c253218",
+      "equal": true
+    },
+    {
+      "path": "reference/verify_exact_model.py",
+      "v8": "42a234c9b3d9c370706ba4915c5f8f62d3e1213fa1eefc2902a1c58687a1001c",
+      "v7": "42a234c9b3d9c370706ba4915c5f8f62d3e1213fa1eefc2902a1c58687a1001c",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/__init__.py",
+      "v8": "543d7f40110896c1300e40d18588da64c9f72f9d300beab5d1bfd4d91e76faed",
+      "v7": "543d7f40110896c1300e40d18588da64c9f72f9d300beab5d1bfd4d91e76faed",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_search.py",
+      "v8": "25dc2dcea273358db4a83d6b9c468f3a7502a16ad8a352f719e7eb3ce0162f34",
+      "v7": "25dc2dcea273358db4a83d6b9c468f3a7502a16ad8a352f719e7eb3ce0162f34",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/html_export.py",
+      "v8": "0fcbf6fb9be8137ca200cd768e2fb69f52b886e71db53bed3b7a333c0899b8e7",
+      "v7": "0fcbf6fb9be8137ca200cd768e2fb69f52b886e71db53bed3b7a333c0899b8e7",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/search_tasks.py",
+      "v8": "ff6fd9b5f4eff153999a5de0554a865c56b76d1f89f3473cdf3174d62b17381e",
+      "v7": "ff6fd9b5f4eff153999a5de0554a865c56b76d1f89f3473cdf3174d62b17381e",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/result_summary.py",
+      "v8": "deef8f9bbd90a2ef1cdaf78ddf08662c0ea6f6616c9cc44911e266f53a6e3133",
+      "v7": "deef8f9bbd90a2ef1cdaf78ddf08662c0ea6f6616c9cc44911e266f53a6e3133",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/transport_audit.py",
+      "v8": "c345869851ae8b73ac77405702ac3cd9f4a4bff9dda0ec33c9f850d8fc2b6d2e",
+      "v7": "c345869851ae8b73ac77405702ac3cd9f4a4bff9dda0ec33c9f850d8fc2b6d2e",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_tasks.py",
+      "v8": "02c8557ff926e8d3695091a7610ac0d6b408a9b2aba81be0e7bdc5f69747d401",
+      "v7": "02c8557ff926e8d3695091a7610ac0d6b408a9b2aba81be0e7bdc5f69747d401",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/audit.py",
+      "v8": "c4064a2eb0522485bd26224d0c06b477211700f57f8a9a84e4fa3b2ec81c3dbf",
+      "v7": "c4064a2eb0522485bd26224d0c06b477211700f57f8a9a84e4fa3b2ec81c3dbf",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/objectives.py",
+      "v8": "d8a4e6a0fd737920946d94c116f24e6f30813f305e168e76b1675876b0ed9698",
+      "v7": "d8a4e6a0fd737920946d94c116f24e6f30813f305e168e76b1675876b0ed9698",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_stopping.py",
+      "v8": "6a1cec410baba5888188606c67551709d8e3111d04af30775d494bb394ca74b8",
+      "v7": "6a1cec410baba5888188606c67551709d8e3111d04af30775d494bb394ca74b8",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/solver_flow.py",
+      "v8": "26a553b4896649f6295885a210f1c80fff6a1f201c644ca529b04b2f57a84efe",
+      "v7": "26a553b4896649f6295885a210f1c80fff6a1f201c644ca529b04b2f57a84efe",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/__main__.py",
+      "v8": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "v7": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/prefix_model.py",
+      "v8": "ba26844da0536bdeef1a48197a62aa58b2de6f0122540adac031153354ca3a09",
+      "v7": "ba26844da0536bdeef1a48197a62aa58b2de6f0122540adac031153354ca3a09",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/shared_search.py",
+      "v8": "0b32a2cccdab38512fbcb70741a442426783a34f01bf3531aa290eb1d9bb08d4",
+      "v7": "0b32a2cccdab38512fbcb70741a442426783a34f01bf3531aa290eb1d9bb08d4",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/search.py",
+      "v8": "5ac96480a28fef2fccb678a61a31a4ecc627d902dd64f67e522e32a2aa137369",
+      "v7": "5ac96480a28fef2fccb678a61a31a4ecc627d902dd64f67e522e32a2aa137369",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/cli.py",
+      "v8": "0b28ef79ed6b88edac88b79bfdf4037c508500fe6865bd9dd5f767e33db0b508",
+      "v7": "0b28ef79ed6b88edac88b79bfdf4037c508500fe6865bd9dd5f767e33db0b508",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/search_policy.py",
+      "v8": "130b2d978752f6289ed832523106c729db29865adeafe58184ed0a1b30ecf519",
+      "v7": "130b2d978752f6289ed832523106c729db29865adeafe58184ed0a1b30ecf519",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/transport.py",
+      "v8": "e544ff254d5cdae7368865f2b98d5fa8351bdd6b4c5b0606819bbd638faf44e1",
+      "v7": "e544ff254d5cdae7368865f2b98d5fa8351bdd6b4c5b0606819bbd638faf44e1",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/model.py",
+      "v8": "58fc7e026cee433330231d3cab4b32b4ca1b51e836eca1015e4884ede67e68c4",
+      "v7": "58fc7e026cee433330231d3cab4b32b4ca1b51e836eca1015e4884ede67e68c4",
+      "equal": true
+    },
+    {
+      "path": "reference/longda_cpsat/templates/schedule.html",
+      "v8": "c1228ed2abdebe774230f15db0d8cbf2daf91730b8b49abe69ba0dcd24a1fffe",
+      "v7": "c1228ed2abdebe774230f15db0d8cbf2daf91730b8b49abe69ba0dcd24a1fffe",
+      "equal": true
+    },
+    {
+      "path": "configs/orders20.json",
+      "v8": "d8ccfa7bf2452f742da7a604674ea1670b660d286071d248385d7a02e3a69d70",
+      "v7": "d8ccfa7bf2452f742da7a604674ea1670b660d286071d248385d7a02e3a69d70",
+      "equal": true
+    },
+    {
+      "path": "guard-manifest.json",
+      "v8": "c2fbc1873a5c76976617555cc464820dc7e4f6a65829304c4bafedbe923449f7",
+      "v7": "c2fbc1873a5c76976617555cc464820dc7e4f6a65829304c4bafedbe923449f7",
+      "equal": true
+    },
+    {
+      "path": "reference-manifest.json",
+      "v8": "4232a91f87f6719debb8014b0f015930aa5eadf8b814d240e038d486ee8f5028",
+      "v7": "4232a91f87f6719debb8014b0f015930aa5eadf8b814d240e038d486ee8f5028",
+      "equal": true
+    }
+  ]
+}

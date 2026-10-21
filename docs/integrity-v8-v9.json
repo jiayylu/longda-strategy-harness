@@ -1,0 +1,276 @@
+{
+  "existing_files": 54,
+  "unchanged": true,
+  "files": [
+    {
+      "path": "python/production_state.py",
+      "same": true,
+      "sha256": "4d51dfb77e7b50db07d0959eca65f4b80cbb9a1480bcf3c3a2ee614c878ed01f"
+    },
+    {
+      "path": "python/state_cli.py",
+      "same": true,
+      "sha256": "065d117d9aa78f5aea731fa85c3a817008434176060883191a917a14d145c934"
+    },
+    {
+      "path": "python/benchmark_solver_options.py",
+      "same": true,
+      "sha256": "d4760d89a7509bce39dfd41d4e5fd7ab951acfdb04a67d168d0587cff0654406"
+    },
+    {
+      "path": "python/calendar_engine.py",
+      "same": true,
+      "sha256": "3c7a1e38e360cef619e15c06174b89143c26952f879f4dbb390de915e441bef3"
+    },
+    {
+      "path": "python/algorithm.py",
+      "same": true,
+      "sha256": "c4f5bfba750d7b51695f84752f954310f4d7e1106e133ac733a89ba36ff51522"
+    },
+    {
+      "path": "python/legacy_constructor.py",
+      "same": true,
+      "sha256": "40b135638a185a9f6ee0ba2159cfbed55ddaaaf7962072b996f56d4aa31ec320"
+    },
+    {
+      "path": "python/partial_completion.py",
+      "same": true,
+      "sha256": "f1b17182cc0fbcbff505290d160641836221d0fecbcc2a9d59dc05534fe69041"
+    },
+    {
+      "path": "python/benchmark_extensions.py",
+      "same": true,
+      "sha256": "c6f3db60b8333ec1f2d167ca80387d6d10b6206864e38c89f849560c28c246b2"
+    },
+    {
+      "path": "python/search_registry.py",
+      "same": true,
+      "sha256": "f040b80f367628e65e9a44c951fcdcb98b268ce9b41cb9b81f8780090df6f897"
+    },
+    {
+      "path": "python/time_windows.py",
+      "same": true,
+      "sha256": "49825a2d9b4fafe9fdc226f1b8c74c3e297c4d647a26ffebb065230f239f842a"
+    },
+    {
+      "path": "python/test_calendar.py",
+      "same": true,
+      "sha256": "4ebb27e7019f680cb11575591d9dc2c99a0c20bbd9cf06fb48583f46de9cbb40"
+    },
+    {
+      "path": "python/verification.py",
+      "same": true,
+      "sha256": "96a21aa39fb24273174c356387159a107cbdb1718abbc775573d89da8b3d99bd"
+    },
+    {
+      "path": "python/prepare_context_cases.py",
+      "same": true,
+      "sha256": "c35567dd3315d37f9f88029b300080531583ee6fc796848b53ccf11845a195fb"
+    },
+    {
+      "path": "python/test_diagnostics.py",
+      "same": true,
+      "sha256": "3f140e34339de88ce1719e011a8d8c671b27773f4f3f00593763aff5e86558ec"
+    },
+    {
+      "path": "python/default_algorithm.py",
+      "same": true,
+      "sha256": "a932341e98fe4c755f56af8f8936e5e03d8d5c01ea20b47506a2dafa2ed52944"
+    },
+    {
+      "path": "python/test_state.py",
+      "same": true,
+      "sha256": "add1b12ffb4da4adac372e6d7d0bf277529e9f697a2cfd7786dcd7cc54bb18ef"
+    },
+    {
+      "path": "python/algorithm_cli.py",
+      "same": true,
+      "sha256": "7c67358f09b2b4636e20c7343f9c7b24c099d1b31a2ed28f72b66b49c80a55bc"
+    },
+    {
+      "path": "python/test_v6.py",
+      "same": true,
+      "sha256": "005dc130154abe193ec7d9b8b9b720053921a314fed63517c58fba5af8c6b0c7"
+    },
+    {
+      "path": "python/test_partial_completion.py",
+      "same": true,
+      "sha256": "56f3c09e200b18a6d594333863cfd902499a8510871ce0d2e825aa144ea970ba"
+    },
+    {
+      "path": "python/runtime_metrics.py",
+      "same": true,
+      "sha256": "4e4db591f63b6b37e0ce507b385d53d8de17c3a8de9c23c73727cf823a51453c"
+    },
+    {
+      "path": "python/smoke20.py",
+      "same": true,
+      "sha256": "26ccd6f6c943512165fa805ef7ea69db5e4ff0e61a2e740311ae28a344e61b1b"
+    },
+    {
+      "path": "python/physical_model.py",
+      "same": true,
+      "sha256": "1b421f820b1f9b84dbcd35ed8b9dc935a479051dcd3a7581ab6fb636c648aa02"
+    },
+    {
+      "path": "python/benchmark_report.py",
+      "same": true,
+      "sha256": "490ad5f9ff3772cae6291f9a406d02584bc4e67861cf2f472dd9e5631ef6fc3a"
+    },
+    {
+      "path": "python/state_store.py",
+      "same": true,
+      "sha256": "60f47314089eacf4ceb742fb910c7a2f13ee313ef97f16aa080dc1d07ff7a239"
+    },
+    {
+      "path": "python/test_extensions.py",
+      "same": true,
+      "sha256": "70dcb145fb40c6b6e539b0ccc8e3ac195c6293b5af45198c94b82a2a9ac10915"
+    },
+    {
+      "path": "python/program.py",
+      "same": true,
+      "sha256": "88942dc94479c9cad7da22db46ff050ecfc8eeebbe237818f4ccc83b1275472f"
+    },
+    {
+      "path": "python/worker.py",
+      "same": true,
+      "sha256": "11ad78f1975c8b029cc9b063492cee989f65583476fb722a90802366cbf47195"
+    },
+    {
+      "path": "python/diagnostics.py",
+      "same": true,
+      "sha256": "3a81689efcf6e11ea0d95236d965ec1722d4d36b522c81d71c5ab939212812a0"
+    },
+    {
+      "path": "python/constructor.py",
+      "same": true,
+      "sha256": "29b3972c0d9d79de45b423122151d0dce371dd90927d4251f840f73101a2fc9c"
+    },
+    {
+      "path": "python/test_repair.py",
+      "same": true,
+      "sha256": "4a933b684dc159a07b8f4bad2c0d6d9fe92d32e2b1562179511c39bf07cd2506"
+    },
+    {
+      "path": "python/scoring.py",
+      "same": true,
+      "sha256": "01c9cd098126c6fabaeafb7bf33d098c3ff46f18a5b06e3b3e282a712ac7f6b0"
+    },
+    {
+      "path": "python/test_worker.py",
+      "same": true,
+      "sha256": "8050bf0540bba84067519a8fb2a91fca555a38c1753793092a2eb028efbfe2e7"
+    },
+    {
+      "path": "reference/construct_example.py",
+      "same": true,
+      "sha256": "67b246ce2c9c5c038a09bc0176cdae222d692356e3eac8c9d26bde904c253218"
+    },
+    {
+      "path": "reference/verify_exact_model.py",
+      "same": true,
+      "sha256": "42a234c9b3d9c370706ba4915c5f8f62d3e1213fa1eefc2902a1c58687a1001c"
+    },
+    {
+      "path": "reference/longda_cpsat/__init__.py",
+      "same": true,
+      "sha256": "543d7f40110896c1300e40d18588da64c9f72f9d300beab5d1bfd4d91e76faed"
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_search.py",
+      "same": true,
+      "sha256": "25dc2dcea273358db4a83d6b9c468f3a7502a16ad8a352f719e7eb3ce0162f34"
+    },
+    {
+      "path": "reference/longda_cpsat/html_export.py",
+      "same": true,
+      "sha256": "0fcbf6fb9be8137ca200cd768e2fb69f52b886e71db53bed3b7a333c0899b8e7"
+    },
+    {
+      "path": "reference/longda_cpsat/search_tasks.py",
+      "same": true,
+      "sha256": "ff6fd9b5f4eff153999a5de0554a865c56b76d1f89f3473cdf3174d62b17381e"
+    },
+    {
+      "path": "reference/longda_cpsat/result_summary.py",
+      "same": true,
+      "sha256": "deef8f9bbd90a2ef1cdaf78ddf08662c0ea6f6616c9cc44911e266f53a6e3133"
+    },
+    {
+      "path": "reference/longda_cpsat/transport_audit.py",
+      "same": true,
+      "sha256": "c345869851ae8b73ac77405702ac3cd9f4a4bff9dda0ec33c9f850d8fc2b6d2e"
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_tasks.py",
+      "same": true,
+      "sha256": "02c8557ff926e8d3695091a7610ac0d6b408a9b2aba81be0e7bdc5f69747d401"
+    },
+    {
+      "path": "reference/longda_cpsat/audit.py",
+      "same": true,
+      "sha256": "c4064a2eb0522485bd26224d0c06b477211700f57f8a9a84e4fa3b2ec81c3dbf"
+    },
+    {
+      "path": "reference/longda_cpsat/objectives.py",
+      "same": true,
+      "sha256": "d8a4e6a0fd737920946d94c116f24e6f30813f305e168e76b1675876b0ed9698"
+    },
+    {
+      "path": "reference/longda_cpsat/dayfirst_stopping.py",
+      "same": true,
+      "sha256": "6a1cec410baba5888188606c67551709d8e3111d04af30775d494bb394ca74b8"
+    },
+    {
+      "path": "reference/longda_cpsat/solver_flow.py",
+      "same": true,
+      "sha256": "26a553b4896649f6295885a210f1c80fff6a1f201c644ca529b04b2f57a84efe"
+    },
+    {
+      "path": "reference/longda_cpsat/__main__.py",
+      "same": true,
+      "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7"
+    },
+    {
+      "path": "reference/longda_cpsat/prefix_model.py",
+      "same": true,
+      "sha256": "ba26844da0536bdeef1a48197a62aa58b2de6f0122540adac031153354ca3a09"
+    },
+    {
+      "path": "reference/longda_cpsat/shared_search.py",
+      "same": true,
+      "sha256": "0b32a2cccdab38512fbcb70741a442426783a34f01bf3531aa290eb1d9bb08d4"
+    },
+    {
+      "path": "reference/longda_cpsat/search.py",
+      "same": true,
+      "sha256": "5ac96480a28fef2fccb678a61a31a4ecc627d902dd64f67e522e32a2aa137369"
+    },
+    {
+      "path": "reference/longda_cpsat/cli.py",
+      "same": true,
+      "sha256": "0b28ef79ed6b88edac88b79bfdf4037c508500fe6865bd9dd5f767e33db0b508"
+    },
+    {
+      "path": "reference/longda_cpsat/search_policy.py",
+      "same": true,
+      "sha256": "130b2d978752f6289ed832523106c729db29865adeafe58184ed0a1b30ecf519"
+    },
+    {
+      "path": "reference/longda_cpsat/transport.py",
+      "same": true,
+      "sha256": "e544ff254d5cdae7368865f2b98d5fa8351bdd6b4c5b0606819bbd638faf44e1"
+    },
+    {
+      "path": "reference/longda_cpsat/model.py",
+      "same": true,
+      "sha256": "58fc7e026cee433330231d3cab4b32b4ca1b51e836eca1015e4884ede67e68c4"
+    },
+    {
+      "path": "reference/longda_cpsat/templates/schedule.html",
+      "same": true,
+      "sha256": "c1228ed2abdebe774230f15db0d8cbf2daf91730b8b49abe69ba0dcd24a1fffe"
+    }
+  ]
+}

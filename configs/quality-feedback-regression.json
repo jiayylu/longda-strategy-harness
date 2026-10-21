@@ -1,0 +1,114 @@
+{
+  "name": "calendar-mixed4-batch-best-policy",
+  "engine": "calendar",
+  "admission": "batch",
+  "vehicle_policy": "split",
+  "backtrack_budget": 0,
+  "wip_limit": 4,
+  "program_source": null,
+  "algorithm_source": "def construct():\n    state0 = root()\n    if complete(state0):\n        return state0\n    info = inspect(state0)\n    rows = info.get('order_details')\n    if rows is None:\n        rows = []\n    buckets = {}\n    for row in rows:\n        r = row.get('route')\n        o = row.get('order')\n        if r is not None and o is not None:\n            if r not in buckets:\n                buckets[r] = []\n            buckets[r].append(o)\n    routes = sorted(buckets.keys())\n    if len(routes) == 0:\n        return None\n    for r in routes:\n        buckets[r].sort()\n    max_level = 0\n    for r in routes:\n        n = len(buckets[r])\n        if n > max_level:\n            max_level = n\n    def build_waves(route_order, size):\n        ordered = []\n        for level in range(max_level):\n            for r in route_order:\n                if level < len(buckets[r]):\n                    ordered.append(buckets[r][level])\n        waves = []\n        i = 0\n        while i < len(ordered):\n            waves.append(ordered[i:i + size])\n            i = i + size\n        return waves\n    custom = []\n    for name in ['C430', 'CFLAT', 'C280I', 'C280R']:\n        if name in buckets and name not in custom:\n            custom.append(name)\n    for r in routes:\n        if r not in custom:\n            custom.append(r)\n    primary = build_waves(routes, 4)\n    alternate = build_waves(custom, 4)\n    best_state = None\n    best_score = -1\n    best_policy = -1\n    calls = 0\n    max_calls = 6\n    policies = [1, 3, 0]\n    for p in policies:\n        if calls >= max_calls or remaining() < 2:\n            break\n        calls = calls + 1\n        st = batches(primary, policy=p, seed=0)\n        if st is not None and complete(st):\n            sc = inspect(st).get('day_busy_ticks')\n            if sc is None:\n                sc = 0\n            sc = int(sc)\n            if sc > best_score:\n                best_score = sc\n                best_state = st\n                best_policy = p\n                if best_score >= 2610:\n                    return best_state\n    if calls < max_calls and remaining() > 2:\n        alt_policies = []\n        if best_policy >= 0:\n            alt_policies.append(best_policy)\n        for p in [3, 0, 1]:\n            if p not in alt_policies:\n                alt_policies.append(p)\n        for p in alt_policies:\n            if calls >= max_calls or remaining() <= 2:\n                break\n            calls = calls + 1\n            st = batches(alternate, policy=p, seed=0)\n            if st is not None and complete(st):\n                sc = inspect(st).get('day_busy_ticks')\n                if sc is None:\n                    sc = 0\n                sc = int(sc)\n                if sc > best_score:\n                    best_score = sc\n                    best_state = st\n                    best_policy = p\n                    if best_score >= 2610:\n                        return best_state\n    if best_state is not None and best_policy >= 0 and calls < max_calls and remaining() > 2:\n        for seed in [1, 2]:\n            if calls >= max_calls or remaining() <= 2:\n                break\n            calls = calls + 1\n            st = batches(primary, policy=best_policy, seed=seed)\n            if st is not None and complete(st):\n                sc = inspect(st).get('day_busy_ticks')\n                if sc is None:\n                    sc = 0\n                sc = int(sc)\n                if sc > best_score:\n                    best_score = sc\n                    best_state = st\n                    if best_score >= 2610:\n                        return best_state\n    return best_state",
+  "hypothesis": "Round-1 failed from broad calendar DFS overhead, not proven infeasibility: 91 advances, 38k candidate checks, many furnace_temperature rejections, then construction budget. Change: reuse validated cold-start batches primitive with mixed-route waves of 4, compare only policies 1/3/0, one alternate route order, and best-policy seed variants, then return the complete state with max day_busy_ticks. Prediction: lower construction overhead and audited day_busy_ticks above 1986 ticks (662 minutes); otherwise it yields a measured complete batch baseline.",
+  "evidence_ids": [],
+  "groups": [
+    [
+      {
+        "route": "C430",
+        "count": 1
+      },
+      {
+        "route": "C280R",
+        "count": 1
+      },
+      {
+        "route": "C280I",
+        "count": 1
+      },
+      {
+        "route": "CFLAT",
+        "count": 1
+      }
+    ],
+    [
+      {
+        "route": "C430",
+        "count": 1
+      },
+      {
+        "route": "C280R",
+        "count": 1
+      },
+      {
+        "route": "C280I",
+        "count": 1
+      },
+      {
+        "route": "CFLAT",
+        "count": 1
+      }
+    ],
+    [
+      {
+        "route": "C430",
+        "count": 1
+      },
+      {
+        "route": "C280R",
+        "count": 1
+      },
+      {
+        "route": "C280I",
+        "count": 1
+      },
+      {
+        "route": "CFLAT",
+        "count": 1
+      }
+    ],
+    [
+      {
+        "route": "C430",
+        "count": 1
+      },
+      {
+        "route": "C280R",
+        "count": 1
+      },
+      {
+        "route": "C280I",
+        "count": 1
+      },
+      {
+        "route": "CFLAT",
+        "count": 1
+      }
+    ],
+    [
+      {
+        "route": "C430",
+        "count": 1
+      },
+      {
+        "route": "C280R",
+        "count": 1
+      },
+      {
+        "route": "C280I",
+        "count": 1
+      },
+      {
+        "route": "CFLAT",
+        "count": 1
+      }
+    ]
+  ],
+  "loading": "interleaved",
+  "policies": [
+    0
+  ],
+  "seeds": [
+    0
+  ],
+  "direction": "furnace_batch",
+  "fraction": 1,
+  "focus_orders": []
+}

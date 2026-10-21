@@ -22,6 +22,7 @@ export function sourceManifest(root: string) {
     "package-lock.json",
     "requirements.lock",
     "reference-manifest.json",
+    "guard-manifest.json",
   ])
     files[file] = createHash("sha256")
       .update(readFileSync(join(root, file)))

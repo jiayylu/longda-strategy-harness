@@ -1,0 +1,42 @@
+{
+  "version": "12.0.0",
+  "source": "server v12 snapshot",
+  "code_and_config_files_matched": 123,
+  "protected_manifests": {
+    "reference-manifest.json": {
+      "files": 22,
+      "mismatches": []
+    },
+    "guard-manifest.json": {
+      "files": 4,
+      "mismatches": []
+    }
+  },
+  "typescript_tests": {
+    "passed": 87,
+    "failed": 0
+  },
+  "build": "passed",
+  "start_help": "passed",
+  "documented_cli_options": 58,
+  "command_checks": [
+    {
+      "file": "README.md",
+      "recognized_options": 1
+    },
+    {
+      "file": "README.md",
+      "recognized_options": 32
+    },
+    {
+      "file": "README.md",
+      "recognized_options": 25
+    },
+    {
+      "file": "docs/cli.md",
+      "recognized_options": 33
+    }
+  ],
+  "search_started_for_publication": false,
+  "memory_databases_and_runs_included": false
+}

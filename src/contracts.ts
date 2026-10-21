@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { modelJson } from "./model_json.js";
 export const Group = z
   .array(
     z
@@ -9,12 +10,13 @@ export const Group = z
 export const Candidate = z
   .object({
     name: z.string().min(1).max(100),
-    engine: z.enum(["legacy", "extended"]).default("legacy"),
+    engine: z.enum(["legacy", "extended", "calendar"]).default("legacy"),
     admission: z.enum(["batch", "rolling"]).default("batch"),
     vehicle_policy: z.enum(["same", "split"]).default("same"),
     backtrack_budget: z.number().int().min(0).max(32).default(0),
     wip_limit: z.number().int().min(1).max(30).default(10),
     program_source: z.string().max(10000).nullable().default(null),
+    algorithm_source: z.string().max(20000).nullable().default(null),
     hypothesis: z.string().max(600),
     evidence_ids: z.array(z.string()).max(12).default([]),
     groups: z.array(Group).min(1),
@@ -58,19 +60,50 @@ export interface Scenario {
   routes: { id: string; operations: Record<string, number>[] }[];
   [k: string]: unknown;
 }
-export function parseProposal(text: string, sc: Scenario) {
-  const raw = text
-    .trim()
-    .replace(/^```(?:json)?\s*/, "")
-    .replace(/\s*```$/, "");
-  const p = Proposal.parse(JSON.parse(raw));
+export function parseProposal(
+  text: string,
+  sc: Scenario,
+  onNormalize?: (fields: string[]) => void,
+) {
+  const data = modelJson(text) as any;
+  const normalized: string[] = [];
+  // Only presentation text is clipped. Executable settings, source and evidence remain strict.
+  // The caller saves the full response before parsing so no original explanation is lost.
+  const clip = (obj: any, key: string, limit: number, path: string) => {
+    if (obj && typeof obj[key] === "string" && obj[key].length > limit) {
+      obj[key] = obj[key].slice(0, limit - 1) + "…";
+      normalized.push(path);
+    }
+  };
+  clip(data, "summary", 1000, "summary");
+  if (Array.isArray(data?.candidates))
+    data.candidates.forEach((c: any, i: number) => {
+      clip(c, "name", 100, `candidates[${i}].name`);
+      clip(c, "hypothesis", 600, `candidates[${i}].hypothesis`);
+    });
+  const p = Proposal.parse(data);
+  if (normalized.length) onNormalize?.(normalized);
   let expanded = 0;
   for (const c of p.candidates) {
+    if (c.algorithm_source && c.engine !== "calendar")
+      throw Error("algorithm_source requires engine=calendar");
+    if (c.algorithm_source && c.program_source)
+      throw Error(
+        "Use one full construction algorithm or one legacy rank program",
+      );
     const counts = new Map<string, number>();
     for (const g of c.groups) {
       const used = new Set<string>();
       for (const x of g) {
-        if (used.has(x.route)) throw Error("Duplicate route in one group");
+        if (used.has(x.route))
+          throw Error(
+            JSON.stringify({
+              code: "DUPLICATE_ROUTE_IN_GROUP",
+              candidate: c.name,
+              group_index: c.groups.indexOf(g),
+              route: x.route,
+            }),
+          );
         used.add(x.route);
         counts.set(x.route, (counts.get(x.route) ?? 0) + x.count);
       }
@@ -83,9 +116,32 @@ export function parseProposal(text: string, sc: Scenario) {
       counts.size !== expected.size ||
       [...expected].some(([r, n]) => counts.get(r) !== n)
     )
-      throw Error("Every order must appear exactly once");
+      throw Error(
+        JSON.stringify({
+          code: "ORDER_COUNT_MISMATCH",
+          candidate: c.name,
+          routes: [...new Set([...expected.keys(), ...counts.keys()])]
+            .map((route) => ({
+              route,
+              expected: expected.get(route) ?? 0,
+              actual: counts.get(route) ?? 0,
+              delta: (counts.get(route) ?? 0) - (expected.get(route) ?? 0),
+            }))
+            .filter((x) => x.delta !== 0 || !expected.has(x.route)),
+          instruction:
+            "Correct the groups for the CURRENT orders. Positive delta means excess, negative means missing; do not change the scenario.",
+        }),
+      );
     if (c.focus_orders.some((id) => !sc.orders.some((o) => o.id === id)))
-      throw Error("Unknown focus order");
+      throw Error(
+        JSON.stringify({
+          code: "UNKNOWN_FOCUS_ORDERS",
+          candidate: c.name,
+          invalid_ids: c.focus_orders.filter(
+            (id) => !sc.orders.some((o) => o.id === id),
+          ),
+        }),
+      );
     expanded += new Set(c.policies).size * new Set(c.seeds).size;
   }
   if (expanded > 64)
@@ -120,6 +176,7 @@ export function expand(c: Strategy, sc: Scenario) {
       backtrack_budget: c.backtrack_budget,
       wip_limit: c.wip_limit,
       program_source: c.program_source,
+      algorithm_source: c.algorithm_source,
     })),
   );
 }

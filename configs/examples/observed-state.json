@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "cut": "before_events",
+  "now_ticks": 6,
+  "operations": [
+    {
+      "order": "C430-01",
+      "fire": 1,
+      "heat_start": 15,
+      "furnace": 0
+    }
+  ],
+  "transports": [
+    {
+      "kind": "cold_to_furnace",
+      "order": "C430-01",
+      "fire": 1,
+      "source": 0,
+      "destination": 1,
+      "start": 0,
+      "end": 15,
+      "vehicle": 0
+    }
+  ],
+  "furnaces": [
+    {
+      "id": 0,
+      "temperature": 1150
+    },
+    {
+      "id": 1,
+      "temperature": 1150
+    },
+    {
+      "id": 2,
+      "temperature": 1150
+    },
+    {
+      "id": 3,
+      "temperature": 1150
+    },
+    {
+      "id": 4,
+      "temperature": 1150
+    },
+    {
+      "id": 5,
+      "temperature": 1150
+    }
+  ],
+  "vehicles": [
+    {
+      "id": 0,
+      "location": 1,
+      "available_at_ticks": 15
+    },
+    {
+      "id": 1,
+      "location": 0,
+      "available_at_ticks": 6
+    }
+  ]
+}

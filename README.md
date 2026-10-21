@@ -1,138 +1,147 @@
-# 隆达策略 Harness v2
+# 隆达排程 Strategy Harness v12
 
-Node.js 22 / TypeScript 负责调度、模型接口、Memory 和断点；Python / OR-Tools 负责构造、完整搜索和校验。旧版本没有覆盖。
+根据订单、工艺和当前在制状态生成完整合法排程，优先提高当前统计日的净锻打时间。快速构造、CP-SAT 和大模型策略并行运行；只有通过独立物理审计和完整约束验算的方案才发布为基线。
 
-## 一条完整流程
+**仓库名称保留 `longda-strategy-harness-v2-20261015`，当前代码版本为 `12.0.0`。** 原 v2 提交保留在 Git 历史及 `v2-before-v12` 标签中。服务器工作目录为 `/home/huanzz/longda-strategy-harness-v12-20261020`。
 
-```text
-当前订单 + 当前规则 + 策略经验（不含历史排程答案）
-  ├─ 通用构造 / 检索到的算法 → 原物理审计 + 完整 CP 模型验算 → 可交付基线
-  └─ 主模型分析订单 → 分组策略 / 新 rank 程序 → 受限执行与构造
-                           ↓
-            多个独立 CP-SAT 任务并行搜索、修复与改善
-                           ↓
-             完整双重校验 → 更新基线 / HTML
-                           ↓
-       事实记录 → Flash 压缩 / 经验更新建议 → 证据及版本校验
-                           ↓
-                按实际收益分配下一轮资源
-```
+## 安装
 
-主模型和辅助模型调用均不阻塞构造及 CP 搜索。已验证的构造结果可以直接成为基线，不必再等待一次 CP 求解。CP 模型验算会逐项计算原模型的约束；它与真正执行 `Solve()` 分别计时、分别记录。
-
-## 安装与启动
+需要 **Node.js >= 22.13、Python >= 3.10**。服务器运行时为 Node.js 22.22.0、Python 3.10.12；CP-SAT 使用 OR-Tools 9.15.6755。
 
 ```bash
-cd /home/huanzz/longda-strategy-harness-v2-20261015
+git clone https://github.com/jiayylu/longda-strategy-harness-v2-20261015.git
+cd longda-strategy-harness-v2-20261015
 bash scripts/setup.sh
+.venv/bin/python start.py --help
+```
+
+`setup.sh` 安装依赖并编译 TypeScript，不启动搜索。系统默认的 `python3` 需满足版本要求；已安装的服务器目录无需重复安装。新 clone 的目录名与服务器目录不同，下面各命令的 `cd` 应按实际安装位置替换。
+
+## 双车：大模型 + 构造 + CP-SAT，最多 20 分钟
+
+```bash
+cd /home/huanzz/longda-strategy-harness-v12-20261020
+
 .venv/bin/python start.py \
   --orders configs/orders20.json --vehicles 2 \
-  --out runs/my-cold-run \
-  --model qwen3.8-max --effort high --max-tokens 32768 \
-  --aux-model qwen-flash \
-  --cp-workers 2 --threads 8 --construct-workers 1 \
-  --solve-seconds 30 --construct-seconds 3 \
-  --wall-seconds 600 --rounds 4 --target 720 \
-  --memory read-write --memory-db data/experience-v2.sqlite
+  --out "runs/orders20-car2-v12-$(date +%Y%m%d-%H%M%S)" \
+  --model qwen3.8-max --thinking-budget 4096 --max-tokens 32768 \
+  --summary-model qwen3.7-plus --memory-model qwen3.7-plus \
+  --memory read-write --memory-content cards --memory-db data/experience-v12.sqlite \
+  --cp-workers 6 --threads 8 --construct-workers 1 \
+  --partial-completion on --completion-seconds 30 \
+  --completion-priority value --diversity-probes on --exploration-share 0.15 \
+  --portfolio-refill on --cp-retry-policy on \
+  --cp-no-gain-limit 3 --cp-cooldown-seconds 90 \
+  --preference none --construct-seconds 8 --solve-seconds 45 \
+  --rounds 2 --strategy-trials 6 --repair-attempts 2 \
+  --api-timeout 300 --wall-seconds 1200 --target 870
 ```
 
-终端隐藏输入 API token，不写入配置、日志或 Memory。`--vehicles 1` 使用同一入口；规则里没有将单车伪装成双车。
+首次运行提示 `API token (not saved):`，在终端粘贴 token 后回车，输入不回显。不要把 token 写进命令、配置文件或 Git。默认接口为 `https://dashscope.aliyuncs.com/apps/anthropic`，可用 `--base-url` 指定兼容接口。
 
-### 参数
-
-| 参数 | 默认 | 含义 |
-|---|---:|---|
-| `--vehicles` | 订单文件 | 支持 1、2 辆；改变物理输入 |
-| `--cp-workers` | 2 | 同时运行几个独立 CP 求解进程 |
-| `--threads` | 8 | 每个 CP 求解进程的内部线程数 |
-| `--construct-workers` | 1 | 同时运行几个构造进程 |
-| `--solve-seconds` | 30 | 单次 CP 尝试额度，包含建模；不是整场预算 |
-| `--construct-seconds` | 3 | 单次扩展构造预算；审计另计，外层总时限仍生效 |
-| `--wall-seconds` | 600 | 本次调用总墙钟预算，包含模型思考及校验 |
-| `--rounds` | 4 | 主模型调用上限 |
-| `--max-trials` | 160 | 同一运行累计任务完成数的停止阈值（含续跑）；并行在途结果可能略超 |
-| `--target` | 720 | 首日锻打目标分钟数，完整审计达标后停止 |
-| `--preference` | none | `none` 或 `hold-near-min`；先提高首日锻打，再比较额外保温 |
-| `--allocation` | adaptive | 按近期改善/预留线程秒及探索机会分配；`round-robin` 作对照 |
-| `--bootstrap-limit` | 40 | 通用策略初始数量；每次基于输入重新计算 |
-| `--model` | qwen3.8-max | `off` 可禁用主模型 |
-| `--aux-model` | qwen-flash | `off` 可禁用辅助模型；默认不启用思考 |
-| `--aux-timeout` | 30 | 单次辅助调用上限，失败使用程序事实摘要 |
-| `--memory` | read-write | `off` / `read-only` / `read-write` |
-| `--resume` | false | 从同一输出目录显式续跑 |
-| `--program-file` | 无 | 加入一份纯 `rank(candidates,state)` 程序用于实验 |
-
-总 CPU 申请为 `cp-workers × threads + construct-workers`。程序拒绝超过主机可用 CPU 的配置。并行任务不会相互覆盖基线：提交结果时重新与最新基线比较。
-
-### 断点续跑
-
-```bash
-.venv/bin/python start.py --out runs/my-cold-run --resume \
-  --orders configs/orders20.json --vehicles 2 \
-  --cp-workers 2 --threads 8 --wall-seconds 600
-```
-
-需保持订单、规则、代码和目标偏好一致。可调整资源和这次调用的预算。恢复时重新校验当前运行保存的基线，恢复任务队列、已尝试策略及分配统计。被打断的 CP 任务重新开始求解；**不保存 CP-SAT 内部搜索树**。恢复当前运行的方案不等于从 Memory 加载历史答案。
-
-Ctrl+C 或在输出目录创建 `STOP` 会保存检查点。不会自行恢复；显式 `--resume` 才重新开始，并移除该目录的 STOP。运行锁阻止两个程序同时使用一个输出目录。
-
-## 构造算法与大模型的权限
-
-- `legacy`：保留旧批次贪心构造作为对照。
-- `extended + rolling`：上一组未全部结束，可投入下一组。
-- `vehicle_policy=split`：送入和锻后接走可以由不同车辆完成，各自仍受空驶和载重限制。
-- `backtrack_budget`：卡住后尝试前面有限数量的其他选择。
-- `program_source`：主模型可编写新决策程序，联合评价合法的入料、出炉、选炉及车辆动作；支持分支、循环、聚合、状态相关规则。
-
-生成程序不只是选择固定策略编号，但也不是任意修改整个项目。统一引擎产生候选动作、执行状态转移及有限回退；程序返回动作优先分数。禁止导入、文件/网络访问和修改规则，采用 AST 白名单、指令预算、独立进程、内存/CPU/墙钟限制。坏程序单独记为失败，明确回退到内置程序并反馈主模型。它是可信服务内的受限算法插件，不是面向任意敌意代码的通用沙箱。
-
-本轮不增加：包棉、分切、开门温降、带料换温、炉外堆料、车辆交换料。这些原硬约束和简化口径保留。`reference-manifest.json` 在每个任务前后核对原模型和物理审计器哈希。
-
-## 首日剪枝与结论边界
-
-有完整基线后，所有 CP 改善任务都必须优于基线，包含带构造提示的任务。保温偏好开启时可保留首日得分相同、额外保温更少的改善。
-
-扩展构造还使用保守上界：已固定的首日锻打 + `min(当天剩余时间, 剩余必需锻打量)`。上界都不能改善时剪枝。这个上界允许理想化并行，偏宽但不会因估计过低而错误排除更好分支。构造器并不枚举所有物理合法排程。
-
-| 结果 | 能说明什么 |
+| 参数组合 | 实际含义 |
 |---|---|
-| 构造失败 / 回退预算耗尽 | 此次构造没有完成，不能证明原问题无解 |
-| CP UNKNOWN / 中断 | 未解决；不当作无解 |
-| 局部 INFEASIBLE | 仅该固定邻域无改善 |
-| 完整模型无更好方案 | 才能在该模型及目标下说明没有更好方案 |
-| 达到用户目标 | 有完整合格方案，不自动等于全局最优 |
+| `--vehicles 2` | 两辆车；单车改为 `1`，并使用新的输出目录 |
+| `--cp-workers 6 --threads 8 --construct-workers 1` | 最多 6 个 CP 任务，各 8 个内部线程，另有 1 个构造任务；需至少 49 个 Node 检测到的可用并行度，槽位不保证时刻占满 |
+| `--thinking-budget 4096 --max-tokens 32768` | 主模型显式思考 token 预算和最大输出额度；预算必须小于输出额度 |
+| `--rounds 2` | 最多两轮普通规划；修正、工具交互及协议重试可能产生额外模型请求 |
+| `--strategy-trials 6` | 每条模型策略先执行一批尝试后反馈；不是最多只尝试六次，也不保证六次都是构造 |
+| `--construct-seconds 8 --solve-seconds 45` | 单次构造和普通 CP 求解额度；模型策略后续 CP 另受 `--strategy-solve-max-seconds` 控制，默认上限 120 秒 |
+| `--completion-seconds 30` | 部分排程交给 CP 补全的单次额度，还受价值筛选与资源份额限制 |
+| `--cp-no-gain-limit 3 --cp-cooldown-seconds 90` | 同类通用任务连续无收益后暂缓，随后可恢复；不会整体停滞早停，也不是无解证明 |
+| `--wall-seconds 1200` | 本次整场最多约 20 分钟，模型、构造、搜索及校验都计入；收尾可稍超时 |
+| `--target 870` | 完整合法方案的当前日锻打目标 870 分钟，即 60.42%；目标达到且满足交付条件可提前结束，不代表全局最优 |
+| `--preference none` | 只比较当前日锻打时间；改成 `hold-near-min` 后，同日分数相同时优先保温更接近下限的方案 |
 
-## Memory 和 Flash
+如果要改用强度设置，把 `--thinking-budget 4096` 替换为 `--thinking-budget 0 --effort high`。显式思考预算非零时，代码优先发送预算，不同时发送 effort；接口支持的强度取决于提供方。
 
-事实试验记录只保存策略、原始状态类别、基线起点、改善量、耗时、失败类别和证据编号；不保存时间表、物料开始时刻数组或设备分配答案。构造阶段的失败及成功均单独记录，不以是否轮到 CP 为条件。
+## 单车与关闭大模型
 
-Flash 负责短反馈、经验卡片增改/退役和简短说明。每个更新必须引用存在的同场景证据、匹配卡片版本；统计由程序从事实重算，辅助模型不能改成绩。卡片是有适用条件及例外的假设，不成为工艺硬约束。更新保留版本历史；拒绝陈旧更新并继续搜索。检索保留场景差异，复用策略必须在新订单上重新计算与校验。
+单车复制上面的完整命令，把 `--vehicles 2` 改成 `--vehicles 1`，输出目录中的 `car2` 改成 `car1`。例如 `--target 600` 对应当前日使用率 41.67%。单车和双车分别执行真实的车辆行程衔接约束。
 
-分配收益以完整审计后的全局改善为准；并发过期结果不重复奖励。冷启动获得第一份方案、已有方案上的改善分别记录。没有改善的方向会扩大改排范围或切到 broad，同时保留探索机会。
-
-## 结果文件
-
-- `report.json` / `progress.json`：首份合法时间、最好成绩、构造/CP/主模型/辅助模型分项耗时。
-- `events.jsonl`：先落盘后展示的真实事件。
-- `checkpoint.json`：任务、当前基线和分配状态。
-- `best/views/orders.html`、`best/views/equipment.html`：双视角结果。
-- `tasks/*/attempt-*/`：每次尝试、两份审计或求解日志。
-- `calls/`：主模型请求及最终响应；不保存隐藏思考。
-- `aux-*.json`：反馈摘要、更新接受/拒绝记录。
-- `memory-stats.json`：使用次数、收益和失败类别。
-
-并行阶段的耗时会重叠，分项相加不等于总耗时。应以 `first_valid_s`、`target_elapsed_s` 和 `elapsed_s` 判断用户等待时间。
-
-## 参考与验证
-
-借鉴 Qwen Live Harness 的 SQLite 事实/经验分层、结构化更新及过期更新处理；借鉴 DeepSeek Harness 的事件流程、独立摘要模型与先程序裁剪再压缩。不直接搬入它们的聊天产品和用户画像功能。
+下面关闭主模型、摘要模型和 Memory 更新模型，仍运行程序构造与 CP-SAT；不需要 API token，也不读取历史 Memory。它不是枚举全部合法排程。
 
 ```bash
-npm test
-.venv/bin/python -m unittest discover -s python -p 'test_*.py'
-.venv/bin/python python/benchmark_extensions.py runs/ablation-new
+cd /home/huanzz/longda-strategy-harness-v12-20261020
+
+.venv/bin/python start.py \
+  --orders configs/orders20.json --vehicles 2 \
+  --out "runs/orders20-car2-v12-no-llm-$(date +%Y%m%d-%H%M%S)" \
+  --model off --summary-model off --memory-model off --rounds 0 \
+  --memory off \
+  --cp-workers 6 --threads 8 --construct-workers 1 \
+  --partial-completion on --completion-seconds 30 \
+  --completion-priority value --diversity-probes on --exploration-share 0.15 \
+  --portfolio-refill on --cp-retry-policy on \
+  --cp-no-gain-limit 3 --cp-cooldown-seconds 90 \
+  --preference none --construct-seconds 8 --solve-seconds 45 \
+  --wall-seconds 1200 --target 870
 ```
 
-消融覆盖 4/8/20 单、1/2 辆车、两种种子，构造功能逐项开启，每次最多 1 秒构造，完整结果逐项审计。测试用手写 rank 程序标为 `program-hook-control`，不会冒充大模型生成结果。在线主模型/Flash 测试另存报告。冷启动和经验复用要用相同代码与资源比较；短测无解不能推论真实订单不可行。
+## 暂停、恢复与时间额度
 
-本轮完成情况与实测数据：[验收记录](docs/acceptance.md)。
+按 `Ctrl+C` 请求停止并保存已审计最好方案与检查点。进程完全退出后，用**原命令、原输出目录**重新运行并加 `--resume`。例如原目录为 `runs/orders20-car2-v12-20261021-120000`，恢复时将 `--out` 固定为该目录，不再用 `$(date ...)`，并加 `--resume`。完整恢复命令见 [docs/cli.md](docs/cli.md)。
+
+恢复要求订单、在制输入、算法代码、硬规则和偏好一致，不能直接恢复旧版运行目录。可恢复基线、队列和冷却账本，不能恢复 CP-SAT 内部搜索树。`--wall-seconds` 是**本次调用的新额度**，报告 `elapsed_s` 累计历史运行时间。已有输出目录不加 `--resume` 会报错。
+
+本版 `--wall-seconds` 范围为 1～86400 秒，没有关闭整场时限的参数。`--max-trials 0` 只是不限制尝试次数，不能取消时间额度。目标达到、人工停止等也可以提前结束。
+
+## 结果在哪里看
+
+输出保存到 `--out` 指定目录；尚未找到合法方案时不一定存在 `best/`。
+
+| 文件 | 内容 |
+|---|---|
+| `progress.json` / `report.json` | 实时进度 / 最终报告、停止原因、模型交付情况 |
+| `best.json` | 最好完整合法方案的索引与指标 |
+| `best/best_schedule.json` | 完整排程 |
+| `best/best_audit.json` | 独立物理审计与逐日净锻打使用率 |
+| `best/exact_model_verification.json` | 完整模型约束逐项验算 |
+| `best/result_summary.json` | 完工历时、逐日及平均使用率 |
+| `best/views/orders.html` / `equipment.html` | 订单 / 设备两个视角 |
+| `search-statistics.json` | 构造、补全、局部 CP、全局 CP 的独立统计 |
+| `events.jsonl` | 任务、策略、冷却、恢复和基线发布事件 |
+| `checkpoint.json` | 基线、待办任务、经验归因和调度账本 |
+
+查看双视角（另开终端，替换为实际目录）：
+
+```bash
+.venv/bin/python -m http.server 8770 \
+  --bind 127.0.0.1 \
+  --directory runs/orders20-car2-v12-20261021-120000/best/views
+```
+
+服务器部署时，在本机执行 `ssh -N -L 8770:127.0.0.1:8770 huanzz@39.96.162.45`，打开 `http://127.0.0.1:8770/orders.html` 或 `equipment.html`。
+
+`budget` 是运行额度用完，`user_stop` 是人工停止，`target_reached` 是完整合法方案达到目标。`UNKNOWN` 不能当无解；局部 `OPTIMAL` 不能当整场全局最优。“完整合法结果”计数不保证对应互不相同的排程。
+
+## Memory 和历史证据
+
+- 经验按 `construct`、`cp_complete`、`cp_improve` 分阶段归因与检索，退役需有理由和证据。
+- **全新 Git clone 不含历史 SQLite、858 经验卡和原始运行证据。** 首次 `read-write` 创建新库；服务器现有 `data/experience-v12.sqlite` 继续保留历史经验。
+- 迁移 Memory 应使用 SQLite 一致性备份，并保留或配置 `--evidence-index` 及原始证据路径。不要把整个运行目录上传到仓库。
+- `--memory off` 不读写；`read-only` 要求数据库存在；`read-write` 允许更新。`--memory-content raw` 提供原始阶段记录，`cards` 额外提供已启用的经验卡。
+- 主模型默认 `qwen3.8-max`；独立摘要和 Memory updater 默认 `qwen3.7-plus`。模型不能修改受保护的物理规则。
+
+## 当前模型与目录
+
+示例为四张工艺卡各五单，共 20 单、160 道锻打工序，四天完成；六炉各五支、一台压机、一或两辆车。载料和异地点空驶均为五分钟；禁止压机等车、同车交换料；换温需空炉，保留准确换温耗时。暂不做包棉、分切和开门温降。
+
+内部每分钟 3 ticks（20 秒）用于准确表示时间。`max_replay_step_minutes=5` 是回放步长上限，不是 CP-SAT 决策网格。当前独立 CP/日历模型尚未接入 Stroma。
+
+```text
+start.py                  # 交互读取凭据、启动 Node
+src/                      # 模型、策略、任务池、Memory、检查点和统计
+python/                   # 构造、在制状态、CP 任务与校验
+reference/                # 受保护的物理模型和 HTML 模板
+configs/                  # 脱敏示例订单、策略与在制测试输入
+tests/                    # TS 测试；Python 测试在 python/
+scripts/                  # 安装、诊断和历史对照脚本
+docs/                     # 参数、状态输入、版本说明和历史记录
+data/、runs/、dist/、.venv/ # 本地生成，不随 Git 分发
+```
+
+v12 新增任务池持续换轮、通用 CP 无收益冷却、同范围并发限制与检查点记录。一次已完成的双车运行：1200.99 秒，首解 5.37 秒，首日最好 856 分钟（59.44%），全部完成 2 天 21 小时 13 分钟，双重校验通过。这是单次结果，不证明提速或全局最优。
+
+完整参数见 [docs/cli.md](docs/cli.md)，运行证据摘要见 [docs/run-v12-summary.md](docs/run-v12-summary.md)，在制输入见 [docs/state-input.md](docs/state-input.md)，改动见 [docs/release-v12.md](docs/release-v12.md)，原 v2 说明见 [docs/v2-history/README.md](docs/v2-history/README.md)。旧版验收需按版本区分，历史对照脚本可能依赖服务器原始运行目录。

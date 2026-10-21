@@ -1,0 +1,30 @@
+```json
+{
+  "summary": "Repair deadend caused by temperature bottleneck: 3 C430s on one furnace all need fire3@1130 simultaneously while 3 CFLATs need fire2@1120 on another. New rank program penalizes admissions proportional to pending forge count, prioritizes urgent forges (low slack), and increases backtrack budget to 32.",
+  "candidates": [
+    {
+      "name": "repair-stagger-admit-urgency-first",
+      "hypothesis": "Deadend occurred because 3 C430 orders admitted to furnace 0 and 3 CFLAT to furnace 1 created simultaneous temperature-transition demands (24 receiver_temperature_or_capacity rejections, 4 hold_upper_exceeded). The rank program now: (1) penalizes admissions by pending_count*90 + active_count*45, delaying new admits until current pieces advance; (2) prioritizes forge actions by start + slack*0.15 - 200*empty_receiver so urgent pieces and those needing empty receivers are forged first; (3) finish actions scored by start + slack*0.05. WIP limit reduced to 4 to prevent pileup. Backtrack budget increased to 32 for more recovery options.",
+      "evidence_ids": ["96302ca9-9a64-41ca-aabc-12ef729d5c1a/task-2/1"],
+      "groups": [
+        [{"route": "C430", "count": 2}, {"route": "CFLAT", "count": 2}],
+        [{"route": "C430", "count": 3}, {"route": "CFLAT", "count": 3}],
+        [{"route": "C280I", "count": 2}, {"route": "C280R", "count": 2}],
+        [{"route": "C280I", "count": 3}, {"route": "C280R", "count": 3}]
+      ],
+      "loading": "interleaved",
+      "policies": [0],
+      "seeds": [7],
+      "direction": "press_gap",
+      "fraction": 0.5,
+      "focus_orders": [],
+      "engine": "extended",
+      "admission": "rolling",
+      "vehicle_policy": "same",
+      "backtrack_budget": 32,
+      "wip_limit": 4,
+      "program_source": "def rank(candidates, state):\n    active = state[\"active_count\"]\n    pending = state[\"pending_count\"]\n    return [\n        (c[\"start\"] + 0.15 * c[\"slack\"] - 200 * c[\"empty_receiver\"]) if c[\"kind\"] == \"forge\"\n        else (c[\"start\"] + pending * 90 + active * 45) if c[\"kind\"] == \"admit\"\n        else (c[\"start\"] + 0.05 * c[\"slack\"])\n        for c in candidates\n    ]"
+    }
+  ]
+}
+```

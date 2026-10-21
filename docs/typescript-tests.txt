@@ -1,0 +1,348 @@
+
+> longda-strategy-harness@7.0.0 test
+> npm run build && node --test dist/tests/*.test.js
+
+
+> longda-strategy-harness@7.0.0 build
+> tsc -p tsconfig.json
+
+TAP version 13
+# (node:3997656) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: one fenced JSON preserves code while ambiguous blocks are rejected
+ok 1 - one fenced JSON preserves code while ambiguous blocks are rejected
+  ---
+  duration_ms: 1.266466
+  type: 'test'
+  ...
+# Subtest: model receives actual tool failure, then revises code within the same turn
+ok 2 - model receives actual tool failure, then revises code within the same turn
+  ---
+  duration_ms: 21.680789
+  type: 'test'
+  ...
+# Subtest: algorithm versions survive Memory retrieval across order counts without copying schedules
+ok 3 - algorithm versions survive Memory retrieval across order counts without copying schedules
+  ---
+  duration_ms: 48.328703
+  type: 'test'
+  ...
+# Subtest: final proposal cannot silently run algorithm_source through rank-only engine
+ok 4 - final proposal cannot silently run algorithm_source through rank-only engine
+  ---
+  duration_ms: 10.994936
+  type: 'test'
+  ...
+# Subtest: provider schema preserves effort exclusivity and normalizes empty tool envelope
+ok 5 - provider schema preserves effort exclusivity and normalizes empty tool envelope
+  ---
+  duration_ms: 1.117339
+  type: 'test'
+  ...
+# Subtest: candidate submission cannot be silently discarded in a mixed tool response
+ok 6 - candidate submission cannot be silently discarded in a mixed tool response
+  ---
+  duration_ms: 1.159834
+  type: 'test'
+  ...
+# (node:3997657) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: SSE handles fragmented transport; stores final answer and usage only
+ok 7 - SSE handles fragmented transport; stores final answer and usage only
+  ---
+  duration_ms: 22.605637
+  type: 'test'
+  ...
+# Subtest: truncated model answer cannot become an executable plan; errors redact credentials
+ok 8 - truncated model answer cannot become an executable plan; errors redact credentials
+  ---
+  duration_ms: 2.634013
+  type: 'test'
+  ...
+# Subtest: finished SSE answer is returned without waiting for proxy socket closure
+ok 9 - finished SSE answer is returned without waiting for proxy socket closure
+  ---
+  duration_ms: 0.955239
+  type: 'test'
+  ...
+# Subtest: model deadline diagnostics: thinking
+ok 10 - model deadline diagnostics: thinking
+  ---
+  duration_ms: 39.88604
+  type: 'test'
+  ...
+# Subtest: model deadline diagnostics: partial_answer
+ok 11 - model deadline diagnostics: partial_answer
+  ---
+  duration_ms: 39.427578
+  type: 'test'
+  ...
+# Subtest: model deadline diagnostics: user_stop
+ok 12 - model deadline diagnostics: user_stop
+  ---
+  duration_ms: 11.309907
+  type: 'test'
+  ...
+# Subtest: model deadline diagnostics: delayed_success
+ok 13 - model deadline diagnostics: delayed_success
+  ---
+  duration_ms: 70.377711
+  type: 'test'
+  ...
+# (node:3997658) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: state matching follows physical conditions, not day number; direct reuse is exact only
+ok 14 - state matching follows physical conditions, not day number; direct reuse is exact only
+  ---
+  duration_ms: 23.095899
+  type: 'test'
+  ...
+# Subtest: multiple retrieved alternatives include old good evidence; count changes require model reasoning; feedback is attributable
+ok 15 - multiple retrieved alternatives include old good evidence; count changes require model reasoning; feedback is attributable
+  ---
+  duration_ms: 258.354723
+  type: 'test'
+  ...
+# Subtest: independent summary retains recent tail; updater applies only cited versioned patches
+ok 16 - independent summary retains recent tail; updater applies only cited versioned patches
+  ---
+  duration_ms: 46.258353
+  type: 'test'
+  ...
+# Subtest: planner sees current commitments without receiving full executed logs or future answers
+ok 17 - planner sees current commitments without receiving full executed logs or future answers
+  ---
+  duration_ms: 0.450623
+  type: 'test'
+  ...
+# (node:3997664) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: strategy conserves every order; rejects process edits and unknown fields
+ok 18 - strategy conserves every order; rejects process edits and unknown fields
+  ---
+  duration_ms: 3.332823
+  type: 'test'
+  ...
+# Subtest: memory requires complete audit; exact context preferred; cars/rules incompatible
+ok 19 - memory requires complete audit; exact context preferred; cars/rules incompatible
+  ---
+  duration_ms: 39.62109
+  type: 'test'
+  ...
+# Subtest: events persist before publication with stable run identity
+ok 20 - events persist before publication with stable run identity
+  ---
+  duration_ms: 1.150909
+  type: 'test'
+  ...
+# Subtest: Memory rejects saved answers and strips operation times from diagnostics
+ok 21 - Memory rejects saved answers and strips operation times from diagnostics
+  ---
+  duration_ms: 0.749166
+  type: 'test'
+  ...
+# (node:3997665) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: policy identity excludes explanation; generic bootstrap adapts counts
+ok 22 - policy identity excludes explanation; generic bootstrap adapts counts
+  ---
+  duration_ms: 47.841409
+  type: 'test'
+  ...
+# Subtest: resource allocation keeps exploration; tracks construction and CP separately
+ok 23 - resource allocation keeps exploration; tracks construction and CP separately
+  ---
+  duration_ms: 0.401066
+  type: 'test'
+  ...
+# Subtest: Memory permits audited construction; patches are versioned evidence-based and correctable
+ok 24 - Memory permits audited construction; patches are versioned evidence-based and correctable
+  ---
+  duration_ms: 45.863528
+  type: 'test'
+  ...
+# Subtest: resume preserves pending tasks and rejects changed model; active lock prevents duplicates
+ok 25 - resume preserves pending tasks and rejects changed model; active lock prevents duplicates
+  ---
+  duration_ms: 2.005314
+  type: 'test'
+  ...
+# Subtest: auxiliary timeout falls back to factual summary without throwing
+ok 26 - auxiliary timeout falls back to factual summary without throwing
+  ---
+  duration_ms: 21.082605
+  type: 'test'
+  ...
+# (node:3997671) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: only incomplete useful partials can enter completion; errors and bounds go to repair
+ok 27 - only incomplete useful partials can enter completion; errors and bounds go to repair
+  ---
+  duration_ms: 0.602027
+  type: 'test'
+  ...
+# Subtest: completion UNKNOWN retains original failure and never becomes infeasibility
+ok 28 - completion UNKNOWN retains original failure and never becomes infeasibility
+  ---
+  duration_ms: 0.200317
+  type: 'test'
+  ...
+# Subtest: pending completion may run beyond ordinary batch quota and feedback waits for it
+ok 29 - pending completion may run beyond ordinary batch quota and feedback waits for it
+  ---
+  duration_ms: 23.01617
+  type: 'test'
+  ...
+# Subtest: longer API allowance never silently overrides the total deadline
+ok 30 - longer API allowance never silently overrides the total deadline
+  ---
+  duration_ms: 0.592188
+  type: 'test'
+  ...
+# Subtest: required planner must actually be evaluated before generic target ends the run
+ok 31 - required planner must actually be evaluated before generic target ends the run
+  ---
+  duration_ms: 0.0962
+  type: 'test'
+  ...
+# Subtest: fast generic trials leave room for a late model strategy without exceeding total quota
+ok 32 - fast generic trials leave room for a late model strategy without exceeding total quota
+  ---
+  duration_ms: 0.120514
+  type: 'test'
+  ...
+# Subtest: new solver neighborhood is distinct even when the constructor is identical
+ok 33 - new solver neighborhood is distinct even when the constructor is identical
+  ---
+  duration_ms: 0.172096
+  type: 'test'
+  ...
+# Subtest: unlimited trials continue beyond the former 160 cap even while waiting for planner
+ok 34 - unlimited trials continue beyond the former 160 cap even while waiting for planner
+  ---
+  duration_ms: 0.108322
+  type: 'test'
+  ...
+# (node:3997688) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: original constructor errors survive CP UNKNOWN and carry no infeasibility proof
+ok 35 - original constructor errors survive CP UNKNOWN and carry no infeasibility proof
+  ---
+  duration_ms: 0.833
+  type: 'test'
+  ...
+# Subtest: repair inbox survives interrupted model calls and counts a whole revision lineage
+ok 36 - repair inbox survives interrupted model calls and counts a whole revision lineage
+  ---
+  duration_ms: 0.272426
+  type: 'test'
+  ...
+# Subtest: CP-only or prose changes cannot masquerade as constructor repair
+ok 37 - CP-only or prose changes cannot masquerade as constructor repair
+  ---
+  duration_ms: 0.379362
+  type: 'test'
+  ...
+# Subtest: failed construction suspends descendants even after the final planning round
+ok 38 - failed construction suspends descendants even after the final planning round
+  ---
+  duration_ms: 0.366967
+  type: 'test'
+  ...
+# Subtest: Memory keeps failure classes and counts but not projected operation times
+ok 39 - Memory keeps failure classes and counts but not projected operation times
+  ---
+  duration_ms: 0.679933
+  type: 'test'
+  ...
+# Subtest: resume closes unanswered tool calls once without fabricating infeasibility
+ok 40 - resume closes unanswered tool calls once without fabricating infeasibility
+  ---
+  duration_ms: 4.22757
+  type: 'test'
+  ...
+# Subtest: raising an explicit repair quota reopens exhausted work without clearing its history
+ok 41 - raising an explicit repair quota reopens exhausted work without clearing its history
+  ---
+  duration_ms: 0.117843
+  type: 'test'
+  ...
+# Subtest: verbose model prose does not discard an executable strategy; executable fields stay strict
+ok 42 - verbose model prose does not discard an executable strategy; executable fields stay strict
+  ---
+  duration_ms: 1.616402
+  type: 'test'
+  ...
+# (node:3997694) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: unrelated feedback cannot complete a strategy batch; all proposals must finish and drain
+ok 43 - unrelated feedback cannot complete a strategy batch; all proposals must finish and drain
+  ---
+  duration_ms: 1.301353
+  type: 'test'
+  ...
+# Subtest: parallel launches cannot overfill a batch and reserve CP work after constructions
+ok 44 - parallel launches cannot overfill a batch and reserve CP work after constructions
+  ---
+  duration_ms: 0.184423
+  type: 'test'
+  ...
+# Subtest: UNKNOWN increases CP allowance with cap; statistics credit only published improvement
+ok 45 - UNKNOWN increases CP allowance with cap; statistics credit only published improvement
+  ---
+  duration_ms: 0.246225
+  type: 'test'
+  ...
+# Subtest: checkpoint restores partial campaign identity, quota, seed and evidence
+ok 46 - checkpoint restores partial campaign identity, quota, seed and evidence
+  ---
+  duration_ms: 0.612476
+  type: 'test'
+  ...
+# Subtest: rejected proposal or exhausted work is explicit feedback, not a success or proof
+ok 47 - rejected proposal or exhausted work is explicit feedback, not a success or proof
+  ---
+  duration_ms: 0.170283
+  type: 'test'
+  ...
+# (node:3997695) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: receipts deduplicate identical execution and explicit retry changes attempt, not constraints
+ok 48 - receipts deduplicate identical execution and explicit retry changes attempt, not constraints
+  ---
+  duration_ms: 8.721958
+  type: 'test'
+  ...
+# Subtest: inflight identical tools cannot execute twice
+ok 49 - inflight identical tools cannot execute twice
+  ---
+  duration_ms: 0.885825
+  type: 'test'
+  ...
+# Subtest: tool budget produces structured partial result and preserves each receipt
+ok 50 - tool budget produces structured partial result and preserves each receipt
+  ---
+  duration_ms: 21.96887
+  type: 'test'
+  ...
+# Subtest: malformed JSON feeds format evidence to model for same-turn correction
+ok 51 - malformed JSON feeds format evidence to model for same-turn correction
+  ---
+  duration_ms: 1.969181
+  type: 'test'
+  ...
+# Subtest: completed algorithm tools can finish normally without inventing another proposal
+ok 52 - completed algorithm tools can finish normally without inventing another proposal
+  ---
+  duration_ms: 2.605893
+  type: 'test'
+  ...
+1..52
+# tests 52
+# suites 0
+# pass 52
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 386.618169

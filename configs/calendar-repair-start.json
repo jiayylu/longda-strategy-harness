@@ -1,0 +1,40 @@
+{
+  "summary": "Acceptance starting point: unbounded greedy admission previously failed in the 20-order probe. Ask the model to repair actual failure, not a seeded timetable.",
+  "candidates": [
+    {
+      "name": "calendar-greedy-start",
+      "hypothesis": "Run the measured failing greedy policy to collect actual furnace/vehicle/window feedback for algorithm repair.",
+      "groups": [
+        [
+          {
+            "route": "C430",
+            "count": 5
+          },
+          {
+            "route": "C280R",
+            "count": 5
+          },
+          {
+            "route": "C280I",
+            "count": 5
+          },
+          {
+            "route": "CFLAT",
+            "count": 5
+          }
+        ]
+      ],
+      "loading": "grouped",
+      "policies": [
+        0
+      ],
+      "seeds": [
+        0
+      ],
+      "direction": "broad",
+      "fraction": 1,
+      "engine": "calendar",
+      "algorithm_source": "def construct():\n state=root()\n while remaining()>0:\n  if complete(state): return state\n  opts=candidates(state)\n  if not opts: return None\n  ranked=sorted([(c['start']+(c['min_hold']*.15 if c['kind']=='admit' else c['slack']*.15),c['id']) for c in opts])\n  state=advance(state,ranked[0][1])\n return None\n"
+    }
+  ]
+}

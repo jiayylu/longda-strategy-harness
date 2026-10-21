@@ -1,15 +1,16 @@
 """JSON-file worker: unmodified rules, real CpSolver.Solve, separate audit."""
 
-import copy, hashlib, json, os, signal, sys, time, threading, re
+import copy, hashlib, json, os, signal, sys, time, threading, re, traceback
 from pathlib import Path
 from collections import defaultdict
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "reference")]
 from ortools.sat.python import cp_model
-from longda_cpsat.model import build_model, flatten, extract_schedule
-from longda_cpsat.audit import audit
-from longda_cpsat.objectives import add_objective, evaluate_schedule, objective_key
+from longda_cpsat.model import flatten, extract_schedule
+from physical_model import build_model, audit
+from scoring import add_objective, evaluate_schedule, objective_key
+from production_state import state_data, add_state_constraints, audit_state, features
 from longda_cpsat.search_tasks import select_orders
 from longda_cpsat.result_summary import build_summary
 from longda_cpsat.html_export import export_run_html
@@ -17,6 +18,10 @@ from constructor import construct as construct_extended
 from legacy_constructor import construct
 from verification import verify
 from diagnostics import summarize
+from program import Program
+from algorithm import AlgorithmProgram
+from search_registry import claim_search, finish_search
+from partial_completion import describe_partial, add_partial_hint
 
 
 def save(path, data):
@@ -38,6 +43,11 @@ def integrity():
     }
     if expected != actual:
         raise ValueError("Reference rules changed")
+    guard=ROOT/'guard-manifest.json'
+    if guard.exists():
+        for name,digest in json.loads(guard.read_text()).items():
+            if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=digest:
+                raise ValueError('Protected validation module changed: '+name)
     return hashlib.sha256(json.dumps(actual, sort_keys=True).encode()).hexdigest()
 
 
@@ -114,6 +124,13 @@ def full_hint(model, sc, s):
         }[k]()
 
     for i, v in enumerate(model.proto.variables):
+        if v.name.startswith(("observed_", "window_")):
+            continue
+        # CP-SAT may intern an unnamed Boolean/integer constant when observed
+        # locations make a comparison literal true or false. It has no choice
+        # to guide; leave its fixed domain intact instead of interpreting a name.
+        if not v.name and len(v.domain)==2 and v.domain[0]==v.domain[1]:
+            continue
         x = int(value(v.name))
         model.add_hint(model.get_int_var_from_proto_index(i), x)
     return len(model.proto.solution_hint.vars)
@@ -123,6 +140,10 @@ def audit_delivery(sc, schedule, out, source="constructor"):
     """Publish only after physical audit AND independent complete-model evaluation."""
     start = time.monotonic()
     checked = audit(sc, schedule)
+    observed = audit_state(sc, schedule)
+    save(out / "observed_state_audit.json", observed)
+    checked["valid"] = checked["valid"] and observed["valid"]
+    checked.setdefault("errors", []).extend(observed["errors"])
     proof = verify(sc, copy.deepcopy(schedule)) if checked["valid"] else {"valid": False}
     valid = checked["valid"] and proof["valid"]
     result = dict(status="AUDITED" if valid else "AUDIT_FAILED", valid=valid,
@@ -153,15 +174,24 @@ def construct_batch(sc, req, out):
         config = dict(config)
         cfg = {**config, "seconds": max(.01, req.get("seconds", 30)-(time.monotonic()-start)),
                "incumbent": req.get("incumbent_metrics"), "preference": req["preference"]}
+        if config.get('engine')=='calendar' and req.get('algorithm_checkpoint_dir'):
+            identity=hashlib.sha256(json.dumps(dict(config=config,scenario=sc),sort_keys=True).encode()).hexdigest()
+            cfg['checkpoint_path']=str(Path(req['algorithm_checkpoint_dir'])/(identity+'.json'))
         t = time.monotonic()
+        stage = "program_validation"
         try:
+            if config.get("program_source"): Program(config["program_source"])
+            if config.get("algorithm_source"):
+                program=AlgorithmProgram(config["algorithm_source"])
+                save(out/'algorithm_versions'/(program.hash+'.json'),dict(hash=program.hash,source=program.source,stage='validated_before_execution'))
+            stage = "construction_execution"
             schedule, err, stats = construct_extended(sc, **cfg)
             partial_candidate = stats.pop("partial", None)
             if partial_candidate: partial = partial_candidate
             row = dict(config=config, status="construction_deadend", error=err, **stats)
             if schedule is not None:
                 checked = audit(sc, schedule)
-                if checked["valid"]:
+                if checked["valid"] and audit_state(sc, schedule)["valid"]:
                     metric = evaluate_schedule(sc, schedule)
                     row.update(status="physical_seed", day_minutes=metric["score_ticks"]/sc["ticks_per_minute"])
                     if best is None or objective_key(metric, req["preference"]) > objective_key(best_metric, req["preference"]):
@@ -170,20 +200,36 @@ def construct_batch(sc, req, out):
                     row.update(status="audit_failed", errors=checked.get("errors", [])[:4])
                     partial = schedule
         except (ValueError, TypeError, KeyError, ZeroDivisionError, IndexError, MemoryError, SyntaxError, NameError, OverflowError, RecursionError) as e:
-            row = dict(config=config, status="program_or_construction_error", error=str(e))
+            row = dict(config=config, status="program_or_construction_error", error=str(e), stage=stage, exception_type=type(e).__name__)
+            frames=[f for f in traceback.extract_tb(e.__traceback__) if f.filename=='<generated-algorithm>']
+            if frames:
+                line=frames[-1].lineno
+                source=config.get('algorithm_source','').splitlines()
+                row['generated_code_line']=line
+                row['generated_code_context']=[dict(line=i+1,code=source[i]) for i in range(max(0,line-3),min(len(source),line+2))]
         row["construction_s"] = time.monotonic()-t
         rows.append(row)
         if time.monotonic()-start >= req.get("seconds", 30): break
-    result = dict(trials=len(rows), complete=sum(r["status"]=="physical_seed" for r in rows),
+    failure_row = next((r for r in rows if r['status']=='program_or_construction_error'), None)
+    if failure_row is None: failure_row = max(rows, key=lambda r:r.get('completed_operations',-1), default={})
+    msg = str(failure_row.get('error') or 'No complete audited construction')
+    kind = ('program_error' if failure_row.get('status')=='program_or_construction_error' and (failure_row.get('config',{}).get('program_source') or failure_row.get('config',{}).get('algorithm_source'))
+            else 'construction_error' if failure_row.get('status')=='program_or_construction_error'
+            else 'resource_budget' if msg=='memory_budget'
+            else 'construction_budget' if 'budget' in msg
+            else 'score_bound' if msg=='day1_bound' else 'construction_deadend')
+    failure = dict(kind=kind,message=msg,proof_scope='none',details={k:v for k,v in failure_row.items() if k!='config'})
+    result = dict(status=kind.upper(), failure=failure, error=msg, trials=len(rows), complete=sum(r["status"]=="physical_seed" for r in rows),
                   rows=rows, construction_s=time.monotonic()-start, valid=False,
                   cp_solver_called=False, seed_path=None, partial_path=None)
     if partial:
         save(out/"partial.json", partial);result["partial_path"]=str(out/"partial.json")
+        result["partial_handoff"] = describe_partial(sc, partial, kind)
     if best:
         verified = audit_delivery(sc,best,out)
         result.update(verified)
         if verified["valid"]:
-            result.update(seed_path=verified["schedule_path"],seed_day_minutes=verified["day_minutes"])
+            result.update(seed_path=verified["schedule_path"],seed_day_minutes=verified["day_minutes"],failure=None,error=None)
             for row in rows:
                 row["selected_seed"] = row.get("day_minutes")==verified["day_minutes"]
     return result
@@ -218,26 +264,41 @@ def solve(sc, req, out):
 
     signal.signal(signal.SIGTERM, cancel)
     signal.signal(signal.SIGINT, cancel)
+    registry_key = None
     try:
+        completion = req.get('mode') == 'partial_complete'
+        inc = json.loads(Path(req['incumbent_path']).read_text()) if req.get('incumbent_path') else None
+        seed = None if completion else (json.loads(Path(req['seed_path']).read_text()) if req.get('seed_path') else inc)
+        if completion and not req.get('partial_path'):
+            raise ValueError('partial_complete requires partial_path')
+        selected = [o['id'] for o in sc['orders']]
+        if inc and req.get('mode')=='local_improve':
+            selected = req.get('focus_orders') or select_orders(sc,inc,req['direction'],req['fraction'],req.get('seed',0))
+        registry_key, previous = claim_search(req.get('registry_path'),sc,req,None if completion else inc,seed,selected,str(out))
+        if previous is not None:
+            return dict(status='DUPLICATE',valid=False,cp_solver_called=False,duplicate_of=previous,
+                        released_orders=selected,proof_scope='none',effective_search_key=registry_key)
         model, v, ops = build_model(sc)
         base_variables = len(model.proto.variables)
         base_constraints = len(model.proto.constraints)
+        add_state_constraints(sc, model, v)
+        observed_constraints = len(model.proto.constraints)-base_constraints
         inc = (
             json.loads(Path(req["incumbent_path"]).read_text())
             if req.get("incumbent_path")
             else None
         )
-        seed = (
+        seed = None if completion else (
             json.loads(Path(req["seed_path"]).read_text())
             if req.get("seed_path")
             else inc
         )
-        if inc and not audit(sc, inc)["valid"]:
+        if inc and not (audit(sc, inc)["valid"] and audit_state(sc, inc)["valid"]):
             raise ValueError("Invalid incumbent")
-        if seed and not audit(sc, seed)["valid"]:
+        if seed and not (audit(sc, seed)["valid"] and audit_state(sc, seed)["valid"]):
             raise ValueError("Invalid complete seed")
         mode = req.get("mode", "seeded_search")
-        scope = "global"
+        scope = "partial_hint_completion" if completion else "global"
         selected = [o["id"] for o in sc["orders"]]
         if inc and mode == "local_improve":
             selected = req.get("focus_orders") or select_orders(
@@ -259,7 +320,7 @@ def solve(sc, req, out):
             if req["preference"] == "none"
             else weight * objective["score"] - objective["hold_excess"]
         )
-        if inc:
+        if inc and not completion:
             metric = evaluate_schedule(sc, inc)
             baseline = (
                 metric["score_ticks"]
@@ -267,20 +328,38 @@ def solve(sc, req, out):
                 else weight * metric["score_ticks"] - metric["hold_excess_ticks"]
             )
             model.add(expr > baseline)
-        model.maximize(expr)
+        # Completion obtains feasibility first. Ordinary improvement keeps its original objective.
+        if not completion:
+            model.maximize(expr)
         hint_count = 0
+        hint_source = 'none'
+        partial_stats = None
         if seed:
             hint_count = full_hint(model, sc, seed)
+            hint_source = "complete_seed"
         elif req.get("partial_path"):
             p = json.loads(Path(req["partial_path"]).read_text())
-            for k in ("heat_start", "forge_start", "furnace"):
-                for var, x in zip(v[k], p.get(k, [])):
-                    domain = list(var.proto.domain)
-                    if type(x) is int and any(
-                        lo <= x <= hi for lo, hi in zip(domain[::2], domain[1::2])
-                    ):
-                        model.add_hint(var, x)
-                        hint_count += 1
+            if completion:
+                description = describe_partial(sc, p, 'construction_budget')
+                if not description['eligible']:
+                    raise ValueError('Invalid completion hint: ' + description['reason'])
+                partial_stats = add_partial_hint(model, v, p)
+                hint_count = partial_stats['count']
+                if not hint_count:
+                    raise ValueError('No usable partial hint values')
+                hint_source = 'current_partial'
+            else:
+                # Preserve legacy non-completion hint semantics.
+                for k in ("heat_start", "forge_start", "furnace"):
+                    for var, x in zip(v[k], p.get(k, [])):
+                        domain = list(var.proto.domain)
+                        if type(x) is int and any(lo <= x <= hi for lo, hi in zip(domain[::2], domain[1::2])):
+                            model.add_hint(var, x)
+                            hint_count += 1
+                hint_source = 'partial'
+        if completion:
+            save(out / 'partial_hint_used.json', dict(partial_path=req['partial_path'],
+                 content_hash=description['content_hash'], **partial_stats))
         error = model.validate()
         if error:
             raise ValueError(error)
@@ -289,6 +368,8 @@ def solve(sc, req, out):
         solver.parameters.num_search_workers = req["threads"]
         solver.parameters.max_time_in_seconds = max(0.01, req["seconds"] - build_s)
         solver.parameters.random_seed = req.get("seed", 0)
+        if completion:
+            solver.parameters.stop_after_first_solution = True
         solver.parameters.log_search_progress = True
         solver.parameters.log_to_stdout = False
         solver.parameters.hint_conflict_limit = 10000
@@ -326,7 +407,9 @@ def solve(sc, req, out):
                     self.count += 1
                     if self.first_s is None:
                         self.first_s = time.monotonic() - begin
-                    if (
+                    if completion:
+                        self.stop_search()
+                    elif (
                         req.get("stop_at_target", True)
                         and self.value(objective["score"])
                         >= req["target_minutes"] * sc["ticks_per_minute"]
@@ -346,6 +429,7 @@ def solve(sc, req, out):
             solve_s = time.monotonic() - t
         result = {
             "status": solver.status_name(status),
+            "effective_search_key": registry_key,
             "valid": False,
             "cp_solver_called": True,
             "scope": scope,
@@ -353,15 +437,22 @@ def solve(sc, req, out):
             "released_orders": selected,
             "original_variables": base_variables,
             "original_constraints": base_constraints,
+            "observed_state_constraints": observed_constraints,
+            "identity_quotient": "observed identities preserved" if sc.get("production_state") else "original cold-start quotient",
             "hint_values": hint_count,
             "fixed_hint_values": False,
+            "hint_source": hint_source,
+            "partial_hint_stats": partial_stats,
+            "completion_only": completion,
+            "baseline_improvement_required": bool(inc) and not completion,
+            "completion_objective": 'first_feasible' if completion else None,
             "model_build_s": build_s,
             "solver_wall_s": solve_s,
             "solution_callbacks": observe.count,
             "first_cp_solution_s": observe.first_s,
             "branches": solver.num_branches,
             "conflicts": solver.num_conflicts,
-            "objective_bound": solver.best_objective_bound,
+            "objective_bound": None if completion else solver.best_objective_bound,
             "preference": req["preference"],
             "probing_level": solver.parameters.cp_model_probing_level,
             "presolve_enabled": solver.parameters.cp_model_presolve,
@@ -375,6 +466,10 @@ def solve(sc, req, out):
             t = time.monotonic()
             s = extract_schedule(solver, v)
             checked = audit(sc, s)
+            observed = audit_state(sc, s)
+            save(out / "observed_state_audit.json", observed)
+            checked["valid"] = checked["valid"] and observed["valid"]
+            checked.setdefault("errors", []).extend(observed["errors"])
             proof = (
                 verify(sc, copy.deepcopy(s)) if checked["valid"] else {"valid": False}
             )
@@ -386,7 +481,7 @@ def solve(sc, req, out):
                 day_minutes=metric["score_ticks"] / sc["ticks_per_minute"],
                 metrics=metric,
                 diagnostics=summarize(sc, s, ops),
-                primary_optimal=status == cp_model.OPTIMAL and scope == "global",
+                primary_optimal=not completion and status == cp_model.OPTIMAL and scope == "global",
             )
             if not result["valid"]:
                 raise ValueError("Solver candidate failed independent audit")
@@ -403,8 +498,8 @@ def solve(sc, req, out):
             export_run_html(out)
             result["schedule_path"] = str(out / "best_schedule.json")
         elif status == cp_model.INFEASIBLE:
-            result["proof_scope"] = (
-                "original_model"
+            result["proof_scope"] = 'full_model_feasibility' if completion else (
+                ("observed_state_model" if sc.get("production_state") else "original_model")
                 if scope == "global" and not inc
                 else (
                     "no_improvement_global"
@@ -414,8 +509,11 @@ def solve(sc, req, out):
             )
         else:
             result["proof_scope"] = "none"
+        finish_search(req.get('registry_path'),registry_key,str(out),result['status'],cancelled[0])
         return result
     finally:
+        # A missing terminal result is an interrupted attempt, not an infeasibility proof.
+        finish_search(req.get('registry_path'),registry_key,str(out),'INTERRUPTED',True,only_running=True)
         done.set()
 
 
@@ -427,6 +525,7 @@ def main():
     try:
         rule_hash = integrity()
         sc = json.loads(Path(req["scenario_path"]).read_text())
+        state_data(sc)
         if req["action"] == "construct":
             # Generated programs have no credentials or I/O; also bound process resources.
             import resource

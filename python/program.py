@@ -43,7 +43,8 @@ class Program:
             if isinstance(n, ast.FunctionDef) and n is not fn:
                 raise ValueError("Nested functions forbidden")
             if isinstance(n, ast.Call) and (not isinstance(n.func, ast.Name) or n.func.id not in BUILTINS):
-                raise ValueError("Only pure whitelisted builtins may be called")
+                call=ast.unparse(n.func)
+                raise ValueError(f"Forbidden call {call} at line {n.lineno}; only whitelisted builtin names are allowed. For list accumulation use a comprehension or indexed assignment, not append/get methods.")
         scope = {'__builtins__': BUILTINS}
         exec(compile(tree, '<generated-constructor>', 'exec'), scope)
         self.fn = scope['rank']

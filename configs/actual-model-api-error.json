@@ -1,0 +1,47 @@
+{
+  "summary": "Replay the actual last model-authored algorithm (unchanged executable source). It calls batches() without required current-order waves; verify real API-error feedback and repair. This is not a saved timetable.",
+  "candidates": [
+    {
+      "name": "calendar-batches-primary",
+      "hypothesis": "furnace_temperature deadend from over-prioritizing forge (admit score 5000+ unreachable). Change: call batches() which internally handles furnace temperature sequencing and admission timing. If batches() returns a complete state, return it directly. Fallback greedy uses slack-urgency for all kinds equally. Prediction: batches() completes all 160 operations or provides a much better baseline than manual greedy.",
+      "evidence_ids": [],
+      "groups": [
+        [
+          {
+            "route": "C430",
+            "count": 5
+          },
+          {
+            "route": "C280R",
+            "count": 5
+          },
+          {
+            "route": "C280I",
+            "count": 5
+          },
+          {
+            "route": "CFLAT",
+            "count": 5
+          }
+        ]
+      ],
+      "loading": "grouped",
+      "policies": [
+        0
+      ],
+      "seeds": [
+        0
+      ],
+      "direction": "furnace_batch",
+      "fraction": 1,
+      "focus_orders": [],
+      "engine": "calendar",
+      "admission": "batch",
+      "vehicle_policy": "same",
+      "backtrack_budget": 8,
+      "wip_limit": 10,
+      "program_source": null,
+      "algorithm_source": "def construct():\n    result = batches()\n    if result is not None:\n        return result\n    state = root()\n    tried = set()\n    while remaining() > 0:\n        if complete(state):\n            return state\n        opts = candidates(state)\n        if not opts:\n            return None\n        scored = []\n        for c in opts:\n            cid = c['id']\n            if cid in tried:\n                continue\n            kind = c['kind']\n            slack = c.get('slack', 9999)\n            start = c.get('start', 0)\n            if kind == 'forge':\n                score = slack * 1.0 + start * 0.001\n            elif kind == 'finish':\n                score = slack * 0.8 + start * 0.001\n            else:\n                score = slack * 1.2 + start * 0.001\n            scored.append((score, cid))\n        if not scored:\n            return None\n        scored.sort(key=lambda x: x[0])\n        best_id = scored[0][1]\n        tried.add(best_id)\n        state = advance(state, best_id)\n    return None\n"
+    }
+  ]
+}

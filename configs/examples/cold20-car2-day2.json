@@ -1,0 +1,1722 @@
+{
+  "name": "cold20-car2-day2",
+  "ticks_per_minute": 3,
+  "horizon_minutes": 5760,
+  "max_replay_step_minutes": 5,
+  "furnace_count": 6,
+  "capacity": 5,
+  "initial_temperature": 1150,
+  "ramp_up_deg_per_min": 5,
+  "ramp_down_deg_per_min": 3,
+  "quotient_identical_orders": true,
+  "routes": [
+    {
+      "id": "C430",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1150,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 12
+        },
+        {
+          "fire": 2,
+          "temp": 1150,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 12
+        },
+        {
+          "fire": 3,
+          "temp": 1130,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 12
+        },
+        {
+          "fire": 4,
+          "temp": 1100,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1070,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1040,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1020,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 10
+        },
+        {
+          "fire": 8,
+          "temp": 1000,
+          "hold_min": 30,
+          "hold_max": 45,
+          "forge": 8
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计GH4169 φ430 8火(195 152 165 175)_示意温度.xlsx",
+      "source_sha256": "90d07e7fe2e0749775bf9220109c2a887dfe976d46fd9168b0ef00a3274a9491"
+    },
+    {
+      "id": "C280R",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1140,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 6
+        },
+        {
+          "fire": 2,
+          "temp": 1140,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 3,
+          "temp": 1140,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 6
+        },
+        {
+          "fire": 4,
+          "temp": 1110,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1090,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1060,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1040,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 8,
+          "temp": 1020,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 10
+        },
+        {
+          "fire": 9,
+          "temp": 1000,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 12
+        },
+        {
+          "fire": 10,
+          "temp": 980,
+          "hold_min": 30,
+          "hold_max": 40,
+          "forge": 10
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计GH4169 圆280 10火（172 171）_示意温度.xlsx",
+      "source_sha256": "e806f9a7faa956fbd95466f5e507cae73f0cdd98d99689bd0bbed2556388d692"
+    },
+    {
+      "id": "C280I",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1150,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 10
+        },
+        {
+          "fire": 2,
+          "temp": 1150,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 10
+        },
+        {
+          "fire": 3,
+          "temp": 1130,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 10
+        },
+        {
+          "fire": 4,
+          "temp": 1110,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1120,
+          "hold_min": 200,
+          "hold_max": 300,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1050,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1010,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 8,
+          "temp": 980,
+          "hold_min": 30,
+          "hold_max": 50,
+          "forge": 10
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计IN718-φ280 8火_示意温度.xlsx",
+      "source_sha256": "346403a3fad11101397beb6ed8eee649b0665b940d3aa7b12235934501388a78"
+    },
+    {
+      "id": "CFLAT",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1120,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 10
+        },
+        {
+          "fire": 2,
+          "temp": 1120,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 3,
+          "temp": 1080,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 4,
+          "temp": 1050,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1010,
+          "hold_min": 30,
+          "hold_max": 60,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 960,
+          "hold_min": 30,
+          "hold_max": 60,
+          "forge": 8
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计IN718+扁胚 5火_示意温度.xlsx",
+      "source_sha256": "bb6549b1c4bb90500169a5ccdf00ff2825e8b12b2c1e564300c1b22e7736ccdf"
+    }
+  ],
+  "orders": [
+    {
+      "id": "C430-01",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C430-02",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C430-03",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C430-04",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C430-05",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-01",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-02",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-03",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-04",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-05",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-01",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-02",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-03",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-04",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-05",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-01",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-02",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-03",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-04",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-05",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    }
+  ],
+  "fixture_sha256": "47559b5702fb5efcee27824e1bac32f6d7e0e17fed8bc63ebe302ce3d5cebb6e",
+  "scope": {
+    "transport": "configurable finite single-piece vehicles; uniform 5-minute loaded/empty travel",
+    "wrap": false,
+    "split": false,
+    "door_temperature_drop": false,
+    "empty_furnace_ramp_only": true,
+    "hot_outside_wait": false,
+    "same_time_capacity": "ranked handovers; same vehicle unloads before pickup, capacity checked between events",
+    "schedule_identity": "all heat starts, forge starts, furnace labels; canonical identical-order labels",
+    "clock": "at most 5 minutes, split on physical and planned-action events",
+    "decision_time_domain": "exact 1/3-minute rational lattice (not a 5-minute start-time grid)",
+    "temperature_controls": "canonical earliest empty-furnace ramps; equivalent idle ramp histories not enumerated",
+    "first_heat": "existing mock 300-420 minutes",
+    "override": "C280I fire 5 single 1120C hold200-300 forge8",
+    "search_runtime_limit": null
+  },
+  "transport": {
+    "enabled": true,
+    "vehicle_count": 2,
+    "travel_minutes": 5,
+    "initial_location": "cold"
+  },
+  "production_state": {
+    "schema_version": 1,
+    "cut": "before_events",
+    "now_ticks": 4500,
+    "operations": [
+      {
+        "order": "C430-01",
+        "fire": 1,
+        "heat_start": 15,
+        "furnace": 0,
+        "heat_end": 915,
+        "forge_start": 930,
+        "forge_end": 966
+      },
+      {
+        "order": "C430-01",
+        "fire": 2,
+        "heat_start": 981,
+        "furnace": 0,
+        "heat_end": 1161,
+        "forge_start": 1176,
+        "forge_end": 1212
+      },
+      {
+        "order": "C430-01",
+        "fire": 3,
+        "heat_start": 1227,
+        "furnace": 3,
+        "heat_end": 1407,
+        "forge_start": 1422,
+        "forge_end": 1458
+      },
+      {
+        "order": "C430-01",
+        "fire": 4,
+        "heat_start": 1473,
+        "furnace": 0,
+        "heat_end": 1653,
+        "forge_start": 1668,
+        "forge_end": 1692
+      },
+      {
+        "order": "C430-01",
+        "fire": 5,
+        "heat_start": 1707,
+        "furnace": 0,
+        "heat_end": 1935,
+        "forge_start": 1950,
+        "forge_end": 1974
+      },
+      {
+        "order": "C430-01",
+        "fire": 6,
+        "heat_start": 1989,
+        "furnace": 0,
+        "heat_end": 2199,
+        "forge_start": 2214,
+        "forge_end": 2238
+      },
+      {
+        "order": "C430-01",
+        "fire": 7,
+        "heat_start": 2253,
+        "furnace": 2,
+        "heat_end": 2463,
+        "forge_start": 2478,
+        "forge_end": 2508
+      },
+      {
+        "order": "C430-01",
+        "fire": 8,
+        "heat_start": 2523,
+        "furnace": 3,
+        "heat_end": 2613,
+        "forge_start": 2628,
+        "forge_end": 2652
+      },
+      {
+        "order": "C430-02",
+        "fire": 1,
+        "heat_start": 3138,
+        "furnace": 0,
+        "heat_end": 4038,
+        "forge_start": 4053,
+        "forge_end": 4089
+      },
+      {
+        "order": "C430-02",
+        "fire": 2,
+        "heat_start": 4104,
+        "furnace": 0,
+        "heat_end": 4284,
+        "forge_start": 4299,
+        "forge_end": 4335
+      },
+      {
+        "order": "C430-02",
+        "fire": 3,
+        "heat_start": 4350,
+        "furnace": 3
+      },
+      {
+        "order": "C280R-01",
+        "fire": 1,
+        "heat_start": 15,
+        "furnace": 1,
+        "heat_end": 951,
+        "forge_start": 966,
+        "forge_end": 984
+      },
+      {
+        "order": "C280R-01",
+        "fire": 2,
+        "heat_start": 999,
+        "furnace": 1,
+        "heat_end": 1197,
+        "forge_start": 1212,
+        "forge_end": 1236
+      },
+      {
+        "order": "C280R-01",
+        "fire": 3,
+        "heat_start": 1251,
+        "furnace": 1,
+        "heat_end": 1443,
+        "forge_start": 1458,
+        "forge_end": 1476
+      },
+      {
+        "order": "C280R-01",
+        "fire": 4,
+        "heat_start": 1491,
+        "furnace": 1,
+        "heat_end": 1677,
+        "forge_start": 1692,
+        "forge_end": 1716
+      },
+      {
+        "order": "C280R-01",
+        "fire": 5,
+        "heat_start": 1731,
+        "furnace": 3,
+        "heat_end": 1911,
+        "forge_start": 1926,
+        "forge_end": 1950
+      },
+      {
+        "order": "C280R-01",
+        "fire": 6,
+        "heat_start": 1965,
+        "furnace": 3,
+        "heat_end": 2145,
+        "forge_start": 2160,
+        "forge_end": 2184
+      },
+      {
+        "order": "C280R-01",
+        "fire": 7,
+        "heat_start": 2199,
+        "furnace": 0,
+        "heat_end": 2379,
+        "forge_start": 2394,
+        "forge_end": 2418
+      },
+      {
+        "order": "C280R-01",
+        "fire": 8,
+        "heat_start": 2433,
+        "furnace": 2,
+        "heat_end": 2637,
+        "forge_start": 2652,
+        "forge_end": 2682
+      },
+      {
+        "order": "C280R-01",
+        "fire": 9,
+        "heat_start": 2697,
+        "furnace": 1,
+        "heat_end": 2877,
+        "forge_start": 2892,
+        "forge_end": 2928
+      },
+      {
+        "order": "C280R-01",
+        "fire": 10,
+        "heat_start": 2943,
+        "furnace": 1,
+        "heat_end": 3033,
+        "forge_start": 3048,
+        "forge_end": 3078
+      },
+      {
+        "order": "C280R-02",
+        "fire": 1,
+        "heat_start": 3153,
+        "furnace": 2,
+        "heat_end": 4074,
+        "forge_start": 4089,
+        "forge_end": 4107
+      },
+      {
+        "order": "C280R-02",
+        "fire": 2,
+        "heat_start": 4122,
+        "furnace": 2,
+        "heat_end": 4320,
+        "forge_start": 4335,
+        "forge_end": 4359
+      },
+      {
+        "order": "C280R-02",
+        "fire": 3,
+        "heat_start": 4374,
+        "furnace": 2
+      },
+      {
+        "order": "C280I-01",
+        "fire": 1,
+        "heat_start": 45,
+        "furnace": 0,
+        "heat_end": 981,
+        "forge_start": 996,
+        "forge_end": 1026
+      },
+      {
+        "order": "C280I-01",
+        "fire": 2,
+        "heat_start": 1041,
+        "furnace": 0,
+        "heat_end": 1266,
+        "forge_start": 1281,
+        "forge_end": 1311
+      },
+      {
+        "order": "C280I-01",
+        "fire": 3,
+        "heat_start": 1326,
+        "furnace": 3,
+        "heat_end": 1512,
+        "forge_start": 1527,
+        "forge_end": 1557
+      },
+      {
+        "order": "C280I-01",
+        "fire": 4,
+        "heat_start": 1572,
+        "furnace": 1,
+        "heat_end": 1752,
+        "forge_start": 1767,
+        "forge_end": 1791
+      },
+      {
+        "order": "C280I-01",
+        "fire": 5,
+        "heat_start": 1806,
+        "furnace": 1,
+        "heat_end": 2406,
+        "forge_start": 2421,
+        "forge_end": 2445
+      },
+      {
+        "order": "C280I-01",
+        "fire": 6,
+        "heat_start": 2460,
+        "furnace": 0,
+        "heat_end": 2682,
+        "forge_start": 2697,
+        "forge_end": 2721
+      },
+      {
+        "order": "C280I-01",
+        "fire": 7,
+        "heat_start": 2736,
+        "furnace": 0,
+        "heat_end": 2916,
+        "forge_start": 2931,
+        "forge_end": 2955
+      },
+      {
+        "order": "C280I-01",
+        "fire": 8,
+        "heat_start": 2970,
+        "furnace": 1,
+        "heat_end": 3063,
+        "forge_start": 3078,
+        "forge_end": 3108
+      },
+      {
+        "order": "C280I-02",
+        "fire": 1,
+        "heat_start": 3168,
+        "furnace": 0,
+        "heat_end": 4104,
+        "forge_start": 4119,
+        "forge_end": 4149
+      },
+      {
+        "order": "C280I-02",
+        "fire": 2,
+        "heat_start": 4164,
+        "furnace": 0,
+        "heat_end": 4389,
+        "forge_start": 4404,
+        "forge_end": 4434
+      },
+      {
+        "order": "C280I-02",
+        "fire": 3,
+        "heat_start": 4449,
+        "furnace": 3
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 1,
+        "heat_start": 45,
+        "furnace": 2,
+        "heat_end": 1014,
+        "forge_start": 1029,
+        "forge_end": 1059
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 2,
+        "heat_start": 1074,
+        "furnace": 2,
+        "heat_end": 1242,
+        "forge_start": 1257,
+        "forge_end": 1281
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 3,
+        "heat_start": 1296,
+        "furnace": 2,
+        "heat_end": 1488,
+        "forge_start": 1503,
+        "forge_end": 1527
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 4,
+        "heat_start": 1542,
+        "furnace": 2,
+        "heat_end": 1722,
+        "forge_start": 1737,
+        "forge_end": 1761
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 5,
+        "heat_start": 1776,
+        "furnace": 2,
+        "heat_end": 1866,
+        "forge_start": 1881,
+        "forge_end": 1905
+      },
+      {
+        "order": "CFLAT-01",
+        "fire": 6,
+        "heat_start": 1920,
+        "furnace": 2,
+        "heat_end": 2010,
+        "forge_start": 2025,
+        "forge_end": 2049
+      },
+      {
+        "order": "CFLAT-02",
+        "fire": 1,
+        "heat_start": 3183,
+        "furnace": 1,
+        "heat_end": 4137,
+        "forge_start": 4152,
+        "forge_end": 4182
+      },
+      {
+        "order": "CFLAT-02",
+        "fire": 2,
+        "heat_start": 4197,
+        "furnace": 1,
+        "heat_end": 4365,
+        "forge_start": 4380,
+        "forge_end": 4404
+      },
+      {
+        "order": "CFLAT-02",
+        "fire": 3,
+        "heat_start": 4419,
+        "furnace": 1
+      }
+    ],
+    "transports": [
+      {
+        "kind": "cold_to_furnace",
+        "order": "C430-01",
+        "source": 0,
+        "destination": 1,
+        "start": 0,
+        "end": 15,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 915,
+        "end": 930,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 1,
+        "start": 966,
+        "end": 981,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 1161,
+        "end": 1176,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 4,
+        "start": 1212,
+        "end": 1227,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 4,
+        "destination": 7,
+        "start": 1407,
+        "end": 1422,
+        "vehicle": 0,
+        "fire": 3
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 1,
+        "start": 1458,
+        "end": 1473,
+        "vehicle": 0,
+        "fire": 3
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 1653,
+        "end": 1668,
+        "vehicle": 0,
+        "fire": 4
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 1,
+        "start": 1692,
+        "end": 1707,
+        "vehicle": 0,
+        "fire": 4
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 1935,
+        "end": 1950,
+        "vehicle": 0,
+        "fire": 5
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 1,
+        "start": 1974,
+        "end": 1989,
+        "vehicle": 0,
+        "fire": 5
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 2199,
+        "end": 2214,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 3,
+        "start": 2238,
+        "end": 2253,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 3,
+        "destination": 7,
+        "start": 2463,
+        "end": 2478,
+        "vehicle": 0,
+        "fire": 7
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 4,
+        "start": 2508,
+        "end": 2523,
+        "vehicle": 0,
+        "fire": 7
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 4,
+        "destination": 7,
+        "start": 2613,
+        "end": 2628,
+        "vehicle": 0,
+        "fire": 8
+      },
+      {
+        "kind": "press_to_finished",
+        "order": "C430-01",
+        "source": 7,
+        "destination": 8,
+        "start": 2652,
+        "end": 2667,
+        "vehicle": 0,
+        "fire": 8
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C430-02",
+        "source": 0,
+        "destination": 1,
+        "start": 3123,
+        "end": 3138,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-02",
+        "source": 1,
+        "destination": 7,
+        "start": 4038,
+        "end": 4053,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-02",
+        "source": 7,
+        "destination": 1,
+        "start": 4089,
+        "end": 4104,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-02",
+        "source": 1,
+        "destination": 7,
+        "start": 4284,
+        "end": 4299,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C430-02",
+        "source": 7,
+        "destination": 4,
+        "start": 4335,
+        "end": 4350,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280R-01",
+        "source": 0,
+        "destination": 2,
+        "start": 0,
+        "end": 15,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 951,
+        "end": 966,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 2,
+        "start": 984,
+        "end": 999,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 1197,
+        "end": 1212,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 2,
+        "start": 1236,
+        "end": 1251,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 1443,
+        "end": 1458,
+        "vehicle": 1,
+        "fire": 3
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 2,
+        "start": 1476,
+        "end": 1491,
+        "vehicle": 1,
+        "fire": 3
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 1677,
+        "end": 1692,
+        "vehicle": 1,
+        "fire": 4
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 4,
+        "start": 1716,
+        "end": 1731,
+        "vehicle": 1,
+        "fire": 4
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 4,
+        "destination": 7,
+        "start": 1911,
+        "end": 1926,
+        "vehicle": 1,
+        "fire": 5
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 4,
+        "start": 1950,
+        "end": 1965,
+        "vehicle": 1,
+        "fire": 5
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 4,
+        "destination": 7,
+        "start": 2145,
+        "end": 2160,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 1,
+        "start": 2184,
+        "end": 2199,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 1,
+        "destination": 7,
+        "start": 2379,
+        "end": 2394,
+        "vehicle": 0,
+        "fire": 7
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 3,
+        "start": 2418,
+        "end": 2433,
+        "vehicle": 0,
+        "fire": 7
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 3,
+        "destination": 7,
+        "start": 2637,
+        "end": 2652,
+        "vehicle": 1,
+        "fire": 8
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 2,
+        "start": 2682,
+        "end": 2697,
+        "vehicle": 1,
+        "fire": 8
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 2877,
+        "end": 2892,
+        "vehicle": 0,
+        "fire": 9
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 2,
+        "start": 2928,
+        "end": 2943,
+        "vehicle": 0,
+        "fire": 9
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-01",
+        "source": 2,
+        "destination": 7,
+        "start": 3033,
+        "end": 3048,
+        "vehicle": 0,
+        "fire": 10
+      },
+      {
+        "kind": "press_to_finished",
+        "order": "C280R-01",
+        "source": 7,
+        "destination": 8,
+        "start": 3078,
+        "end": 3093,
+        "vehicle": 0,
+        "fire": 10
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280R-02",
+        "source": 0,
+        "destination": 3,
+        "start": 3138,
+        "end": 3153,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-02",
+        "source": 3,
+        "destination": 7,
+        "start": 4074,
+        "end": 4089,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-02",
+        "source": 7,
+        "destination": 3,
+        "start": 4107,
+        "end": 4122,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280R-02",
+        "source": 3,
+        "destination": 7,
+        "start": 4320,
+        "end": 4335,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280R-02",
+        "source": 7,
+        "destination": 3,
+        "start": 4359,
+        "end": 4374,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280I-01",
+        "source": 0,
+        "destination": 1,
+        "start": 30,
+        "end": 45,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 1,
+        "destination": 7,
+        "start": 981,
+        "end": 996,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 1,
+        "start": 1026,
+        "end": 1041,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 1,
+        "destination": 7,
+        "start": 1266,
+        "end": 1281,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 4,
+        "start": 1311,
+        "end": 1326,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 4,
+        "destination": 7,
+        "start": 1512,
+        "end": 1527,
+        "vehicle": 1,
+        "fire": 3
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 2,
+        "start": 1557,
+        "end": 1572,
+        "vehicle": 1,
+        "fire": 3
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 2,
+        "destination": 7,
+        "start": 1752,
+        "end": 1767,
+        "vehicle": 1,
+        "fire": 4
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 2,
+        "start": 1791,
+        "end": 1806,
+        "vehicle": 1,
+        "fire": 4
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 2,
+        "destination": 7,
+        "start": 2406,
+        "end": 2421,
+        "vehicle": 1,
+        "fire": 5
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 1,
+        "start": 2445,
+        "end": 2460,
+        "vehicle": 1,
+        "fire": 5
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 1,
+        "destination": 7,
+        "start": 2682,
+        "end": 2697,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 1,
+        "start": 2721,
+        "end": 2736,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 1,
+        "destination": 7,
+        "start": 2916,
+        "end": 2931,
+        "vehicle": 1,
+        "fire": 7
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 2,
+        "start": 2955,
+        "end": 2970,
+        "vehicle": 1,
+        "fire": 7
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-01",
+        "source": 2,
+        "destination": 7,
+        "start": 3063,
+        "end": 3078,
+        "vehicle": 1,
+        "fire": 8
+      },
+      {
+        "kind": "press_to_finished",
+        "order": "C280I-01",
+        "source": 7,
+        "destination": 8,
+        "start": 3108,
+        "end": 3123,
+        "vehicle": 1,
+        "fire": 8
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280I-02",
+        "source": 0,
+        "destination": 1,
+        "start": 3153,
+        "end": 3168,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-02",
+        "source": 1,
+        "destination": 7,
+        "start": 4104,
+        "end": 4119,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-02",
+        "source": 7,
+        "destination": 1,
+        "start": 4149,
+        "end": 4164,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C280I-02",
+        "source": 1,
+        "destination": 7,
+        "start": 4389,
+        "end": 4404,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "C280I-02",
+        "source": 7,
+        "destination": 4,
+        "start": 4434,
+        "end": 4449,
+        "vehicle": 1,
+        "fire": 2
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "CFLAT-01",
+        "source": 0,
+        "destination": 3,
+        "start": 30,
+        "end": 45,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 1014,
+        "end": 1029,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 3,
+        "start": 1059,
+        "end": 1074,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 1242,
+        "end": 1257,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 3,
+        "start": 1281,
+        "end": 1296,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 1488,
+        "end": 1503,
+        "vehicle": 0,
+        "fire": 3
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 3,
+        "start": 1527,
+        "end": 1542,
+        "vehicle": 0,
+        "fire": 3
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 1722,
+        "end": 1737,
+        "vehicle": 0,
+        "fire": 4
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 3,
+        "start": 1761,
+        "end": 1776,
+        "vehicle": 0,
+        "fire": 4
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 1866,
+        "end": 1881,
+        "vehicle": 0,
+        "fire": 5
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 3,
+        "start": 1905,
+        "end": 1920,
+        "vehicle": 0,
+        "fire": 5
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-01",
+        "source": 3,
+        "destination": 7,
+        "start": 2010,
+        "end": 2025,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "press_to_finished",
+        "order": "CFLAT-01",
+        "source": 7,
+        "destination": 8,
+        "start": 2049,
+        "end": 2064,
+        "vehicle": 0,
+        "fire": 6
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "CFLAT-02",
+        "source": 0,
+        "destination": 2,
+        "start": 3168,
+        "end": 3183,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-02",
+        "source": 2,
+        "destination": 7,
+        "start": 4137,
+        "end": 4152,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-02",
+        "source": 7,
+        "destination": 2,
+        "start": 4182,
+        "end": 4197,
+        "vehicle": 1,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "CFLAT-02",
+        "source": 2,
+        "destination": 7,
+        "start": 4365,
+        "end": 4380,
+        "vehicle": 0,
+        "fire": 2
+      },
+      {
+        "kind": "press_to_furnace",
+        "order": "CFLAT-02",
+        "source": 7,
+        "destination": 2,
+        "start": 4404,
+        "end": 4419,
+        "vehicle": 0,
+        "fire": 2
+      }
+    ],
+    "furnaces": [
+      {
+        "id": 0,
+        "temperature": "1150"
+      },
+      {
+        "id": 1,
+        "temperature": "1080"
+      },
+      {
+        "id": 2,
+        "temperature": "1140"
+      },
+      {
+        "id": 3,
+        "temperature": "1130"
+      },
+      {
+        "id": 4,
+        "temperature": "1150"
+      },
+      {
+        "id": 5,
+        "temperature": "1150"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": 0,
+        "location": 2,
+        "available_at_ticks": 4500
+      },
+      {
+        "id": 1,
+        "location": 4,
+        "available_at_ticks": 4500
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "summary": "Replay of a previously failed strategy, not a saved schedule; repair must use newly measured failure evidence.",
+  "candidates": [
+    {
+      "name": "roll-pair-2then3-policy1",
+      "engine": "extended",
+      "admission": "rolling",
+      "vehicle_policy": "same",
+      "backtrack_budget": 4,
+      "wip_limit": 6,
+      "program_source": null,
+      "hypothesis": "The 3+2 split structure may stagger one-vehicle transport and press gaps better than 5+5 groups. Putting the 2-piece sub-batches first may create earlier completions and more repair room. This is a conditional trial, not a claimed success.",
+      "evidence_ids": [],
+      "groups": [
+        [
+          {
+            "route": "C430",
+            "count": 2
+          },
+          {
+            "route": "CFLAT",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "route": "C430",
+            "count": 3
+          },
+          {
+            "route": "CFLAT",
+            "count": 3
+          }
+        ],
+        [
+          {
+            "route": "C280I",
+            "count": 2
+          },
+          {
+            "route": "C280R",
+            "count": 2
+          }
+        ],
+        [
+          {
+            "route": "C280I",
+            "count": 3
+          },
+          {
+            "route": "C280R",
+            "count": 3
+          }
+        ]
+      ],
+      "loading": "interleaved",
+      "policies": [
+        1
+      ],
+      "seeds": [
+        7
+      ],
+      "direction": "press_gap",
+      "fraction": 0.5,
+      "focus_orders": []
+    }
+  ]
+}

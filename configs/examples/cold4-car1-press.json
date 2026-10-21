@@ -1,0 +1,418 @@
+{
+  "name": "cold4-car1-press",
+  "ticks_per_minute": 3,
+  "horizon_minutes": 5760,
+  "max_replay_step_minutes": 5,
+  "furnace_count": 6,
+  "capacity": 5,
+  "initial_temperature": 1150,
+  "ramp_up_deg_per_min": 5,
+  "ramp_down_deg_per_min": 3,
+  "quotient_identical_orders": true,
+  "routes": [
+    {
+      "id": "C430",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1150,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 12
+        },
+        {
+          "fire": 2,
+          "temp": 1150,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 12
+        },
+        {
+          "fire": 3,
+          "temp": 1130,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 12
+        },
+        {
+          "fire": 4,
+          "temp": 1100,
+          "hold_min": 60,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1070,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1040,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1020,
+          "hold_min": 70,
+          "hold_max": 110,
+          "forge": 10
+        },
+        {
+          "fire": 8,
+          "temp": 1000,
+          "hold_min": 30,
+          "hold_max": 45,
+          "forge": 8
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计GH4169 φ430 8火(195 152 165 175)_示意温度.xlsx",
+      "source_sha256": "90d07e7fe2e0749775bf9220109c2a887dfe976d46fd9168b0ef00a3274a9491"
+    },
+    {
+      "id": "C280R",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1140,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 6
+        },
+        {
+          "fire": 2,
+          "temp": 1140,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 3,
+          "temp": 1140,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 6
+        },
+        {
+          "fire": 4,
+          "temp": 1110,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1090,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1060,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1040,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 8,
+          "temp": 1020,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 10
+        },
+        {
+          "fire": 9,
+          "temp": 1000,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 12
+        },
+        {
+          "fire": 10,
+          "temp": 980,
+          "hold_min": 30,
+          "hold_max": 40,
+          "forge": 10
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计GH4169 圆280 10火（172 171）_示意温度.xlsx",
+      "source_sha256": "e806f9a7faa956fbd95466f5e507cae73f0cdd98d99689bd0bbed2556388d692"
+    },
+    {
+      "id": "C280I",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1150,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 10
+        },
+        {
+          "fire": 2,
+          "temp": 1150,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 10
+        },
+        {
+          "fire": 3,
+          "temp": 1130,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 10
+        },
+        {
+          "fire": 4,
+          "temp": 1110,
+          "hold_min": 60,
+          "hold_max": 150,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1120,
+          "hold_min": 200,
+          "hold_max": 300,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 1050,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 7,
+          "temp": 1010,
+          "hold_min": 60,
+          "hold_max": 90,
+          "forge": 8
+        },
+        {
+          "fire": 8,
+          "temp": 980,
+          "hold_min": 30,
+          "hold_max": 50,
+          "forge": 10
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计IN718-φ280 8火_示意温度.xlsx",
+      "source_sha256": "346403a3fad11101397beb6ed8eee649b0665b940d3aa7b12235934501388a78"
+    },
+    {
+      "id": "CFLAT",
+      "operations": [
+        {
+          "fire": 1,
+          "temp": 1120,
+          "hold_min": 300,
+          "hold_max": 420,
+          "forge": 10
+        },
+        {
+          "fire": 2,
+          "temp": 1120,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 3,
+          "temp": 1080,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 4,
+          "temp": 1050,
+          "hold_min": 40,
+          "hold_max": 120,
+          "forge": 8
+        },
+        {
+          "fire": 5,
+          "temp": 1010,
+          "hold_min": 30,
+          "hold_max": 60,
+          "forge": 8
+        },
+        {
+          "fire": 6,
+          "temp": 960,
+          "hold_min": 30,
+          "hold_max": 60,
+          "forge": 8
+        }
+      ],
+      "source": "/Users/mac/Desktop/锻造排产建模/工艺卡_示意温度/锻造时间统计IN718+扁胚 5火_示意温度.xlsx",
+      "source_sha256": "bb6549b1c4bb90500169a5ccdf00ff2825e8b12b2c1e564300c1b22e7736ccdf"
+    }
+  ],
+  "orders": [
+    {
+      "id": "C430-01",
+      "route": "C430",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280R-01",
+      "route": "C280R",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "C280I-01",
+      "route": "C280I",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    },
+    {
+      "id": "CFLAT-01",
+      "route": "CFLAT",
+      "release_minutes": 0,
+      "due_minutes": 5760
+    }
+  ],
+  "fixture_sha256": "47559b5702fb5efcee27824e1bac32f6d7e0e17fed8bc63ebe302ce3d5cebb6e",
+  "scope": {
+    "transport": "configurable finite single-piece vehicles; uniform 5-minute loaded/empty travel",
+    "wrap": false,
+    "split": false,
+    "door_temperature_drop": false,
+    "empty_furnace_ramp_only": true,
+    "hot_outside_wait": false,
+    "same_time_capacity": "ranked handovers; same vehicle unloads before pickup, capacity checked between events",
+    "schedule_identity": "all heat starts, forge starts, furnace labels; canonical identical-order labels",
+    "clock": "at most 5 minutes, split on physical and planned-action events",
+    "decision_time_domain": "exact 1/3-minute rational lattice (not a 5-minute start-time grid)",
+    "temperature_controls": "canonical earliest empty-furnace ramps; equivalent idle ramp histories not enumerated",
+    "first_heat": "existing mock 300-420 minutes",
+    "override": "C280I fire 5 single 1120C hold200-300 forge8",
+    "search_runtime_limit": null
+  },
+  "transport": {
+    "enabled": true,
+    "vehicle_count": 1,
+    "travel_minutes": 5,
+    "initial_location": "cold"
+  },
+  "production_state": {
+    "schema_version": 1,
+    "cut": "before_events",
+    "now_ticks": 933,
+    "operations": [
+      {
+        "order": "C430-01",
+        "fire": 1,
+        "heat_start": 15,
+        "furnace": 0,
+        "heat_end": 915,
+        "forge_start": 930,
+        "forge_end": 966
+      },
+      {
+        "order": "C280R-01",
+        "fire": 1,
+        "heat_start": 45,
+        "furnace": 1
+      },
+      {
+        "order": "C280I-01",
+        "fire": 1,
+        "heat_start": 75,
+        "furnace": 0
+      }
+    ],
+    "transports": [
+      {
+        "kind": "cold_to_furnace",
+        "order": "C430-01",
+        "source": 0,
+        "destination": 1,
+        "start": 0,
+        "end": 15,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "furnace_to_press",
+        "order": "C430-01",
+        "source": 1,
+        "destination": 7,
+        "start": 915,
+        "end": 930,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280R-01",
+        "source": 0,
+        "destination": 2,
+        "start": 30,
+        "end": 45,
+        "vehicle": 0,
+        "fire": 1
+      },
+      {
+        "kind": "cold_to_furnace",
+        "order": "C280I-01",
+        "source": 0,
+        "destination": 1,
+        "start": 60,
+        "end": 75,
+        "vehicle": 0,
+        "fire": 1
+      }
+    ],
+    "furnaces": [
+      {
+        "id": 0,
+        "temperature": "1150"
+      },
+      {
+        "id": 1,
+        "temperature": "1140"
+      },
+      {
+        "id": 2,
+        "temperature": "1150"
+      },
+      {
+        "id": 3,
+        "temperature": "1150"
+      },
+      {
+        "id": 4,
+        "temperature": "1150"
+      },
+      {
+        "id": 5,
+        "temperature": "1150"
+      }
+    ],
+    "vehicles": [
+      {
+        "id": 0,
+        "location": 7,
+        "available_at_ticks": 933
+      }
+    ]
+  }
+}

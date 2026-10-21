@@ -8,7 +8,7 @@ import { Memory, profile } from "../src/memory.js";
 import { checkpoint, readCheckpoint, acquire } from "../src/checkpoint.js";
 import { Events } from "../src/events.js";
 import { ModelClient } from "../src/client.js";
-import { summarize } from "../src/auxiliary.js";
+import { compressFeedback } from "../src/auxiliary_roles.js";
 const sc = JSON.parse(readFileSync("configs/orders20.json", "utf8"));
 test("policy identity excludes explanation; generic bootstrap adapts counts", () => {
   const c = bootstrap(sc)[0];
@@ -60,7 +60,7 @@ test("Memory permits audited construction; patches are versioned evidence-based 
       status: "UNKNOWN",
       gain_minutes: 0,
       cost: 20,
-      source: "solve",
+      source: "construct",
     });
     m.use(["a"], "trial1");
     m.use(["a"], "trial1");
@@ -99,12 +99,23 @@ test("Memory permits audited construction; patches are versioned evidence-based 
     assert.equal(m.cards(p.compatible)[0].version, 2);
     assert.equal(m.cards(p.compatible)[0].measured.valid, 1);
     assert.equal(m.stats(p.compatible).uses[0].n, 1);
-    m.patches(
-      p.compatible,
-      [{ ...patch, op: "retire", expected_version: 2, evidence_ids: ["b"] }],
-      ["b"],
+    assert.throws(
+      () =>
+        m.patches(
+          p.compatible,
+          [
+            {
+              ...patch,
+              op: "retire",
+              expected_version: 2,
+              evidence_ids: ["b"],
+            },
+          ],
+          ["b"],
+        ),
+      /Retirement requires/,
     );
-    assert.equal(m.cards(p.compatible).length, 0);
+    assert.equal(m.cards(p.compatible).length, 1);
   } finally {
     m.close();
     rmSync(dir, { recursive: true, force: true });
@@ -142,17 +153,20 @@ test("auxiliary timeout falls back to factual summary without throwing", async (
         throw Error("timeout");
       },
     } as unknown as ModelClient;
-    const r = await summarize(
+    const r = await compressFeedback(
       fake,
-      [{ id: "1", strategy: bootstrap(sc)[0], outcome: { status: "UNKNOWN" } }],
-      [],
+      [0, 1].map((i) => ({
+        id: String(i),
+        strategy: bootstrap(sc)[0],
+        outcome: { status: "UNKNOWN" },
+      })),
       null,
-      "p",
+      null,
+      1,
       new Events(join(dir, "events"), "r", performance.now()),
       new AbortController().signal,
       1,
       join(dir, "aux.json"),
-      false,
     );
     assert.equal(r.status, "fallback");
     assert.ok(r.summary.includes("UNKNOWN"));

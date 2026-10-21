@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-19T08:16:31.914992+00:00",
+  "server": "/home/huanzz/longda-strategy-harness-v7-20261019",
+  "old_preserved": true,
+  "active_v7_processes": [],
+  "unchanged_modules": {
+    "physical_model.py": true,
+    "verification.py": true,
+    "production_state.py": true,
+    "scoring.py": true,
+    "legacy_constructor.py": true,
+    "program.py": true,
+    "calendar_engine.py": true,
+    "algorithm.py": true
+  },
+  "reference_count": 22,
+  "reference_unchanged": true
+}

@@ -5,3 +5,13 @@ __pycache__/
 runs/
 data/
 .env*
+
+._*
+transfer-metadata-backup/
+
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+.DS_Store

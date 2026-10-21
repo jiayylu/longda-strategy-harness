@@ -1,0 +1,222 @@
+{
+  "checked": 31,
+  "rows": [
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-4/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "AUDITED",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-75/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "FEASIBLE",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-100/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "FEASIBLE",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-134/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "FEASIBLE",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-143/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "FEASIBLE",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-159/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "OPTIMAL",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-197/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "OPTIMAL",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-203/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "OPTIMAL",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-408/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "OPTIMAL",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-595/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "FEASIBLE",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-76/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-80/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-81/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-82/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-83/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-85/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-86/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-88/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-89/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-90/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-118/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-121/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-123/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-125/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-126/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-127/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-129/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-135/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-136/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-138/1",
+      "availability": "raw_result",
+      "valid": false,
+      "status": "UNKNOWN",
+      "has_schedule": false
+    },
+    {
+      "id": "20f3d548-3ffc-4924-861a-ec0a601e1435/task-1/1",
+      "availability": "raw_result",
+      "valid": true,
+      "status": "AUDITED",
+      "has_schedule": false
+    }
+  ]
+}

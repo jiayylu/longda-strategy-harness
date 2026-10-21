@@ -7,8 +7,8 @@ import json
 import re
 from collections import Counter,defaultdict
 from pathlib import Path
-from longda_cpsat.model import build_model,flatten
-from longda_cpsat.audit import audit
+from longda_cpsat.model import flatten
+from physical_model import build_model,audit
 
 
 def verify(sc,s):

@@ -1,0 +1,64 @@
+{
+  "name": "bootstrap-1-3-rolling",
+  "engine": "extended",
+  "admission": "rolling",
+  "vehicle_policy": "same",
+  "backtrack_budget": 0,
+  "wip_limit": 6,
+  "program_source": null,
+  "algorithm_source": null,
+  "hypothesis": "Generic route-based grouping; must be computed and audited on this input.",
+  "evidence_ids": [],
+  "groups": [
+    [
+      {
+        "route": "C430",
+        "count": 3
+      },
+      {
+        "route": "CFLAT",
+        "count": 3
+      }
+    ],
+    [
+      {
+        "route": "C430",
+        "count": 2
+      },
+      {
+        "route": "CFLAT",
+        "count": 2
+      }
+    ],
+    [
+      {
+        "route": "C280I",
+        "count": 3
+      },
+      {
+        "route": "C280R",
+        "count": 3
+      }
+    ],
+    [
+      {
+        "route": "C280I",
+        "count": 2
+      },
+      {
+        "route": "C280R",
+        "count": 2
+      }
+    ]
+  ],
+  "loading": "interleaved",
+  "policies": [
+    1
+  ],
+  "seeds": [
+    0
+  ],
+  "direction": "press_gap",
+  "fraction": 0.4,
+  "focus_orders": []
+}

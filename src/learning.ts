@@ -2,9 +2,13 @@ import { z } from "zod";
 import { hash } from "./memory.js";
 import type { Strategy, Scenario } from "./contracts.js";
 import { Candidate } from "./contracts.js";
+import { MEMORY_STAGES } from "./memory_stage.js";
 export function strategyKey(s: Strategy) {
   const { name, hypothesis, evidence_ids, ...algorithm } = s;
   return hash(algorithm);
+}
+export function constructionArm(strategy: Strategy) {
+  return `construct:${strategy.engine}:${strategy.admission}:${strategy.vehicle_policy}:${strategy.algorithm_source || strategy.program_source ? hash(strategy.algorithm_source ?? strategy.program_source).slice(0, 10) : "builtin"}`;
 }
 export const CardPatch = z
   .object({
@@ -15,14 +19,18 @@ export const CardPatch = z
     recommendation: z.string().max(1000),
     exceptions: z.array(z.string().max(300)).max(8),
     evidence_ids: z.array(z.string()).min(1).max(20),
-  })
-  .strict();
-export const AuxiliaryAnswer = z
-  .object({
-    summary: z.string().max(2400),
-    evidence_ids: z.array(z.string()).max(40),
-    patches: z.array(CardPatch).max(8),
-    narration: z.string().max(500).default(""),
+    stage: z.enum(MEMORY_STAGES).optional(),
+    retirement: z
+      .object({
+        reason: z.enum(["superseded", "evidence_error", "scope_obsolete"]),
+        explanation: z.string().min(30).max(1500),
+        evidence_ids: z.array(z.string()).min(1).max(20),
+        replacement_id: z.string().optional(),
+        // Terminal outcome records alone cannot prove factual corruption or obsolete rules.
+        verified_issue_ids: z.array(z.string()).max(10).optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 export type Arm = {
@@ -33,15 +41,24 @@ export type Arm = {
   cost: number;
   recent: number[];
   failures: number;
+  observations?: { reward: number; cost: number }[];
 };
-/** UCB with an explicit exploration floor; separate construction/CP arms. */
+/** Resource-share scheduling. Exploitation rates are normalized BEFORE exploration. */
 export class Allocator {
+  lastDecision: any = null;
   constructor(
     public arms: Record<string, Arm> = {},
     public selections = 0,
     public allocations: Record<string, number> = {},
+    readonly exploration = 0.15,
   ) {}
-  update(key: string, valid: boolean, gain: number, cost: number) {
+  update(
+    key: string,
+    valid: boolean,
+    gain: number,
+    cost: number,
+    feasibility = false,
+  ) {
     const a = (this.arms[key] ??= {
       attempts: 0,
       valid: 0,
@@ -56,43 +73,97 @@ export class Allocator {
     a.improvements += Number(gain > 0);
     a.gain += Math.max(0, gain);
     a.cost += Math.max(0.001, cost);
-    a.recent = [...a.recent, Math.max(0, gain) / Math.max(0.001, cost)].slice(
-      -12,
-    );
+    const reward = feasibility ? Number(valid) : Math.max(0, gain);
+    a.observations = [
+      ...(a.observations ?? []),
+      { reward, cost: Math.max(0.001, cost) },
+    ].slice(-24);
+    a.recent = a.observations.map((o) => o.reward / o.cost);
     a.failures = gain > 0 ? 0 : a.failures + 1;
   }
-  pick<T extends { arm: string }>(queue: T[]): number {
-    this.selections++;
-    const count = (key: string) => this.allocations[key] ?? 0;
-    const untried = queue.findIndex((x) => count(x.arm) === 0);
-    let index = untried;
-    if (index < 0 && this.selections % 5 === 0)
-      index = queue.reduce(
-        (best, x, i) => (count(x.arm) < count(queue[best].arm) ? i : best),
-        0,
-      );
-    if (index < 0) {
-      const value = (key: string) => {
-        const a = this.arms[key];
-        const mean = a
-          ? a.recent.reduce((x, y) => x + y, 0) / Math.max(1, a.recent.length)
-          : 0;
-        return (
-          mean +
-          Math.sqrt(
-            (2 * Math.log(this.selections + 1)) / Math.max(1, count(key)),
-          )
-        );
-      };
-      index = queue.reduce(
-        (best, x, i) => (value(x.arm) > value(queue[best].arm) ? i : best),
-        0,
-      );
-    }
-    const key = queue[index].arm;
-    this.allocations[key] = count(key) + 1;
-    return index;
+  settle(key: string, reserved: number, actual: number) {
+    this.allocations[key] = Math.max(
+      0,
+      (this.allocations[key] ?? 0) + actual - reserved,
+    );
   }
+  pick<T extends { arm: string; estimated_cost?: number; priority?: number }>(
+    queue: T[],
+  ): number {
+    this.selections++;
+    const keys = [...new Set(queue.map((x) => x.arm))],
+      rates: Record<string, number> = {};
+    for (const k of keys) {
+      const o = this.arms[k]?.observations ?? [];
+      rates[k] =
+        o.reduce((s, x) => s + x.reward, 0) /
+        Math.max(
+          0.001,
+          o.reduce((s, x) => s + x.cost, 0),
+        );
+    }
+    const sum = Object.values(rates).reduce((s, x) => s + x, 0);
+    const shares = Object.fromEntries(
+      keys.map((k) => [
+        k,
+        sum > 0
+          ? ((1 - this.exploration) * rates[k]) / sum +
+            this.exploration / keys.length
+          : 1 / keys.length,
+      ]),
+    );
+    // Completed resource use plus reservations includes in-flight work; inactive arms do not block the queue.
+    const total = keys.reduce((s, k) => s + (this.allocations[k] ?? 0), 0);
+    const avg =
+      queue.reduce((s, x) => s + Math.max(0.001, x.estimated_cost ?? 1), 0) /
+      queue.length;
+    const unseen = keys.find((k) => !(this.allocations[k] > 0));
+    const best =
+      unseen ??
+      keys.reduce((a, b) =>
+        shares[b] * (total + avg) - (this.allocations[b] ?? 0) >
+        shares[a] * (total + avg) - (this.allocations[a] ?? 0)
+          ? b
+          : a,
+      );
+    const candidates = queue
+      .map((x, i) => ({ x, i }))
+      .filter(({ x }) => x.arm === best);
+    const chosen = candidates.reduce((a, b) =>
+      (b.x.priority ?? 0) > (a.x.priority ?? 0) ? b : a,
+    );
+    const reserved = Math.max(0.001, chosen.x.estimated_cost ?? 1);
+    this.allocations[best] = (this.allocations[best] ?? 0) + reserved;
+    this.lastDecision = {
+      arm: best,
+      shares,
+      rates,
+      exploration: this.exploration,
+      reserved_slot_s: reserved,
+      method: "normalized_rate_resource_deficit",
+      measured_cpu: false,
+    };
+    return chosen.i;
+  }
+}
+export function schedulingArm(
+  task: any,
+  hasBaseline: boolean,
+  totalOrders: number,
+) {
+  if (task.action === "construct")
+    return `${hasBaseline ? "improve" : "feasibility"}:${constructionArm(task.strategy)}`;
+  if (task.completion) return "cp:partial_completion";
+  if (task.exploratory_quality_probe) return "cp:diverse_probe";
+  if (!hasBaseline) return "cp:feasibility";
+  const s = task.strategy;
+  const global =
+    s.direction === "broad" ||
+    (!s.focus_orders?.length && s.fraction >= 1) ||
+    s.focus_orders?.length >= totalOrders;
+  return global
+    ? "cp:global_improvement"
+    : `cp:local:${s.direction}:${s.focus_orders?.length || Math.ceil(s.fraction * totalOrders)}`;
 }
 export function bootstrap(sc: Scenario): Strategy[] {
   const routes = sc.routes.filter((r) =>

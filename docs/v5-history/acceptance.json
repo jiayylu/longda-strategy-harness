@@ -1,0 +1,328 @@
+{
+  "date": "2026-10-19",
+  "server": "/home/huanzz/longda-strategy-harness-v5-20261016",
+  "typescript_tests": 44,
+  "python_tests": 41,
+  "regression": {
+    "reference_unchanged": true,
+    "reference_files": 22,
+    "protected_and_control_files": [
+      "physical_model.py",
+      "verification.py",
+      "production_state.py",
+      "scoring.py",
+      "legacy_constructor.py",
+      "program.py"
+    ],
+    "checks": [
+      {
+        "test": "old_new_control",
+        "cars": 1,
+        "engine": "legacy",
+        "policy": 3,
+        "identical": true,
+        "complete": true
+      },
+      {
+        "test": "old_new_control",
+        "cars": 1,
+        "engine": "extended",
+        "policy": 0,
+        "identical": true,
+        "complete": null
+      },
+      {
+        "test": "old_new_control",
+        "cars": 1,
+        "engine": "extended",
+        "policy": 3,
+        "identical": true,
+        "complete": true
+      },
+      {
+        "test": "old_new_control",
+        "cars": 2,
+        "engine": "legacy",
+        "policy": 3,
+        "identical": true,
+        "complete": true
+      },
+      {
+        "test": "old_new_control",
+        "cars": 2,
+        "engine": "extended",
+        "policy": 0,
+        "identical": true,
+        "complete": true
+      },
+      {
+        "test": "old_new_control",
+        "cars": 2,
+        "engine": "extended",
+        "policy": 3,
+        "identical": true,
+        "complete": true
+      },
+      {
+        "test": "full_code_current_order_grouping",
+        "cars": 1,
+        "complete": true,
+        "day_minutes": 284.0,
+        "api_calls": {
+          "root": 1,
+          "inspect": 1,
+          "batches": 1
+        }
+      },
+      {
+        "test": "full_code_current_order_grouping",
+        "cars": 2,
+        "complete": true,
+        "day_minutes": 322.0,
+        "api_calls": {
+          "root": 1,
+          "inspect": 1,
+          "batches": 1
+        }
+      },
+      {
+        "test": "changed_count_observed_heating",
+        "orders": 1,
+        "complete": true,
+        "observed_audit": true
+      },
+      {
+        "test": "changed_count_observed_heating",
+        "orders": 3,
+        "complete": true,
+        "observed_audit": true
+      }
+    ],
+    "elapsed_s": 26.742930569685996
+  },
+  "real_model_runs": [
+    {
+      "run": "live-repair-20-car1-20261019",
+      "elapsed_s": 112.90257431399999,
+      "planner_turns": 2,
+      "actual_api_requests": 3,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "fd682190b0a73d4b5509dad6aba0933d20a69e76416b41dd5a4a478df829dd18",
+      "errors": [
+        {
+          "model_call": 2,
+          "repair_id": "repair-2",
+          "kind": "invalid_repair",
+          "error": "Error: Expected one JSON document or exactly one JSON fenced block"
+        }
+      ],
+      "repairs": [
+        {
+          "strategy_id": "round-0/strategy-2",
+          "evidence_id": "80bd9f62-539c-46f2-8bda-c7de9d1e70ba/task-2/1",
+          "repaired_from": "round-0/strategy-1",
+          "status": "CONSTRUCTION_DEADEND",
+          "valid": false,
+          "completed_operations": 24,
+          "day_minutes": null
+        }
+      ],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-repair-budget1024-04",
+      "elapsed_s": 44.893504991,
+      "planner_turns": 1,
+      "actual_api_requests": 1,
+      "stop": "repair_evaluated",
+      "best_day_minutes": null,
+      "source_hash": "c07f9f937b2142a6c4913f264847a899e9711383943698c08b33ae7274db5590",
+      "errors": [],
+      "repairs": [
+        {
+          "strategy_id": "round-0/strategy-2",
+          "evidence_id": "665f20ed-391a-489d-8900-a19f05c4ad5c/task-2/1",
+          "repaired_from": "round-0/strategy-1",
+          "status": "PROGRAM_ERROR",
+          "valid": false,
+          "completed_operations": 0,
+          "day_minutes": null
+        }
+      ],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-repair-final-20-car1-20261019",
+      "elapsed_s": 119.41431675700001,
+      "planner_turns": 2,
+      "actual_api_requests": 2,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "bca9943878e3d38460cb120c75eec3cd8e292c6e17f25503ca4dc4e09c1318b2",
+      "errors": [
+        {
+          "model_call": 2,
+          "repair_id": "repair-2",
+          "kind": "invalid_repair",
+          "error": "Error: Ambiguous JSON fenced blocks"
+        }
+      ],
+      "repairs": [
+        {
+          "strategy_id": "round-0/strategy-2",
+          "evidence_id": "5b0088b0-f16c-454d-8429-db9d2fb28b34/task-2/1",
+          "repaired_from": "round-0/strategy-1",
+          "status": "CONSTRUCTION_BUDGET",
+          "valid": false,
+          "completed_operations": 37,
+          "day_minutes": null
+        }
+      ],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-repair-low-01",
+      "elapsed_s": 83.05104266000001,
+      "planner_turns": 2,
+      "actual_api_requests": 2,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "e96d41a172de3743e7018f366ef670f8631cb507ed761502aa014d88c281ae67",
+      "errors": [
+        {
+          "model_call": 1,
+          "repair_id": "repair-1",
+          "kind": "invalid_repair",
+          "error": "SyntaxError: Unexpected token 'L', \"Looking at\"... is not valid JSON"
+        },
+        {
+          "model_call": 2,
+          "repair_id": "repair-1",
+          "kind": "invalid_repair",
+          "error": "SyntaxError: Unexpected token 'L', \"Looking at\"... is not valid JSON"
+        }
+      ],
+      "repairs": [],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-repair-low-02",
+      "elapsed_s": 162.932687597,
+      "planner_turns": 2,
+      "actual_api_requests": 2,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "4ea33f9633d3a2cd86c52becdcfa687f848b7b1fe6e6217646666d8644063fad",
+      "errors": [
+        {
+          "model_call": 1,
+          "repair_id": "repair-1",
+          "kind": "output_limit",
+          "error": "ModelCallError: Error: Model answer incomplete (max_tokens)"
+        },
+        {
+          "model_call": 2,
+          "repair_id": "repair-1",
+          "kind": "output_limit",
+          "error": "ModelCallError: Error: Model answer incomplete (max_tokens)"
+        }
+      ],
+      "repairs": [],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-repair-low-03",
+      "elapsed_s": 8.388397631000002,
+      "planner_turns": 2,
+      "actual_api_requests": 2,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "7b6e6c270067ea01687a43f4175e16f33e1ee23777c7e6c8bdd126e42d2a0dff",
+      "errors": [
+        {
+          "model_call": 1,
+          "repair_id": "repair-1",
+          "kind": "request_error",
+          "error": "ModelCallError: Error: Model HTTP 400: event:error\ndata:{\"code\":\"InvalidParameter\",\"message\":\"'reasoning_effort' and 'thinking_budget' cannot be set simultaneously\",\"request_id\":\"9d49b3a2-9431-9f15-8eb9-a5dbe0b208d3\"}\n\n"
+        },
+        {
+          "model_call": 2,
+          "repair_id": "repair-1",
+          "kind": "request_error",
+          "error": "ModelCallError: Error: Model HTTP 400: event:error\ndata:{\"code\":\"InvalidParameter\",\"message\":\"'reasoning_effort' and 'thinking_budget' cannot be set simultaneously\",\"request_id\":\"328d9805-c152-9f9d-84db-9ee8b8d98686\"}\n\n"
+        }
+      ],
+      "repairs": [],
+      "cp_search_calls": 0
+    },
+    {
+      "run": "live-structured-repair-20-car1-20261019",
+      "elapsed_s": 120.79218627,
+      "planner_turns": 2,
+      "actual_api_requests": 3,
+      "stop": "tasks_exhausted",
+      "best_day_minutes": null,
+      "source_hash": "aadc9a5fff036bb91d4681feef434600ec0830bfa0a7c55c975a7628d382339e",
+      "errors": [],
+      "repairs": [
+        {
+          "strategy_id": "round-0/strategy-2",
+          "evidence_id": "9fa92880-2fd0-4ac5-8a60-7be49b395fcc/task-2/1",
+          "repaired_from": "round-0/strategy-1",
+          "status": "PROGRAM_ERROR",
+          "valid": false,
+          "completed_operations": 0,
+          "day_minutes": null
+        },
+        {
+          "strategy_id": "round-0/strategy-3",
+          "evidence_id": "9fa92880-2fd0-4ac5-8a60-7be49b395fcc/task-3/1",
+          "repaired_from": "round-0/strategy-2",
+          "status": "CONSTRUCTION_BUDGET",
+          "valid": false,
+          "completed_operations": 37,
+          "day_minutes": null
+        }
+      ],
+      "cp_search_calls": 0
+    }
+  ],
+  "final_live": {
+    "run": "live-structured-repair-20-car1-20261019",
+    "elapsed_s": 120.79218627,
+    "planner_turns": 2,
+    "actual_api_requests": 3,
+    "stop": "tasks_exhausted",
+    "best_day_minutes": null,
+    "source_hash": "aadc9a5fff036bb91d4681feef434600ec0830bfa0a7c55c975a7628d382339e",
+    "errors": [],
+    "repairs": [
+      {
+        "strategy_id": "round-0/strategy-2",
+        "evidence_id": "9fa92880-2fd0-4ac5-8a60-7be49b395fcc/task-2/1",
+        "repaired_from": "round-0/strategy-1",
+        "status": "PROGRAM_ERROR",
+        "valid": false,
+        "completed_operations": 0,
+        "day_minutes": null
+      },
+      {
+        "strategy_id": "round-0/strategy-3",
+        "evidence_id": "9fa92880-2fd0-4ac5-8a60-7be49b395fcc/task-3/1",
+        "repaired_from": "round-0/strategy-2",
+        "status": "CONSTRUCTION_BUDGET",
+        "valid": false,
+        "completed_operations": 37,
+        "day_minutes": null
+      }
+    ],
+    "cp_search_calls": 0
+  },
+  "control": {
+    "first_valid_s": 7.84908162,
+    "day_minutes": 284,
+    "audit_valid": true
+  },
+  "claim": "Real feedback/code repair executed; no new complete 20-order schedule from the live generated algorithms; no demonstrated speed/quality gain. Existing valid constructor remains available."
+}

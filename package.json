@@ -1,1 +1,25 @@
-{"name":"longda-strategy-harness","version":"2.0.0","private":true,"type":"module","engines":{"node":">=22.13"},"scripts":{"build":"tsc -p tsconfig.json","typecheck":"tsc -p tsconfig.json --noEmit","test":"npm run build && node --test dist/tests/*.test.js","start":"node dist/src/cli.js","format":"prettier --write src tests","format:check":"prettier --check src tests"},"dependencies":{"zod":"3.25.76"},"devDependencies":{"@types/node":"22.19.0","prettier":"3.6.2","typescript":"5.9.3"}}
+{
+  "name": "longda-strategy-harness",
+  "version": "12.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "start": "node dist/src/cli.js",
+    "format": "prettier --write src tests",
+    "format:check": "prettier --check src tests"
+  },
+  "dependencies": {
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  }
+}

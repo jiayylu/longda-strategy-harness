@@ -1,341 +1,217 @@
 {
+  "version": "7.0.0",
+  "release": {
+    "checked_utc": "2026-10-19T08:16:31.914992+00:00",
+    "server": "/home/huanzz/longda-strategy-harness-v7-20261019",
+    "old_preserved": true,
+    "active_v7_processes": [],
+    "unchanged_modules": {
+      "physical_model.py": true,
+      "verification.py": true,
+      "production_state.py": true,
+      "scoring.py": true,
+      "legacy_constructor.py": true,
+      "program.py": true,
+      "calendar_engine.py": true,
+      "algorithm.py": true
+    },
+    "reference_count": 22,
+    "reference_unchanged": true
+  },
   "tests": {
-    "typescript_passed": 11,
-    "python_passed": 12
+    "typescript": 52,
+    "python": 52
   },
-  "runs": [
+  "smoke": [
     {
-      "run": "paired-cold-1",
-      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
-      "first_valid_s": 5.086678597,
-      "first_minutes": 329,
-      "best_minutes": 519,
-      "elapsed_s": 32.337657742,
-      "memory_hits": 0,
-      "cp_calls": 4,
-      "timing": {
-        "planner_wall_s": 0,
-        "aux_wall_s": 0,
-        "constructor_s": 1.4363450454548001,
-        "cp_s": 21.713797834701836,
-        "audit_s": 22.773004071787
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": []
+      "mode": "off",
+      "wall_s": 0.7067242539999999,
+      "first_valid_s": null,
+      "day_minutes": null,
+      "completion_attempts": 0,
+      "completion_valid": 0,
+      "cp_calls": 0,
+      "reason": "tasks_exhausted",
+      "model": "fixture/off; no live inference"
     },
     {
-      "run": "paired-warm-1",
-      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
-      "first_valid_s": 5.0515202829999994,
-      "first_minutes": 504,
-      "best_minutes": 519,
-      "elapsed_s": 30.505702585,
-      "memory_hits": 6,
-      "cp_calls": 4,
-      "timing": {
-        "planner_wall_s": 0,
-        "aux_wall_s": 0,
-        "constructor_s": 1.4772027377039194,
-        "cp_s": 21.550874957814813,
-        "audit_s": 21.057570886798203
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": []
+      "mode": "on",
+      "wall_s": 1.0847761570000003,
+      "first_valid_s": 1.0134880450000001,
+      "day_minutes": 20,
+      "completion_attempts": 1,
+      "completion_valid": 1,
+      "cp_calls": 1,
+      "reason": "target_reached",
+      "model": "fixture/off; no live inference"
     },
     {
-      "run": "paired-cold-2",
-      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
-      "first_valid_s": 4.813630135,
-      "first_minutes": 329,
-      "best_minutes": 519,
-      "elapsed_s": 30.682109389,
-      "memory_hits": 0,
-      "cp_calls": 4,
-      "timing": {
-        "planner_wall_s": 0,
-        "aux_wall_s": 0,
-        "constructor_s": 1.7129677254706621,
-        "cp_s": 21.263639368116856,
-        "audit_s": 21.1371238110587
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": []
-    },
-    {
-      "run": "paired-warm-2",
-      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
-      "first_valid_s": 4.923291338,
-      "first_minutes": 504,
-      "best_minutes": 519,
-      "elapsed_s": 30.615433011,
-      "memory_hits": 6,
-      "cp_calls": 4,
-      "timing": {
-        "planner_wall_s": 0,
-        "aux_wall_s": 0,
-        "constructor_s": 1.5010828906670213,
-        "cp_s": 21.695299269631505,
-        "audit_s": 21.366976789198816
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": []
-    },
-    {
-      "run": "final-car1",
-      "source_hash": "7f1b7cf6eca0942417840cefeccf8f87fb572f3d5bf1f725ef29911cd33a0956",
-      "first_valid_s": 7.9623381239999995,
-      "first_minutes": 284,
-      "best_minutes": 284,
-      "elapsed_s": 33.101905758,
-      "memory_hits": 0,
-      "cp_calls": 6,
-      "timing": {
-        "planner_wall_s": 0,
-        "aux_wall_s": 0,
-        "constructor_s": 0.6317127076908946,
-        "cp_s": 28.37532958574593,
-        "audit_s": 2.883700018748641
-      },
-      "stop_reason": "budget",
-      "invocations": 2,
-      "errors": []
-    },
-    {
-      "run": "live-generated-final",
-      "source_hash": "68e68e4731d41f7441e34d3bdc8e78b74a9323ce8559aee3541e700d1be7ebad",
-      "first_valid_s": 7.170371797,
-      "first_minutes": 504,
-      "best_minutes": 617.3333333333334,
-      "elapsed_s": 360.887793438,
-      "memory_hits": 0,
-      "cp_calls": 44,
-      "timing": {
-        "planner_wall_s": 146.244298191,
-        "aux_wall_s": 46.559214865,
-        "constructor_s": 2.8801796324551105,
-        "cp_s": 540.4430323448032,
-        "audit_s": 34.70212882012129
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": []
-    },
-    {
-      "run": "live-cold-car2",
-      "source_hash": "97ed5f0ae1941aa1e9a250b28213a07d11301790686a9dbc14563704f4836c82",
-      "first_valid_s": 6.985701511,
-      "first_minutes": 504,
-      "best_minutes": 650,
-      "elapsed_s": 242.775742314,
-      "memory_hits": 0,
-      "cp_calls": 36,
-      "timing": {
-        "planner_wall_s": 180.002065401,
-        "aux_wall_s": 140.99947313799996,
-        "constructor_s": 2.5028453143313527,
-        "cp_s": 333.8606092631817,
-        "audit_s": 50.33794671762735
-      },
-      "stop_reason": "budget",
-      "invocations": 1,
-      "errors": [
-        {
-          "model_call": 1,
-          "error": "Error: TimeoutError: The operation was aborted due to timeout"
-        }
-      ]
+      "mode": "tool",
+      "wall_s": 1.3750147830000001,
+      "first_valid_s": 1.3273591599999999,
+      "day_minutes": 20,
+      "completion_attempts": 1,
+      "completion_valid": 1,
+      "cp_calls": 1,
+      "reason": "target_reached",
+      "model": "fixture/off; no live inference"
     }
   ],
-  "auxiliary": [
+  "resume": {
+    "stopped": "user_stop",
+    "resumed": "target_reached",
+    "valid": true,
+    "day_minutes": 20,
+    "cp_solver_calls": 1,
+    "completion_valid": 1
+  },
+  "twenty_orders": [
     {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 3.706522247000001,
-      "input_chars": 5072,
-      "summary_chars": 743,
-      "changes": [
+      "version": "v6",
+      "wall_s": 8.780130424536765,
+      "first_valid_s": null,
+      "day_minutes": null,
+      "cp_calls": 0,
+      "reason": "tasks_exhausted",
+      "completion_history": null,
+      "trials": [
         {
-          "id": "bootstrap-0-3-rolling-same",
-          "version": 1,
-          "op": "add"
+          "status": "CONSTRUCTION_BUDGET",
+          "valid": false,
+          "partial_handoff": null,
+          "cp_called": false,
+          "hint_source": null,
+          "hint_values": null,
+          "scheduled": 31,
+          "solver_s": null
         }
       ],
-      "rejected_patches": [
-        {
-          "id": "bootstrap-0-3-split",
-          "op": "retire",
-          "error": "Error: Stale or invalid Memory patch"
-        }
-      ],
-      "error": null
+      "model_calls": 0,
+      "exit_code": 0
     },
     {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 6.169116592000006,
-      "input_chars": 11204,
-      "summary_chars": 797,
-      "changes": [
+      "version": "v7",
+      "wall_s": 24.354472406208515,
+      "first_valid_s": null,
+      "day_minutes": null,
+      "cp_calls": 1,
+      "reason": "completion_evaluated",
+      "completion_history": [
         {
-          "id": "bootstrap-2-5-rolling-same",
-          "version": 3,
-          "op": "retire"
+          "key": "56ca4b08360cb92f9bbd612ca7efdc75a945552599af3dd111e23e768db2e4a2",
+          "source_evidence": "2db24e72-c560-464c-b092-40dc8bc9ccbe/task-1/1",
+          "result_evidence": "2db24e72-c560-464c-b092-40dc8bc9ccbe/task-2/1",
+          "strategy_id": "round-0/strategy-1",
+          "status": "UNKNOWN",
+          "valid": false,
+          "hint_source": "current_partial",
+          "hint_values": 191,
+          "proof_scope": "none"
+        }
+      ],
+      "trials": [
+        {
+          "status": "CONSTRUCTION_BUDGET",
+          "valid": false,
+          "partial_handoff": {
+            "eligible": true,
+            "reason": "mutable_partial_hint",
+            "hint_values": 191,
+            "scheduled_forges": 31,
+            "total_operations": 160,
+            "failure_kind": "construction_budget",
+            "errors": [],
+            "content_hash": "d29daa05ecde21bed020ebaf8bea2cc2e8fa443d8378b7de5ffff6f25991a1f3",
+            "is_complete_solution": false,
+            "can_change_hinted_values": true
+          },
+          "cp_called": false,
+          "hint_source": null,
+          "hint_values": null,
+          "scheduled": 31,
+          "solver_s": null
         },
         {
-          "id": "bootstrap-0-3-rolling-same",
-          "version": 3,
-          "op": "update"
+          "status": "UNKNOWN",
+          "valid": false,
+          "partial_handoff": null,
+          "cp_called": true,
+          "hint_source": "current_partial",
+          "hint_values": 191,
+          "scheduled": 0,
+          "solver_s": 13.9746037973091
         }
       ],
-      "rejected_patches": [],
-      "error": null
-    },
-    {
-      "status": "fallback",
-      "model": null,
-      "wall_s": 6.52886578600001,
-      "input_chars": null,
-      "summary_chars": null,
-      "changes": [],
-      "rejected_patches": null,
-      "error": "SyntaxError: Expected ',' or '}' after property value in JSON at position 3274 (line 50 column 525)"
-    },
-    {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 6.499210186999989,
-      "input_chars": 11846,
-      "summary_chars": 703,
-      "changes": [
-        {
-          "id": "bootstrap-2-5-rolling-same",
-          "version": 2,
-          "op": "update"
-        },
-        {
-          "id": "bootstrap-1-3-rolling-same",
-          "version": 3,
-          "op": "retire"
-        }
-      ],
-      "rejected_patches": [],
-      "error": null
-    },
-    {
-      "status": "fallback",
-      "model": null,
-      "wall_s": 6.721839011000004,
-      "input_chars": null,
-      "summary_chars": null,
-      "changes": [],
-      "rejected_patches": null,
-      "error": "SyntaxError: Expected ',' or '}' after property value in JSON at position 2991 (line 50 column 361)"
-    },
-    {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 5.099079583999992,
-      "input_chars": 10211,
-      "summary_chars": 502,
-      "changes": [],
-      "rejected_patches": [
-        {
-          "id": "bootstrap-0-3-rolling-same",
-          "op": "add",
-          "error": "Error: Stale or invalid Memory patch"
-        },
-        {
-          "id": "bootstrap-1-3-legacy",
-          "op": "retire",
-          "error": "Error: Stale or invalid Memory patch"
-        }
-      ],
-      "error": null
-    },
-    {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 4.656420807999996,
-      "input_chars": 11398,
-      "summary_chars": 631,
-      "changes": [
-        {
-          "id": "bootstrap-2-5-rolling-same",
-          "version": 1,
-          "op": "add"
-        },
-        {
-          "id": "bootstrap-1-3-rolling-same",
-          "version": 2,
-          "op": "update"
-        }
-      ],
-      "rejected_patches": [],
-      "error": null
-    },
-    {
-      "status": "model",
-      "model": "qwen-flash",
-      "wall_s": 7.1781606500000015,
-      "input_chars": 10624,
-      "summary_chars": 898,
-      "changes": [
-        {
-          "id": "bootstrap-0-3-rolling-same",
-          "version": 2,
-          "op": "update"
-        },
-        {
-          "id": "bootstrap-1-3-rolling-same",
-          "version": 1,
-          "op": "add"
-        }
-      ],
-      "rejected_patches": [],
-      "error": null
+      "model_calls": 0,
+      "exit_code": 0
     }
   ],
-  "ablation": {
-    "note": "program-hook-control is a hand-written test program, not an LLM-generated success claim; each case has a 1-second constructive cap plus full audits",
-    "elapsed_s": 51.269393370486796,
-    "by_variant": {
-      "legacy": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.08014201791957021
-      },
-      "extended-batch": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.16068718256428838
-      },
-      "rolling": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.1086164889857173
-      },
-      "split-cars": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.11253300867974758
-      },
-      "backtracking": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.1154014216735959
-      },
-      "program-hook-control": {
-        "trials": 12,
-        "valid": 6,
-        "median_s": 0.15066419774666429
-      }
-    }
+  "fast_control": {
+    "first_valid_s": 3.645409238,
+    "elapsed_s": 3.64937791,
+    "cp_solver_calls": 0,
+    "completion_attempts": 0,
+    "stop_reason": "target_reached"
   },
-  "rule_hash": "0a9156ae4416fb72ae5f4277c79f2f2c5e70b35d946085ca6b55466f6e841231",
-  "known_schedule_loaded": false,
-  "remaining_search_processes": 0
+  "fast_control_minutes": 284,
+  "limits": [
+    "No new live model inference; replayed previously authored algorithm",
+    "20 orders still UNKNOWN after bounded completion",
+    "Partial hints can change; no unchanged-prefix feasibility claim"
+  ],
+  "source_hashes": {
+    "src/repair.ts": "65f434b41354daa6c7ed6a4d88b6acd1d32b30305bc53acb5a81e407e3abbc13",
+    "src/strategy_cycles.ts": "1eb9c115a4606500f08b2cc32641fd0f19059ca3d7191ab45d23df97a6263790",
+    "src/tool_receipts.ts": "f1a4940151ccbe1519b8f46b60af60dff6ecbf47dc4666da8a704d370a677615",
+    "src/provenance.ts": "c071226a97e10b52eaffadf6ff635ddbd3795e847961f4c84babe0b897ed6a18",
+    "src/planner_schema.ts": "462b939a64b16bf3b97418ee2875cfa4d8ac361b6a01f4d07639ce7e563b4f2d",
+    "src/context.ts": "1498cae8663a754b70c5c97f2e76139a7c0f88ee808ce30bce355a9a1007fcb6",
+    "src/algorithm_tools.ts": "02c99effb4b015cd6435dfb04aff505194e017f232ef392338b945c0047ab3d4",
+    "src/model_json.ts": "ded2eee01b6a3f3ae843b03fb64b5ce25f9394466cf9a8ea64960174bedbf862",
+    "src/cli.ts": "d8bc9db247b5a07c40acd1af646ded2c8bb6ff577a68d2e18abb484b4f9e868f",
+    "src/auxiliary_roles.ts": "8104201c1858b7d1c0856bff6d21bc736a9990167cc856d2c1fa7d24befa3e4c",
+    "src/contracts.ts": "36c18b563b5b09c661b79e4bba0406f43535273f5cd9a5c52ffeb2dd53223b16",
+    "src/events.ts": "c73f2f41aeb8b6260001b7773bb66d9109a771c7e234180b5475bbcfed22b91a",
+    "src/planner_control.ts": "21f00b251aaeb3651d6585ff059dfa7e3498f3d003b7ca46fb45bd158c03e1c5",
+    "src/checkpoint.ts": "a0ba2c65b52fefbc71effa7086a20eab24c254ce4c2bd19c9c9004a7ed642431",
+    "src/prompts.ts": "354df074da34f7e911343f3af27508fe426c8e54bd2a961d2e824e5ede8d97eb",
+    "src/learning.ts": "ad4f3c58c1c6874d62caf0a410dae38d8d840cb459c74d987a7919ca8c4fbcd6",
+    "src/auxiliary.ts": "7886ee37604ddac4acc287575263085066024032fe978e00e90e755fa68c45c5",
+    "src/client.ts": "4acdf4bdf481b303570d31b5250b715029b03d7f2fe9736402bb882477276145",
+    "src/partial_completion.ts": "ab736523f2dddab927559e53d5fa78b03a8cea2574938ec368853b27ece1164a",
+    "src/worker.ts": "39e47757f3065c8118c8adc7c4778dcc1b4879eacb5c6ce317eb88ca7e20b073",
+    "src/memory.ts": "bef10fa042981749cf66197a841b608f55f42c6ea54bf16d70dd3562f86a5f76",
+    "python/production_state.py": "4d51dfb77e7b50db07d0959eca65f4b80cbb9a1480bcf3c3a2ee614c878ed01f",
+    "python/state_cli.py": "065d117d9aa78f5aea731fa85c3a817008434176060883191a917a14d145c934",
+    "python/benchmark_solver_options.py": "d4760d89a7509bce39dfd41d4e5fd7ab951acfdb04a67d168d0587cff0654406",
+    "python/calendar_engine.py": "3c7a1e38e360cef619e15c06174b89143c26952f879f4dbb390de915e441bef3",
+    "python/algorithm.py": "c4f5bfba750d7b51695f84752f954310f4d7e1106e133ac733a89ba36ff51522",
+    "python/legacy_constructor.py": "40b135638a185a9f6ee0ba2159cfbed55ddaaaf7962072b996f56d4aa31ec320",
+    "python/partial_completion.py": "f1b17182cc0fbcbff505290d160641836221d0fecbcc2a9d59dc05534fe69041",
+    "python/benchmark_extensions.py": "c6f3db60b8333ec1f2d167ca80387d6d10b6206864e38c89f849560c28c246b2",
+    "python/search_registry.py": "f040b80f367628e65e9a44c951fcdcb98b268ce9b41cb9b81f8780090df6f897",
+    "python/time_windows.py": "49825a2d9b4fafe9fdc226f1b8c74c3e297c4d647a26ffebb065230f239f842a",
+    "python/test_calendar.py": "4ebb27e7019f680cb11575591d9dc2c99a0c20bbd9cf06fb48583f46de9cbb40",
+    "python/verification.py": "96a21aa39fb24273174c356387159a107cbdb1718abbc775573d89da8b3d99bd",
+    "python/prepare_context_cases.py": "c35567dd3315d37f9f88029b300080531583ee6fc796848b53ccf11845a195fb",
+    "python/test_diagnostics.py": "3f140e34339de88ce1719e011a8d8c671b27773f4f3f00593763aff5e86558ec",
+    "python/default_algorithm.py": "a932341e98fe4c755f56af8f8936e5e03d8d5c01ea20b47506a2dafa2ed52944",
+    "python/test_state.py": "add1b12ffb4da4adac372e6d7d0bf277529e9f697a2cfd7786dcd7cc54bb18ef",
+    "python/algorithm_cli.py": "7c67358f09b2b4636e20c7343f9c7b24c099d1b31a2ed28f72b66b49c80a55bc",
+    "python/test_v6.py": "005dc130154abe193ec7d9b8b9b720053921a314fed63517c58fba5af8c6b0c7",
+    "python/test_partial_completion.py": "56f3c09e200b18a6d594333863cfd902499a8510871ce0d2e825aa144ea970ba",
+    "python/runtime_metrics.py": "4e4db591f63b6b37e0ce507b385d53d8de17c3a8de9c23c73727cf823a51453c",
+    "python/smoke20.py": "26ccd6f6c943512165fa805ef7ea69db5e4ff0e61a2e740311ae28a344e61b1b",
+    "python/physical_model.py": "1b421f820b1f9b84dbcd35ed8b9dc935a479051dcd3a7581ab6fb636c648aa02",
+    "python/benchmark_report.py": "490ad5f9ff3772cae6291f9a406d02584bc4e67861cf2f472dd9e5631ef6fc3a",
+    "python/state_store.py": "60f47314089eacf4ceb742fb910c7a2f13ee313ef97f16aa080dc1d07ff7a239",
+    "python/test_extensions.py": "70dcb145fb40c6b6e539b0ccc8e3ac195c6293b5af45198c94b82a2a9ac10915",
+    "python/program.py": "88942dc94479c9cad7da22db46ff050ecfc8eeebbe237818f4ccc83b1275472f",
+    "python/worker.py": "11ad78f1975c8b029cc9b063492cee989f65583476fb722a90802366cbf47195",
+    "python/diagnostics.py": "3a81689efcf6e11ea0d95236d965ec1722d4d36b522c81d71c5ab939212812a0",
+    "python/constructor.py": "29b3972c0d9d79de45b423122151d0dce371dd90927d4251f840f73101a2fc9c",
+    "python/test_repair.py": "4a933b684dc159a07b8f4bad2c0d6d9fe92d32e2b1562179511c39bf07cd2506",
+    "python/scoring.py": "01c9cd098126c6fabaeafb7bf33d098c3ff46f18a5b06e3b3e282a712ac7f6b0",
+    "python/test_worker.py": "8050bf0540bba84067519a8fb2a91fca555a38c1753793092a2eb028efbfe2e7"
+  }
 }

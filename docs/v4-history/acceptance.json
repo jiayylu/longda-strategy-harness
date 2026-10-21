@@ -1,0 +1,215 @@
+{
+  "version": "4.0.0",
+  "server": "/home/huanzz/longda-strategy-harness-v4-20261016",
+  "old_preserved": "/home/huanzz/longda-strategy-harness-v3-20261015",
+  "typescript_tests_passed": 38,
+  "python_tests_passed": 25,
+  "rule_regression": {
+    "orders": 20,
+    "tests": [
+      {
+        "cars": 1,
+        "engine": "legacy",
+        "policy": 3,
+        "schedule_identical": true,
+        "valid": true,
+        "error": null
+      },
+      {
+        "cars": 1,
+        "engine": "extended",
+        "policy": 0,
+        "schedule_identical": true,
+        "valid": null,
+        "error": "bounded_deadend"
+      },
+      {
+        "cars": 1,
+        "engine": "extended",
+        "policy": 3,
+        "schedule_identical": true,
+        "valid": true,
+        "error": null
+      },
+      {
+        "cars": 2,
+        "engine": "legacy",
+        "policy": 3,
+        "schedule_identical": true,
+        "valid": true,
+        "error": null
+      },
+      {
+        "cars": 2,
+        "engine": "extended",
+        "policy": 0,
+        "schedule_identical": true,
+        "valid": true,
+        "error": null
+      },
+      {
+        "cars": 2,
+        "engine": "extended",
+        "policy": 3,
+        "schedule_identical": true,
+        "valid": true,
+        "error": null
+      }
+    ],
+    "reference_files_unchanged": 22,
+    "additional_frozen_files": [
+      "physical_model.py",
+      "production_state.py",
+      "scoring.py",
+      "verification.py",
+      "legacy_constructor.py",
+      "program.py"
+    ],
+    "elapsed_s": 19.725449598394334
+  },
+  "repair_smoke": {
+    "test": "recorded-model-two-repairs",
+    "elapsed_s": 4.412831199999999,
+    "day_minutes": 284,
+    "repair_calls": 2,
+    "cp_solver_calls": 0,
+    "hard_audits": true,
+    "note": "Mocked model responses, real constructor and complete audits; not evidence of real model reasoning"
+  },
+  "improvement_smoke": {
+    "elapsed_s": 14.0362893,
+    "stop_reason": "tasks_exhausted",
+    "day_minutes": 284,
+    "planner": {
+      "required": true,
+      "completed_calls": 2,
+      "accepted_candidates": 2,
+      "evaluated_trials": 8,
+      "errors": 0
+    },
+    "first_batch": [
+      {
+        "id": "round-1/strategy-1",
+        "total": 3,
+        "cp": 2,
+        "statuses": {
+          "AUDITED": 1,
+          "UNKNOWN": 2
+        }
+      }
+    ],
+    "verified": "Two real search batches; second model received first batch feedback; descendants attributed; original full audits; mocked model API only"
+  },
+  "resume_smoke": {
+    "first_status": "tasks_exhausted",
+    "second_status": "target_reached",
+    "day_minutes": 284,
+    "repair_calls": 2,
+    "elapsed_s": 5.226849812,
+    "cp_search_calls": 0,
+    "verified": "Explicit resume reopens exhausted repair only after quota increase; raw failure and lineage retained; complete real audits pass; mocked API only"
+  },
+  "live": [
+    {
+      "run": "live-repair-20-car1",
+      "source_hash": "0c6ea930483ce5e226cea4242334a3dd5faef7b0290112ebc92bbfbd4c25eb63",
+      "elapsed_s": 240.028131433,
+      "stop_reason": "budget",
+      "model": {
+        "required": false,
+        "completed_calls": 0,
+        "accepted_candidates": 0,
+        "evaluated_trials": 1,
+        "errors": 2
+      },
+      "repair_calls": 2,
+      "cp_solver_calls": 0,
+      "best_day_minutes": null,
+      "failures": [
+        {
+          "status": "CONSTRUCTION_DEADEND",
+          "completed_operations": 7
+        }
+      ]
+    },
+    {
+      "run": "live-repair-20-car1-bounded-thinking",
+      "source_hash": "d319e6bcfbc70e225417d66cbba4c16b0b1a3e083f7f2d3da60b64a6b47e9a87",
+      "elapsed_s": 129.435384849,
+      "stop_reason": "tasks_exhausted",
+      "model": {
+        "required": false,
+        "completed_calls": 2,
+        "accepted_candidates": 2,
+        "evaluated_trials": 3,
+        "errors": 0
+      },
+      "repair_calls": 2,
+      "cp_solver_calls": 0,
+      "best_day_minutes": null,
+      "failures": [
+        {
+          "status": "CONSTRUCTION_DEADEND",
+          "completed_operations": 7
+        },
+        {
+          "status": "CONSTRUCTION_DEADEND",
+          "completed_operations": 7
+        },
+        {
+          "status": "PROGRAM_ERROR",
+          "completed_operations": null
+        }
+      ]
+    },
+    {
+      "run": "live-program-repair-20-car1",
+      "source_hash": "d319e6bcfbc70e225417d66cbba4c16b0b1a3e083f7f2d3da60b64a6b47e9a87",
+      "elapsed_s": 60.806735073999995,
+      "stop_reason": "tasks_exhausted",
+      "model": {
+        "required": false,
+        "completed_calls": 2,
+        "accepted_candidates": 1,
+        "evaluated_trials": 2,
+        "errors": 1
+      },
+      "repair_calls": 2,
+      "cp_solver_calls": 0,
+      "best_day_minutes": null,
+      "failures": [
+        {
+          "status": "PROGRAM_ERROR",
+          "completed_operations": null
+        },
+        {
+          "status": "CONSTRUCTION_DEADEND",
+          "completed_operations": 8
+        }
+      ]
+    },
+    {
+      "run": "replay-real-model-revision",
+      "source_hash": "f4d309fcc8d58ee6db0158817f183a5d1a6145027cfaacd5ac04fdcbb53059a9",
+      "elapsed_s": 0.8454299439999999,
+      "stop_reason": "tasks_exhausted",
+      "model": {
+        "required": false,
+        "completed_calls": 0,
+        "accepted_candidates": 0,
+        "evaluated_trials": 1,
+        "errors": 0
+      },
+      "repair_calls": 0,
+      "cp_solver_calls": 0,
+      "best_day_minutes": null,
+      "failures": [
+        {
+          "status": "CONSTRUCTION_DEADEND",
+          "completed_operations": 52
+        }
+      ]
+    }
+  ],
+  "conclusion": "Real model consumed detailed feedback and changed executable strategy and repaired syntax. No new full feasible schedule delivered by these live revisions. Successful complete schedules in smoke tests use recorded model responses, not evidence of live reasoning quality. No unbounded search started."
+}
