@@ -2,15 +2,15 @@
 
 根据订单、工艺和当前在制状态生成完整合法排程，优先提高当前统计日的净锻打时间。快速构造、CP-SAT 和大模型策略并行运行；只有通过独立物理审计和完整约束验算的方案才发布为基线。
 
-**仓库名称保留 `longda-strategy-harness-v2-20261015`，当前代码版本为 `12.0.0`。** 原 v2 提交保留在 Git 历史及 `v2-before-v12` 标签中。服务器工作目录为 `/home/huanzz/longda-strategy-harness-v12-20261020`。
+**仓库：`jiayylu/longda-strategy-harness`，当前代码版本为 `12.0.0`。** 原 v2 提交保留在 Git 历史及 `v2-before-v12` 标签中。服务器工作目录为 `/home/huanzz/longda-strategy-harness-v12-20261020`。
 
 ## 安装
 
 需要 **Node.js >= 22.13、Python >= 3.10**。服务器运行时为 Node.js 22.22.0、Python 3.10.12；CP-SAT 使用 OR-Tools 9.15.6755。
 
 ```bash
-git clone https://github.com/jiayylu/longda-strategy-harness-v2-20261015.git
-cd longda-strategy-harness-v2-20261015
+git clone https://github.com/jiayylu/longda-strategy-harness.git
+cd longda-strategy-harness
 bash scripts/setup.sh
 .venv/bin/python start.py --help
 ```
